@@ -1,16 +1,27 @@
-- [perenio.elegance](#perenioelegance)
-- [perenio.elegance.2](#perenioelegance2)
-  * [perenio.elegance.2.1](#perenioelegance21)
-    + [perenio.elegance.2.1.1](#perenioelegance211)
-      - [perenio.elegance.2.1.1.1](#perenioelegance2111)
+# Creating LXC-package for Perenio IoT-Router
 
-# perenio.elegance
-This describes how Perenio (https://perenio.com/) ensures IoT router convention compliance for hosting multiple smart living applications including Internet access on a single box and which tool chain to apply for 3rd party app development.
+- [Creating LXC-package for Perenio IoT-Router](#creating-lxc-package-for-perenio-iot-router)
+  * [1. Prepare](#1-prepare)
+    + [**1.1. Prepare your Linux system to OpenWRT build**](#--11-prepare-your-linux-system-to-openwrt-build--)
+    + [**1.2. Get OpenWRT sources and set it up**](#--12-get-openwrt-sources-and-set-it-up--)
+    + [**1.3. Prepare OpenWRT configuration**](#--13-prepare-openwrt-configuration--)
 
-# perenio.elegance.2
+## 1. Prepare
+### **1.1. Prepare your Linux system to OpenWRT build** 
 
-## perenio.elegance.2.1
+https://openwrt.org/docs/guide-developer/build-system/install-buildsystem 
 
-### perenio.elegance.2.1.1
+### **1.2. Get OpenWRT sources and set it up** 
 
-#### perenio.elegance.2.1.1.1
+```
+git clone https://github.com/openwrt/openwrt.git
+git checkout v18.06.4
+./scripts/feeds updat
+```
+
+### **1.3. Prepare OpenWRT configuration** 
+
+```
+cp PEJIR.config .config
+make defconfig
+```
