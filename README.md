@@ -146,6 +146,7 @@ You should get LXC-package `test-lxc_2020-11-10_mipsel_24kc.ipk`
 1. Copy the LXC-package to an IoT-Router 
 2. At the SSH shell run 
    1. `ee-install.sh -p test-lxc_2020-11-10_mipsel_24kc.ipk` 
+   
    ```
    root@PEJIR01_ACKf:~# ee-install.sh -p test-lxc_2020-11-10_mipsel_24kc.ipk
    
@@ -184,6 +185,7 @@ You should get LXC-package `test-lxc_2020-11-10_mipsel_24kc.ipk`
    ```
 
    2. `lxc-attach -n test-perl – /root/test-perl/test.perl`
+
 
    ```
    root@PEJIR01_ACKf:~# lxc-attach -n test-perl -- /root/test-perl /test.perl
