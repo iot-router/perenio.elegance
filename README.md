@@ -146,50 +146,50 @@ You should get LXC-package `test-lxc_2020-11-10_mipsel_24kc.ipk`
 1. Copy the LXC-package to an IoT-Router 
 2. At the SSH shell run 
    1. `ee-install.sh -p test-lxc_2020-11-10_mipsel_24kc.ipk` 
-```
-root@PEJIR01_ACKf:~# ee-install.sh -p test-lxc_2020-11-10_mipsel_24kc.ipk
-
-LXCPKG_VER=1.0
-
-LXCPKG_EE=bee
-LXCPKG_DEFAULT_NAME=test-perl
-
-ee-install(test-perl/bee): Installation started (test-lxc_2020-11-10_mipsel_24kc.ipk)
-
-Installing test-lxc (2020-11-10) to root...
-
-Configuring test-lxc.
-
-Installing perl (5.28.0-2) to root...
-
-Installing perlbase-base (5.28.0-2) to root...
-
-Installing perlbase-config (5.28.0-2) to root...
-
-Installing perlbase-essential (5.28.0-2) to root...
-
-Package perlbase-config (5.28.0-2) installed in root is up to date.
-
-Package perlbase-essential (5.28.0-2) installed in root is up to date.
-
-Configuring perl.
-
-Configuring perlbase-config.
-
-Configuring perlbase-essential.
-
-Configuring perlbase-base.
-
-ee-install(test-perl/bee): Installation done
-```
+   ```
+   root@PEJIR01_ACKf:~# ee-install.sh -p test-lxc_2020-11-10_mipsel_24kc.ipk
+   
+   LXCPKG_VER=1.0
+   
+   LXCPKG_EE=bee
+   LXCPKG_DEFAULT_NAME=test-perl
+   
+   ee-install(test-perl/bee): Installation started (test-lxc_2020-11-10_mipsel_24kc.ipk)
+   
+   Installing test-lxc (2020-11-10) to root...
+   
+   Configuring test-lxc.
+   
+   Installing perl (5.28.0-2) to root...
+   
+   Installing perlbase-base (5.28.0-2) to root...
+   
+   Installing perlbase-config (5.28.0-2) to root...
+   
+   Installing perlbase-essential (5.28.0-2) to root...
+   
+   Package perlbase-config (5.28.0-2) installed in root is up to date.
+   
+   Package perlbase-essential (5.28.0-2) installed in root is up to date.
+   
+   Configuring perl.
+   
+   Configuring perlbase-config.
+   
+   Configuring perlbase-essential.
+   
+   Configuring perlbase-base.
+   
+   ee-install(test-perl/bee): Installation done
+   ```
 
    2. `lxc-attach -n test-perl – /root/test-perl/test.perl`
 
-```
-root@PEJIR01_ACKf:~# lxc-attach -n test-perl -- /root/test-perl /test.perl
-
-Hello, world!
-```
+   ```
+   root@PEJIR01_ACKf:~# lxc-attach -n test-perl -- /root/test-perl /test.perl
+   
+   Hello, world!
+   ```
 
 ## **5. Files** 
 
