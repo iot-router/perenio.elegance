@@ -1,11 +1,10 @@
-# Creating LXC-package for Perenio IoT-Router
-
 - [Creating LXC-package for Perenio IoT-Router](#creating-lxc-package-for-perenio-iot-router)
   * [1. Prepare](#1-prepare)
     + [**1.1. Prepare your Linux system to OpenWRT build**](#--11-prepare-your-linux-system-to-openwrt-build--)
     + [**1.2. Get OpenWRT sources and set it up**](#--12-get-openwrt-sources-and-set-it-up--)
     + [**1.3. Prepare OpenWRT configuration**](#--13-prepare-openwrt-configuration--)
 
+# Creating LXC-package for Perenio IoT-Router
 ## 1. Prepare
 ### **1.1. Prepare your Linux system to OpenWRT build** 
 
