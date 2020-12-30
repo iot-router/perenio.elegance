@@ -153,6 +153,7 @@ You should get LXC-package `test-lxc_2020-11-10_mipsel_24kc.ipk`
    LXCPKG_VER=1.0
    
    LXCPKG_EE=bee
+   
    LXCPKG_DEFAULT_NAME=test-perl
    
    ee-install(test-perl/bee): Installation started (test-lxc_2020-11-10_mipsel_24kc.ipk)
