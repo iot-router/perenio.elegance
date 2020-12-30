@@ -183,8 +183,7 @@ Configuring perlbase-base.
 ee-install(test-perl/bee): Installation done
 ```
 
-2. `lxc-attach -n test-perl – /root/test-perl/test.perl`
-
+   2. `lxc-attach -n test-perl – /root/test-perl/test.perl`
 
 ```
 root@PEJIR01_ACKf:~# lxc-attach -n test-perl -- /root/test-perl /test.perl
