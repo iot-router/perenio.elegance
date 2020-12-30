@@ -1,21 +1,23 @@
 # Creating LXC-package for Perenio IoT-Router
-- [**1. Prepare**](#--1-prepare--)
-  * [**1.1. Prepare your Linux system to OpenWRT build**](#--11-prepare-your-linux-system-to-openwrt-build--)
-  * [**1.2. Get OpenWRT sources and set it up**](#--12-get-openwrt-sources-and-set-it-up--)
-  * [**1.3. Prepare OpenWRT configuration**](#--13-prepare-openwrt-configuration--)
-- [**2. Create LXC-package**](#--2-create-lxc-package--)
-  * [**2.1. Create dir package/**](#--21-create-dir-package---)
-  * [**2.2. (Optional) Add required files to package//files**](#--22--optional--add-required-files-to-package--files--)
-  * [**2.3. Create the makefile (package//Makefile) by the template Makefile**](#--23-create-the-makefile--package--makefile--by-the-template-----ma-kefile--)
-    + [**2.3.1. You have to specify the following settings in the Makefile:**](#--231-you-have-to-specify-the-following-settings-in-the-makefile---)
-    + [**2.3.2. Instead of adding the requested packages to the Package/$(PKG_NAME)/config section of the Makefile (2.3.1 p.3), it is possible to select them manually by:**](#--232-instead-of-adding-the-requested-packages-to-the-package---pkg-name--config-section-of-the-makefile--231-p3---it-is-possible-to-select-them-manually-by---)
-- [**3. Build**](#3-build)
-  * [**3.1. Build OpenWRT tools and toolchain**](#31-build-openwrt-tools-and-toolchain)
-  * [**3.2. Build the LXC-package**](#--32-build-the-lxc-package--)
-  * [**3.3. Get the built LXC-package**](#--33-get-the-built-lxc-package--)
-- [**4. Example**](#4-example)
-  * [**4.1. To build the example:**](#--41-to-build-the-example---)
-- [**5. Files**](#--5-files--)
+
+  * [**1. Prepare**](#--1-prepare--)
+    + [**1.1. Prepare your Linux system to OpenWRT build**](#--11-prepare-your-linux-system-to-openwrt-build--)
+    + [**1.2. Get OpenWRT sources and set it up**](#--12-get-openwrt-sources-and-set-it-up--)
+    + [**1.3. Prepare OpenWRT configuration**](#--13-prepare-openwrt-configuration--)
+  * [**2. Create LXC-package**](#--2-create-lxc-package--)
+    + [**2.1. Create dir package/**](#--21-create-dir-package---)
+    + [**2.2. (Optional) Add required files to package//files**](#--22--optional--add-required-files-to-package--files--)
+    + [**2.3. Create the makefile (package//Makefile) by the template** **Ma kefile**](#--23-create-the-makefile--package--makefile--by-the-template-----ma-kefile--)
+      - [**2.3.1. You have to specify the following settings in the Makefile:**](#--231-you-have-to-specify-the-following-settings-in-the-makefile---)
+      - [**2.3.2. Instead of adding the requested packages to the Package/$(PKG_NAME)/config section of the Makefile (2.3.1 p.3), it is possible to select them manually by:**](#--232-instead-of-adding-the-requested-packages-to-the-package---pkg-name--config-section-of-the-makefile--231-p3---it-is-possible-to-select-them-manually-by---)
+  * [**3. Build**](#--3-build--)
+    + [**3.1. Build OpenWRT tools and toolchain**](#--31-build-openwrt-tools-and-toolchain--)
+    + [**3.2. Build the LXC-package**](#--32-build-the-lxc-package--)
+    + [**3.3. Get the built LXC-package**](#--33-get-the-built-lxc-package--)
+  * [**4. Example**](#--4-example--)
+    + [**4.1. To build the example:**](#--41-to-build-the-example---)
+  * [**5. Files**](#--5-files--)
+  
 ## **1. Prepare**
 ### **1.1. Prepare your Linux system to OpenWRT build** 
 
@@ -63,7 +65,7 @@ cp test.perl package/test/files/root/test-perl/
 1. (Mandatory) The required Execution Environment name. For example:
    1. `LXC_EE=bee` 
 2. (Optional) The default LXC name. For example: 
-   1. `LXC_DEFAULT_NAME=test-perl` 
+   1. `LXC_DEFAULT_NAME=test-perl`
 3. (Optional) The packages to include. For example:
    1. In the section `Package/$(PKG_NAME)`: 
       1. `PKG_BUILD_DEPENDS:=perl` 
