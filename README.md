@@ -36,7 +36,7 @@ Otherwise, here is a small selection of essential developer guides as well as th
 - [More to come]()
   - Whatever is needed ...
 
-## How do I distribute my LXC Application package to the users' Perenio IoT router(s)?
+## How do I distribute my LXC Application Packages to my users' Perenio IoT router(s)?
 
 ### Option 1: Direct local loading via the WEB interface of the router
 
