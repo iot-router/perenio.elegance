@@ -54,6 +54,7 @@ Otherwise, here is a small selection of essential developer guides as well as th
 **Preparation** *(only once for the application package provider)***:**
 - Send your application package to the Perenio Developer Service.
 - Wait for the feedback that your application package is included in the Perenio OTA service.
+- Inform your users about the availability of your application package in the Perenio OTA service.
 
 **User installation process:**
 - Go to the **`Services`** section and select the Load application package option.
