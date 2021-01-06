@@ -45,7 +45,7 @@ Otherwise, here is a small selection of essential developer guides as well as th
 
 **User installation process:**
 - Go to **`Services`** section on the router WEB UI
-- Select the **`Load Application Package`** option and enter the location in the provided field
+- Select the **`Load Application Package`** option and enter the "Application Package" location in the provided field
 - Start the loading and installation process by clicking the  **`Start`** button
 - Done and have fun with it!
 
