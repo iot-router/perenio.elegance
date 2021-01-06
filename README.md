@@ -38,14 +38,14 @@ Otherwise, here is a small selection of essential developer guides as well as th
 
 ## How do I distribute my LXC Application package to the users' Perenio IoT router(s)?
 
-### Option 1: Direct local loading via the WEB interface of the router.
+### Option 1: Direct local loading via the WEB interface of the router
 
 **Preparation:**
 - Transmit the "application package" via data transfer to the user(s).
 
 **User installation process:**
 - Go to Services section on the router WEB UI and select the Load Application Package option.
-- Enter the location of the "Application package" in the provided field.
+- 'Enter the location of the "Application package" in the provided field.'
 - Start the loading and installation process by clicking the button.
 - Done and have fun with it!
 
@@ -57,7 +57,7 @@ Otherwise, here is a small selection of essential developer guides as well as th
 
 **User installation process:**
 - Go to the Services section and select the Load application package option.
-- Enter the location of the "Application package" in the provided field.
+- 'Select the desired "Application Package" in the displayed overview.' 
 - Start the loading and installation process by clicking the button.
 - Done and have fun with it!
 
