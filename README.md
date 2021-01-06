@@ -41,25 +41,25 @@ Otherwise, here is a small selection of essential developer guides as well as th
 ### Option 1: Direct local loading via the WEB interface of the router
 
 **Preparation:**
-- Transmit the "application package" via data transfer to the user(s).
+- Send your "application package" via data transfer to your user(s)
 
 **User installation process:**
 - Go to **`Services`** section on the router WEB UI
-- Select the **`Load Application Package`** option and enter the location in the provided field.
-- Start the loading and installation process by clicking the  **`Start`** button.
+- Select the **`Load Application Package`** option and enter the location in the provided field
+- Start the loading and installation process by clicking the  **`Start`** button
 - Done and have fun with it!
 
 ### Option 2: Over-The-Air (OTA) loading via the WEB interface of the router
 
 **Preparation** *(only once for the application package provider)***:**
-- Send your application package to the Perenio Developer Service.
-- Wait for the feedback that your application package is included in the Perenio OTA service.
-- Inform your users about the availability of your application package in the Perenio OTA service.
+- Send your application package to the Perenio Developer Service
+- Wait for the feedback that your application package is included in the Perenio OTA service
+- Inform your users about the availability of your application package in the Perenio OTA service
 
 **User installation process:**
-- Go to the **`Services`** section and select the Load application package option.
-- Select the **`Load Application Package`** option and click on the icon of the desired "Application Package".
-- Start the loading and installation process by clicking the **`Start`** button.
+- Go to the **`Services`** section on the router WEB UI
+- Select the **`Load Application Package`** option and click on the icon of the desired "Application Package"
+- Start the loading and installation process by clicking the **`Start`** button
 - Done and have fun with it!
 
 ## How do I get a Perenio Developer Kit?
