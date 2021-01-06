@@ -71,3 +71,10 @@ If you are interested in either porting your existing application in a Linux con
 If you are missing a point in Perenio's Developer Guides, something is unclear and needs better documentation, or you have a better solution for a current requirement: Let us know!
 
 - [Raise an Issue!](https://github.com/iot-router/perenio.elegance/issues/new/choose)
+
+## Case Studies & Success Stories
+
+We also like to share your case studies and success stories with their experiences.
+Get in touch and tell us what results you have achieved with which applications!
+
+- [Get in touch!](https://github.com/iot-router/perenio.elegance/issues/new/choose)
