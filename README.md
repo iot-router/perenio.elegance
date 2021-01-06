@@ -36,9 +36,9 @@ Otherwise, here is a small selection of essential developer guides as well as th
 - [More to come]()
   - Whatever is needed ...
 
-## How do I distribute my LXC package to the users' Perenio IoT router(s)?
+## How do I distribute my LXC Application package to the users' Perenio IoT router(s)?
 
-### Option 1: Direct local loading of the LXC package via the WEB interface of the router.
+### Option 1: Direct local loading via the WEB interface of the router.
 
 **Preparation:**
 - Transmit the "application package" via data transfer to the user(s).
@@ -49,9 +49,9 @@ Otherwise, here is a small selection of essential developer guides as well as th
 - Start the loading and installation process by clicking the button.
 - Done and have fun with it!
 
-### Option 2: Over the air loading via the WEB interface of the router
+### Option 2: Over-The-Air (OTA) loading via the WEB interface of the router
 
-**Preparation** *(only once for the application package provider)*:
+**Preparation** *(only once for the application package provider)***:**
 - Send your application package to the Perenio Developer Service.
 - Wait for the feedback that your application package is included in the Perenio OTA service.
 
