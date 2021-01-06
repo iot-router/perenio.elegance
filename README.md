@@ -22,6 +22,8 @@ Otherwise, here is a small selection of essential developer guides as well as th
   - How to prepare, create and deploy ready to use LXC packages for Openwrt. 
 - [Encrypting LXC packets (optional).]()
   - Before a LXC package is sent to a dedicated IoT router, it can be encrypted to prevent unauthorized use on another IoT router.
+- [More to come]()
+  - Whatever is needed ...
 
 ## How do I get a Perenio Developer Kit?
 
@@ -31,4 +33,4 @@ If you are interested in either porting your existing application in a Linux con
 
 If you are missing a point in Perenio's Developer Guides, something is unclear and needs better documentation, or you have a better solution for a current requirement: Let us know!
 
-- [Raise an Issue!]()
+- [Raise an Issue!](https://github.com/iot-router/perenio.elegance/issues/new/choose)
