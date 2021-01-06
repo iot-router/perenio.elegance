@@ -2,7 +2,9 @@
 
 > *Preface: Perenio (https://perenio.com/) supports the approaches and principles laid down in the IoT Convention (https://iot-router.github.io/). With the IoT router "Elegance" we want to contribute to the idea of multi-purpose consumer platforms based on Openwrt and want to support interested developers to virtualize and containerize their apps and services for the IoT router "Elegance" as easily as possible.*
 
-Welcome to the Perenio developer guides. These documents and references show you how to port or create Openwrt apps, using the APIs in the Perenio framework and other libraries, "LXC (Linux Container)" suitable and executable for the IoT router "Elegance".
+## Welcome to the Perenio developer guides
+
+These documents and references show you how to port or create Openwrt apps, using the APIs in the Perenio framework and other libraries, "LXC (Linux Container)" suitable and executable for the IoT router "Elegance".
 
 If you are brand new to Openwrt and want to jump into your first code, start with the tutorial ["Hello, world!" for OpenWrt](https://openwrt.org/docs/guide-developer/helloworld/start).
 
@@ -14,7 +16,7 @@ And check out these other resources to learn Openwrt development:
 
 Otherwise, here is a small selection of essential developer guides as well as the Perenio specific information you should know.
 
-## Essential Documentation:
+## Essential Documentation
 
 - [Getting clarity about the available hardware components.]()
   - Get an overview of the system structure, the components used and the associated application possibilities.
