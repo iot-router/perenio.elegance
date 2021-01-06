@@ -1,6 +1,6 @@
 # Perenio's Developer Guides for the "Elegance" IoT Router
 
-> *Preface: Perenio (https://perenio.com/) supports the approaches and principles laid down in the IoT Convention (https://iot-router.github.io/). With the IoT router "Elegance" we want to contribute to the idea of multi-purpose consumer platforms based on Openwrt and want to support interested developers to virtualize and containerize their apps and services for the IoT router "Elegance" as easily as possible.*
+> ***Preface:** Perenio (https://perenio.com/) supports the approaches and principles laid down in the IoT Convention (https://iot-router.github.io/). With the IoT router "Elegance" we want to contribute to the idea of multi-purpose consumer platforms based on Openwrt and want to support interested developers to virtualize and containerize their apps and services for the IoT router "Elegance" as easily as possible.*
 
 ## Welcome to the Perenio developer guides
 
