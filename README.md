@@ -8,9 +8,9 @@ If you are brand new to Openwrt and want to jump into your first code, start wit
 
 And check out these other resources to learn Openwrt development:
 
-**LABS**: Short self-paced tutorials, each covering a specific topic. Most labs walk you step-by-step through the process of building a small app or adding a new feature to an existing app.
+- **LABS**: Short self-paced tutorials, each covering a specific topic. Most labs walk you step-by-step through the process of building a small app or adding a new feature to an existing app.
 
-**COURSES**: Guided training paths that teach you how to build Openwrt apps.
+- **COURSES**: Guided training paths that teach you how to build Openwrt apps.
 
 Otherwise, here is a small selection of essential developer guides as well as the Perenio specific information you should know.
 
