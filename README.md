@@ -20,7 +20,7 @@ Otherwise, here is a small selection of essential developer guides as well as th
   - The LXC EE (LinuX Containers Execution Environment) system is a set of tools for managing LXC and Apps in the IoT router.
 - [Creating LXC Packages for Perenio IoT Router.]()
   - How to prepare, create and deploy ready to use LXC packages for Openwrt. 
-- [Encrypting LXC packets (optional).]()
+- [Encrypting LXC Packages (optional).]()
   - Before a LXC package is sent to a dedicated IoT router, it can be encrypted to prevent unauthorized use on another IoT router.
 - [More to come]()
   - Whatever is needed ...
