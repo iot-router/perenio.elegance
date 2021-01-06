@@ -44,8 +44,8 @@ Otherwise, here is a small selection of essential developer guides as well as th
 - Transmit the "application package" via data transfer to the user(s).
 
 **User installation process:**
-- Go to Services section on the router WEB UI and select the Load Application Package option.
-- `Enter the location of the "Application package" in the provided field.`
+- Go to **`Services`** section on the router WEB UI and select the Load Application Package option.
+- **`Enter the location of the "Application package" in the provided field.`**
 - Start the loading and installation process by clicking the button.
 - Done and have fun with it!
 
@@ -56,8 +56,8 @@ Otherwise, here is a small selection of essential developer guides as well as th
 - Wait for the feedback that your application package is included in the Perenio OTA service.
 
 **User installation process:**
-- Go to the Services section and select the Load application package option.
-- `Select the desired "Application Package" in the displayed overview.` 
+- Go to the **`Services`** section and select the Load application package option.
+- **`Select the desired "Application Package" in the displayed overview.`** 
 - Start the loading and installation process by clicking the button.
 - Done and have fun with it!
 
