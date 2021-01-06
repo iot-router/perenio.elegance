@@ -1,208 +1,32 @@
-# Creating LXC-package for Perenio IoT-Router
+# Perenio's Developer Guides for the "Elegance" IoT Router
 
-  * [**1. Prepare**](#--1-prepare--)
-    + [**1.1. Prepare your Linux system to OpenWRT build**](#--11-prepare-your-linux-system-to-openwrt-build--)
-    + [**1.2. Get OpenWRT sources and set it up**](#--12-get-openwrt-sources-and-set-it-up--)
-    + [**1.3. Prepare OpenWRT configuration**](#--13-prepare-openwrt-configuration--)
-  * [**2. Create LXC-package**](#--2-create-lxc-package--)
-    + [**2.1. Create dir package/**](#--21-create-dir-package---)
-    + [**2.2. (Optional) Add required files to package//files**](#--22--optional--add-required-files-to-package--files--)
-    + [**2.3. Create the makefile (package//Makefile) by the template** **Ma kefile**](#--23-create-the-makefile--package--makefile--by-the-template-----ma-kefile--)
-      - [**2.3.1. You have to specify the following settings in the Makefile:**](#--231-you-have-to-specify-the-following-settings-in-the-makefile---)
-      - [**2.3.2. Instead of adding the requested packages to the Package/$(PKG_NAME)/config section of the Makefile (2.3.1 p.3), it is possible to select them manually by:**](#--232-instead-of-adding-the-requested-packages-to-the-package---pkg-name--config-section-of-the-makefile--231-p3---it-is-possible-to-select-them-manually-by---)
-  * [**3. Build**](#--3-build--)
-    + [**3.1. Build OpenWRT tools and toolchain**](#--31-build-openwrt-tools-and-toolchain--)
-    + [**3.2. Build the LXC-package**](#--32-build-the-lxc-package--)
-    + [**3.3. Get the built LXC-package**](#--33-get-the-built-lxc-package--)
-  * [**4. Example**](#--4-example--)
-    + [**4.1. To build the example:**](#--41-to-build-the-example---)
-  * [**5. Files**](#--5-files--)
-  
-## **1. Prepare**
-### **1.1. Prepare your Linux system to OpenWRT build** 
+> *Preface: Perenio (https://perenio.com/) supports the approaches and principles laid down in the IoT Convention (https://iot-router.github.io/). With the IoT router "Elegance" we want to live up to the idea of multi-purpose endpoint platforms based on Openwrt and want to support interested developers to virtualize and containerize their apps and services for the IoT router "Elegance" as easily as possible.*
 
-https://openwrt.org/docs/guide-developer/build-system/install-buildsystem 
+Welcome to the Perenio developer guides. These documents show you how to port or create Openwrt apps using the APIs in the Perenio framework and other libraries, "LXC (Linux Container)" suitable or executable for the IoT router "Elegance".
 
-### **1.2. Get OpenWRT sources and set it up** 
+If you are brand new to Openwrt and want to jump into your first code, start with the tutorial ["Hello, world!" for OpenWrt](https://openwrt.org/docs/guide-developer/helloworld/start).
 
-```
-git clone https://github.com/openwrt/openwrt.git
-git checkout v18.06.4
-./scripts/feeds updat
-```
+And check out these other resources to learn Openwrt development:
 
-### **1.3. Prepare OpenWRT configuration** 
+**LABS**: Short self-paced tutorials, each covering a specific topic. Most labs walk you step-by-step through the process of building a small app or adding a new feature to an existing app.
 
-```
-cp PEJIR.config .config
-make defconfig
-```
+**COURSES**: Guided training paths that teach you how to build Openwrt apps.
 
+Otherwise, here is a small selection of essential developer guides as well as the Perenio specific information you should know.
 
+## Essential Documentation:
 
-## **2. Create LXC-package**
-### **2.1. Create dir package/** 
+- [Understanding Perenio's LXC EE System.]()
+  - The LXC EE (LinuX Containers Execution Environment) system is a set of tools for managing LXC and Apps in the IoT router.
+- [Creating LXC Packages for Perenio IoT Router.]()
+  - How to prepare, create and deploy ready to use LXC packages for Openwrt. 
+- [Encrypting LXC packets (optional).]()
+  - Before a LXC package is sent to a dedicated IoT router, it can be encrypted to prevent unauthorized use on another IoT router.
 
-For example: 
+## How do I get a Perenio Developer Kit?
 
-```
-cd package/test
-```
+If you are interested in either porting your existing application in a Linux container on the Perenio IoT Router or developing new applications for it Perenio Developer Kit, then you will find the necessary information here.
 
-### **2.2. (Optional) Add required files to package//files** 
+If you are missing a point in Perenio's Developer Guides, something is unclear and needs better documentation, or you have a better solution for a current requirement: Let us know!
 
-For example: 
-
-```
-mkdir -p package/test/files/root/test-perl
-cp test.perl package/test/files/root/test-perl/
-```
-
-### **2.3. Create the makefile (package//Makefile) by the template** **Ma kefile** 
-
-#### **2.3.1. You have to specify the following settings in the Makefile:** 
-
-1. (Mandatory) The required Execution Environment name. For example:
-   1. `LXC_EE=bee` 
-2. (Optional) The default LXC name. For example: 
-   1. `LXC_DEFAULT_NAME=test-perl`
-3. (Optional) The packages to include. For example:
-   1. In the section `Package/$(PKG_NAME)`: 
-      1. `PKG_BUILD_DEPENDS:=perl` 
-   2. In the section `Package/$(PKG_NAME)/config`:
-      1. select `PACKAGE_perl` 
-      2. select `PACKAGE_perlbase-base` 
-   3. In the section `Package/$(PKG_NAME)/install`: 
-      1. `$(CP) $(OUTPUT_DIR)/packages/$(ARCH_PACKAGES)/packages/perl_*.ipk $(1)/$(LXC_PKG_DIR)` 
-      2. `$(CP) $(OUTPUT_DIR)/packages/$(ARCH_PACKAGES)/packages/perlbase-*.ipk $(1)/$(LXC_PKG_DIR)`
-4. (Optional) The files or dirs to include. For example:
-   1. In the section Package/ \$(PKG\_NAME)/install:
-      1. `$(INSTALL\_DIR) $(1)/root/test-perl/`
-      2. `$(CP) files/root/test-perl/* $(1)/root/test-perl/`
-
-#### **2.3.2. Instead of adding the requested packages to the Package/$(PKG_NAME)/config section of the Makefile (2.3.1 p.3), it is possible to select them manually by:** 
-
-```
-make menuconfig
-```
-
-For example:
-
-Select the required packages as 'M'. For example, 
-
-- LanguagesPerlperl 
-- LanguagesPerlperlperlbase-base. 
-
-## **3. Build**
-### **3.1. Build OpenWRT tools and toolchain** 
-
-```
-make tools/install
-make toolchain/install
-```
-
-### **3.2. Build the LXC-package** 
-
-Build the required packages by the template command: 
-
-```
-make package/<package>/compile
-```
-
-For example: 
-
-```
-make package/test/compile
-```
-
-### **3.3. Get the built LXC-package** 
-
-The built package is located in: 
-
-```
-bin/packages/mipsel_24kc/base
-```
-
-For example: 
-
-```
-bin/packages/mipsel_24kc/base/test-lxc_2020-11-10_mipsel_24kc.ipk
-```
-
-
-
-## **4. Example**
-### **4.1. To build the example:** 
-
-1. Perform p.1
-2. Extract test-perl.tar.gz to the root of OpenWRT:
-   1. `tar xz -f test-perl.tar.gz ./`
-3. Perform p.3 
-
-You should get LXC-package `test-lxc_2020-11-10_mipsel_24kc.ipk` 
-
-**4.2. To test the example** 
-
-1. Copy the LXC-package to an IoT-Router 
-2. At the SSH shell run 
-   1. `ee-install.sh -p test-lxc_2020-11-10_mipsel_24kc.ipk` 
-   
-   ```
-   root@PEJIR01_ACKf:~# ee-install.sh -p test-lxc_2020-11-10_mipsel_24kc.ipk
-   
-   LXCPKG_VER=1.0
-   
-   LXCPKG_EE=bee
-   
-   LXCPKG_DEFAULT_NAME=test-perl
-   
-   ee-install(test-perl/bee): Installation started (test-lxc_2020-11-10_mipsel_24kc.ipk)
-   
-   Installing test-lxc (2020-11-10) to root...
-   
-   Configuring test-lxc.
-   
-   Installing perl (5.28.0-2) to root...
-   
-   Installing perlbase-base (5.28.0-2) to root...
-   
-   Installing perlbase-config (5.28.0-2) to root...
-   
-   Installing perlbase-essential (5.28.0-2) to root...
-   
-   Package perlbase-config (5.28.0-2) installed in root is up to date.
-   
-   Package perlbase-essential (5.28.0-2) installed in root is up to date.
-   
-   Configuring perl.
-   
-   Configuring perlbase-config.
-   
-   Configuring perlbase-essential.
-   
-   Configuring perlbase-base.
-   
-   ee-install(test-perl/bee): Installation done
-   ```
-
-   2. `lxc-attach -n test-perl – /root/test-perl/test.perl`
-
-
-   ```
-   root@PEJIR01_ACKf:~# lxc-attach -n test-perl -- /root/test-perl /test.perl
-   
-   Hello, world!
-   ```
-
-## **5. Files** 
-
-PEJIR.config
-
-Makefile
-
-test.perl
-
-test-perl.tar.gz 
-
-test-lxc_2020-11-10_mipsel_24kc.ipk 
-
+- [Raise an Issue!]()
