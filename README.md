@@ -25,15 +25,15 @@ Otherwise, here is a small selection of essential developer guides as well as th
 
 - [Getting clarity about the available hardware components.](/docs/)
   - Get an overview of the system structure, the components used and the associated application possibilities.
-- [Knowing the pre-installed software stacks and libraries of the Perenio Elegance IoT Router.]()
+- [Knowing the pre-installed software stacks and libraries of the Perenio Elegance IoT Router.](/docs/)
   - Get familiar with the existing software parts, so that good things do not have to be invented again.
-- [Understanding Perenio's LXC EE System.]()
+- [Understanding Perenio's LXC EE System.](/docs/)
   - The LXC EE (LinuX Containers Execution Environment) system is a set of tools for managing LXC and Apps in the IoT router.
-- [Creating LXC Packages for Perenio IoT Router.]()
+- [Creating LXC Packages for Perenio IoT Router.](/docs/)
   - How to prepare, create and deploy ready to use LXC packages for Openwrt. 
-- [Encrypting LXC Packages (optional).]()
+- [Encrypting LXC Packages (optional).](/docs/)
   - Before a LXC package is sent to a dedicated IoT router, it can be encrypted to prevent unauthorized use on another IoT router.
-- [More to come]()
+- [More to come](/docs/)
   - Whatever is needed ...
 
 ## How do I distribute my LXC Application Packages to my users' Perenio IoT router(s)?
@@ -64,7 +64,7 @@ Otherwise, here is a small selection of essential developer guides as well as th
 
 ## How do I get a Perenio Developer Kit?
 
-If you are interested in either porting your existing application in a Linux container on the Perenio IoT Router or developing new applications for it Perenio Developer Kit, then you will find the necessary information **[here]()**.
+If you are interested in either porting your existing application in a Linux container on the Perenio IoT Router or developing new applications for it Perenio Developer Kit, then you will find the necessary information **[here](/docs/)**.
 
 ## We are looking forward to your feedback!
 
