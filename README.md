@@ -33,8 +33,8 @@ Otherwise, here is a small selection of essential developer guides as well as th
   - How to prepare, create and deploy ready to use LXC packages for Openwrt. 
 - [Encrypting LXC Packages (optional).](/docs/)
   - Before a LXC package is sent to a dedicated IoT router, it can be encrypted to prevent unauthorized use on another IoT router.
-- [More to come](/docs/)
-  - Whatever is needed ...
+- [More to come.](/docs/more-details-to-come.png)
+  - Whatever is needed additionally ...
 
 ## How do I distribute my LXC Application Packages to my users' Perenio IoT router(s)?
 
