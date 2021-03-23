@@ -25,7 +25,7 @@ Otherwise, here is a small selection of essential developer guides as well as th
 
 - [Getting clarity about the available hardware components.](/docs/)
   - Get an overview of the system structure, the components used and the associated application possibilities.
-- [Knowing the pre-installed software stacks and libraries of the Perenio Elegance IoT Router.](/docs/v7.6.2-lxc-1.0_pre-installed_software_list.md)
+- [Knowing the pre-installed software stacks and libraries of the Perenio Elegance IoT Router.](/docs/pre-installed_software_list.md)
   - Get familiar with the existing software parts, so that good things do not have to be invented again.
 - [Understanding Perenio's LXC EE System.](/docs/Perenio_LXC_EE_system._User_manual.md)
   - The LXC EE (LinuX Containers Execution Environment) system is a set of tools for managing LXC and Apps in the IoT router.

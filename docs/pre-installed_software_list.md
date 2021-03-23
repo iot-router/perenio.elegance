@@ -1,34 +1,30 @@
-# v7.6.2-lxc-1.0 pre-installed software list
+# Pre-installed software list
 
-BrigeUartSocket - 1.0-1.0  
-STM32BOOTLOADER - 1.0-1.0  
-STM32DFU - 1.0-1.0  
-STM32RESET - 1.0-1.0  
+v7.7.0-po-lxc
+
+# 1. System software
+## 1.1. Opensource software
 attr - 20170915-1  
-base-files - 194.2-r0+8447-c785d44  
+base-files - 194.2-r0+8497-4b10e6e  
 bash - 4.4.18-2  
 blkid - 2.32-2  
 block-mount - 2019-03-28-ff1ded63-5  
-bulkdata - 3.2.0  
 busybox - 1.28.4-3  
 bzip2 - 1.0.6-4  
 ca-bundle - 20190110-1  
 chat - 2.4.7-12  
 comgt - 0.32-30  
 curl - 7.60.0-4  
-dmc - 3.2.0  
 dnsmasq - 2.80-1.4  
 dosfstools - 4.1-1  
 dropbear - 2017.75-7.1  
 e2fsprogs - 1.44.1-1  
-easycwmp - 3.2.0  
 fdisk - 2.32-2  
 firewall - 2018-08-13-1c4d5bcd-1  
 flock - 2.32-2  
 fstools - 2019-03-28-ff1ded63-5  
 fwtool - 1  
 getopt - 2.32-2  
-gosun-log - 1.0-1  
 hostapd - 2018-05-21-62566bc2-6  
 hostapd-common - 2018-05-21-62566bc2-6  
 hostapd-utils - 2018-05-21-62566bc2-6  
@@ -232,7 +228,7 @@ luci-i18n-base-ru - git-19.309.48729-bc17ef6-1
 luci-i18n-base-uk - git-19.309.48729-bc17ef6-1  
 luci-i18n-firewall-en - git-19.309.48729-bc17ef6-1  
 luci-i18n-firewall-ru - git-19.309.48729-bc17ef6-1  
-luci-i18n-firewall-uk - git-19.309.48729-bc17ef6-1  
+luci-i18n-firewall-uk - git-19.309.48729-bc17ef6-1   
 luci-i18n-mwan3-ru - git-19.309.48729-bc17ef6-1  
 luci-i18n-samba-en - git-19.309.48729-bc17ef6-1  
 luci-i18n-samba-ru - git-19.309.48729-bc17ef6-1  
@@ -262,11 +258,10 @@ lxc-destroy - 2.1.1-2
 lxc-hooks - 2.1.1-2  
 lxc-info - 2.1.1-2  
 lxc-ls - 2.1.1-2  
-lxc-start - 2.1.1-2  
+lxc-start - 2.1.1-2   
 lxc-stop - 2.1.1-2  
 lxc-templates - 2.1.1-2  
-mcd - 1d94c7ca40ea229dc7ebe1931855a69d201746c6  
-mini\_snmpd - 1.4-rc1-3  
+mini_snmpd - 1.4-rc1-3  
 minicom - 2.7.1-1  
 mtd - 23  
 mwan3 - 2.6.18-1  
@@ -279,18 +274,11 @@ openssh-sftp-server - 7.7p1-1
 openssl-util - 1.0.2s-1  
 openwrt-keyring - 2018-05-18-103a32e9-1  
 opkg - 2019-01-18-7708a01a-1  
-perenio-ee - 2020-10-29  
-perenio-mcu-ota -
-STM32\_6.2.0\_PCB-1.3.2\_2020-12-22\_1541\_spartacus-3  
-perenio-system - 2021-01-20-00fb55d9  
-perenio-web - 2021-01-19-v1.10.26  
 ppp - 2.4.7-12  
 ppp-mod-pppoe - 2.4.7-12  
 ppp-mod-pppol2tp - 2.4.7-12  
 ppp-mod-pptp - 2.4.7-12  
 procd - 2018-03-28-dfb68f85-1  
-quectel-firehose - 1.2-1  
-quectel-log - 1.0-1  
 resolveip - 2  
 rpcd - 2018-11-28-3aa81d0d-2  
 rpcd-mod-lxc - 20171206  
@@ -302,15 +290,12 @@ socat - 1.7.3.2-3
 sqm-scripts - 1.2.4-1  
 sshtunnel - 4-1  
 stm32flash - 0.4-1  
-stmFlasherXmodem - a5f0ba1d  
 swconfig - 11  
 swupdate - 2019.11-1  
 tar - 1.30-1  
 tc - 4.16.0-8  
 tcpdump - 4.9.2-1  
 terminfo - 6.1-1  
-tr069\_stun - 3.2.0  
-uartmux - 2019-12-03-1d7e3050-1  
 ubi-utils - 2.0.2-1  
 uboot-envtools - 2018.03-1  
 ubox - 2018-02-14-128bc35f-2  
@@ -337,4 +322,26 @@ zlib - 1.2.11-2
 zoneinfo-asia - 2018e-1  
 zoneinfo-core - 2018e-1  
 zoneinfo-europe - 2018e-1  
-zoneinfo-simple - 2018e-1
+zoneinfo-simple - 2018e-1  
+
+## 1.2. Perenio software
+BrigeUartSocket - 1.0-1.0  
+STM32BOOTLOADER - 1.0-1.0  
+STM32DFU - 1.0-1.0  
+STM32RESET - 1.0-1.0  
+mcd - 2020-11-03-v1.0.1  
+perenio-ee - 2021-02-23-v2.1.1  
+perenio-mcu-ota - STM32_6.2.0_PCB-1.3.2_2020-12-22_1541_spartacus-3  
+perenio-system - 2021-03-03-a1d4bc6b  
+perenio-web - 2021-02-23-v1.11.16  
+stmFlasherXmodem - a5f0ba1d  
+uartmux - 2019-12-03-1d7e3050-1  
+
+## 1.3. Other software
+bulkdata - 3.2.0  
+easycwmp - 3.2.0  
+dmc - 3.2.0  
+tr069_stun - 3.2.0  
+gosun-log - 1.0-1  
+quectel-firehose - 1.2-1  
+quectel-log - 1.0-1  
