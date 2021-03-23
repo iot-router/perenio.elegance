@@ -3,11 +3,14 @@ include $(TOPDIR)/rules.mk
 ### LXC Execution Environment name - mandatory.
 LXC_EE=bee
 ### LXC default name - optional. If it is skipped then the Template name is used as a LXC name.
-LXC_DEFAULT_NAME=test-perl
+LXC_DEFAULT_NAME=lxc-example-perl
+
+### Packages to be included
+PKG_BUILD_DEPENDS:=perl
 
 ### Package credential
-PKG_NAME:=test-lxc
-PKG_VERSION:=2020-11-10
+PKG_NAME:=lxc-package-example-perl
+PKG_VERSION:=2021-03-18
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -19,9 +22,7 @@ define Package/$(PKG_NAME)
   DEFAULT:=m
   SECTION:=utils
   CATEGORY:=Utilities
-  TITLE:=Test of LXC container build
-### Packages to be included
-  PKG_BUILD_DEPENDS:=perl
+  TITLE:=Example of LXC-package build (Number Guessing Game using Perl inside)
 endef
 
 define Package/$(PKG_NAME)/config
@@ -40,7 +41,7 @@ define Package/$(PKG_NAME)/preinst
 LXCPKG_VER=1.0
 LXCPKG_EE=$(LXC_EE)
 LXCPKG_DEFAULT_NAME=$(LXC_DEFAULT_NAME)
-### Uncomment the line below to forbid using different template.
+### Uncomment the line below to forbid using different template by the command line argument.
 #[ "$$TMPL" != "$$LXCPKG_EE" ] && { echo "$(PKG_NAME): Wrong execution environment (template)"; exit 1; }
 
 exit 0
