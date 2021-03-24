@@ -66,6 +66,8 @@ Otherwise, here is a small selection of essential developer guides as well as th
 
 If you are interested in either porting your existing application in a Linux container on the Perenio IoT Router or developing new applications for it Perenio Developer Kit, then you will find the necessary information **[here](docs/How_to_buy.md)**.
 
+- [How to get a Developer Kit](docs/How_to_buy.md)
+
 ## We are looking forward to your feedback!
 
 If you are missing a point in Perenio's Developer Guides, something is unclear and needs better documentation, or you have a better solution for a current requirement: Let us know!
