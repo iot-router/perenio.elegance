@@ -21,7 +21,7 @@ And check out these other resources to learn Openwrt development:
 
 Otherwise, here is a small selection of essential developer guides as well as the Perenio specific information you should know.
 
-## Essential Documentation *(coming soon)*
+## Essential Documentation
 
 - [Getting clarity about the available hardware components.](/docs/)
   - Get an overview of the system structure, the components used and the associated application possibilities.
