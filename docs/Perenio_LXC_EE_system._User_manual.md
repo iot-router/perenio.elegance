@@ -1,32 +1,30 @@
 # Perenio LXC EE system. User manual
 
-v2.1
+v3.0
 
 <!-- TOC -->
 
 - [1. Introduction](#1-introduction)
     - [1.1 Purposes](#11-purposes)
 - [2\. The perenio-ee package](#2\-the-perenio-ee-package)
-    - [2.1. Contents of the perenio-ee package](#21-contents-of-the-perenio-ee-package)
-        - [2.1.1. Templates](#211-templates)
-        - [2.1.2. Tools](#212-tools)
-    - [2.2. BEE](#22-bee)
-        - [2.2.1. The LXC overlay rootfs filesystem](#221-the-lxc-overlay-rootfs-filesystem)
-        - [2.2.2. The LXC user](#222-the-lxc-user)
-        - [2.2.3. Logs and the logrotate service](#223-logs-and-the-logrotate-service)
-        - [2.2.4. The LXC wrapper package](#224-the-lxc-wrapper-package)
-    - [2.3. IOT-EE](#23-iot-ee)
-    - [2.4. ee-install.sh](#24-ee-installsh)
-        - [2.4.1. Usage](#241-usage)
-        - [2.4.2. Examples](#242-examples)
-            - [2.4.2.1. Setup the perenio-iot-lxc LXC-package](#2421-setup-theperenio-iot-lxc-lxc-package)
-            - [2.4.2.2. Setup the encrypted perenio-iot-lxc LXC-package](#2422-setup-the-encrypted-perenio-iot-lxc-lxc-package)
-            - [2.4.2.3. Setup the perenio-iot-lxc LXC-package named Smart-home](#2423-setup-the-perenio-iot-lxc-lxc-package-named-smart-home)
-            - [2.4.2.4. Setup an empty iot-ee template](#2424-setupan-empty-iot-ee-template)
-    - [2.5. LXC-package installation process](#25-lxc-package-installation-process)
-        - [2.5.1. LXC creation](#251-lxc-creation)
-        - [2.5.2. LXC-package contents installation](#252-lxc-package-contents-installation)
-        - [2.5.3. Final clean-up](#253-final-clean-up)
+    - [2.1. Tools](#21-tools)
+        - [2.1.1. ee-install.sh](#211-ee-installsh)
+            - [2.1.1.1 Usage](#2111-usage)
+            - [2.1.1.2 Examples](#2112-examples)
+    - [2.2. Templates](#22-templates)
+        - [2.2.1. BEE](#221-bee)
+            - [2.2.1.1. The LXC overlay rootfs filesystem](#2211-the-lxc-overlay-rootfs-filesystem)
+            - [2.2.1.2. The LXC user](#2212-the-lxc-user)
+            - [2.2.1.3. Logs and the logrotate service](#2213-logs-and-the-logrotate-service)
+            - [2.2.1.4. The LXC wrapper package](#2214-the-lxc-wrapper-package)
+        - [2.2.2. BIP-brlan-DHCP-EE](#222-bip-brlan-dhcp-ee)
+        - [2.2.3. BIP-brlxc-STATIC-EE](#223-bip-brlxc-static-ee)
+        - [2.2.4. IOT-EE](#224-iot-ee)
+        - [2.2.5. IOT-IP-EE](#225-iot-ip-ee)
+    - [2.3. LXC-package installation process](#23-lxc-package-installation-process)
+        - [2.3.1. LXC creation](#231-lxc-creation)
+        - [2.3.2. LXC-package contents installation](#232-lxc-package-contents-installation)
+        - [2.3.3. Final clean-up](#233-final-clean-up)
 - [3\. Prepare an LXC-package](#3\-prepare-an-lxc-package)
     - [3.1. Files](#31-files)
     - [3.2. Packages](#32-packages)
@@ -54,7 +52,8 @@ v2.1
 
 # 1. Introduction
 
-Perenio LXC EE (LinuX Containers Execution Environment) system is a set of tools to manage LXC's in IoT-Router.
+Perenio LXC EE (LinuX Containers Execution Environment) system is a set of tools to manage LXC's in IoT-Router.  
+This document describes Perenio LXC EE v3.1.1.
 
 ## 1.1 Purposes
 
@@ -76,71 +75,18 @@ The **perenio-ee** is an OpenWRT package for Perenio IoT-Router that contains a 
 
 **LXC-package** is an extended version of the `.ipk` package that contains files, packages, service scripts, and configuration data to create an LXC and install all required stuff there.
 
-LXC-package has to be installed by the [ee-install.sh](#24-ee-installsh) tool only. The opkg tool can't be used for LXC-package install. This is the result of a security-based approach (to avoid run 3rd-party code or scripts on the host system).
+LXC-package has to be installed by the [ee-install.sh](#211-ee-installsh) tool only. The opkg tool can't be used for LXC-package install. This is the result of a security-based approach (to avoid run 3rd-party code or scripts on the host system).
 
-## 2.1. Contents of the perenio-ee package
 
-### 2.1.1. Templates
-
-  - **bee** - Base Execution Environment (BEE). Define an allocation of a minimal set of resources. Can be used for a simple LXC.
-  - **iot-ee** - IoT Execution Environment (IOT-EE). Define an allocation of a set of resources that required for IoT applications. Encapsulate BEE. It provides access to ZigBee and Z-Wave ports.
-
-### 2.1.2. Tools
+## 2.1. Tools
 
   - **ee-install.sh** - a tool to create an LXC from a template and install the LXC-package into it.
 
-## 2.2. BEE
-
-Perenio Base Execution Environment.
-
-The BEE template is a root parent of any other Perenio LXC EE templates. It configures and implements base LXC features, like:
-
-  - The overlay rootfs filesystem.
-  - The tmpfs (`/tmp`) filesystem.
-  - The LXC user for ACL-based access.
-  - The root process (`procd`).
-  - The `ubus` service.
-  - The `rpcd` service.
-  - The `log` service.
-  - The `logrotate` service.
-  - The `cron` service.
-  - The LXC wrapper package for the host opkg.
-
-### 2.2.1. The LXC overlay rootfs filesystem
-
-Perenio LXC EE uses the [overlay](https://en.wikipedia.org/wiki/OverlayFS) rootfs filesystem over the host rootfs. It provides selective access to files in the host filesystem from an LXC. This avoids duplicate files that used on the host and on LXCs. All LXCs can access to the set of permitted original files on the host filesystem. At the same time, it's impossible to change or delete original host files from inside the LXC.  
-A set of accessible host filesystem files can be defined individually
-for every LXC template.
-
-### 2.2.2. The LXC user
-
-An LXC user is required for ACL-based access to host features from the LCX. Each template specifies its own set of permitted features. 
-
-### 2.2.3. Logs and the logrotate service
-
-Logs are stored in the `/logs/` directory.  
-The logrotate service is configured to compress the log when it is larger than 500 kB. The maximum number of compressed logs is 10.  
-Log messages from the syslogd's circular buffer can be displayed by the `logread` command or `l` command.  
-Log messages from the files in `/logs/` directory can be displayed by the `l -x` command.
-
-### 2.2.4. The LXC wrapper package
-
-This is a special opkg package for the host. It is created and installed during the installation process of an LXC-package based on BEE. It is required to remove LXC-package by the `opkg remove` command.  
-The LXC wrapper package includes:
-1.  LXC-package description information. It is placed in the
-    `/etc/lxc-packages/` directory.
-2.  Information that needs to remove LXC-package by `opkg remove`
-    command
-
-## 2.3. IOT-EE
-
-Perenio IoT Execution Environment. It is based on BEE. UART ports for ZigBee and Z-Wave as well as Z/IP Gateway support are added. 
-
-## 2.4. ee-install.sh
+### 2.1.1. ee-install.sh
 
 **ee-install.sh** is a tool to install an LXC-package as a Linux container on the host system.
 
-### 2.4.1. Usage
+#### 2.1.1.1 Usage
 
 ```shell
 ee-install.sh -h|--help | [-n|--name=<name>] [-t|--templ=<template_name>] [--no-destroy] [--decrypt] [-k|--key=<cipher-key>] [[-p|--pkg=]<pkg.ipk>]
@@ -157,36 +103,110 @@ the LXC-package is specified then the name and the template\_name options can be
 \--key=\<cipher-key\> - the key to decrypt. By default, device
 credentials are used.
 
-### 2.4.2. Examples
+#### 2.1.1.2 Examples
 
-#### 2.4.2.1. Setup the perenio-iot-lxc LXC-package
-```shell
-ee-install.sh perenio-iot-lxc_2020-11-17_mipsel_24kc.ipk
-```
-#### 2.4.2.2. Setup the encrypted perenio-iot-lxc LXC-package
-```shell
-ee-install.sh perenio-iot-lxc_2020-11-17_mipsel_24kc.bin
-```
-#### 2.4.2.3. Setup the perenio-iot-lxc LXC-package named Smart-home
-```shell
-ee-install.sh -n Smart-home -p perenio-iot-lxc_2020-11-17_mipsel_24kc.ipk
-```
-#### 2.4.2.4. Setup an empty iot-ee template
-```shell
-ee-install.sh -t iot-ee -n empty_iot
-```
+* Setup the perenio-iot-lxc LXC-package
+    ```shell
+    ee-install.sh perenio-iot-lxc_2020-11-17_mipsel_24kc.ipk
+    ```
+* Setup the encrypted perenio-iot-lxc LXC-package
+    ```shell
+    ee-install.sh perenio-iot-lxc_2020-11-17_mipsel_24kc.bin
+    ```
+* Setup the perenio-iot-lxc LXC-package named Smart-home
+    ```shell
+    ee-install.sh -n Smart-home -p perenio-iot-lxc_2020-11-17_mipsel_24kc.ipk
+    ```
+* Setup an empty iot-ee template
+    ```shell
+    ee-install.sh -t iot-ee -n empty_iot
+    ```
 
-## 2.5. LXC-package installation process
 
-### 2.5.1. LXC creation
+## 2.2. Templates
+
+  - [bee](#221-bee) - Base Execution Environment (BEE). Define an allocation of a minimal set of resources. Can be used for a simple LXC.
+  - [bip-brlan-dhcp-ee](#222-bip-brlan-dhcp-ee) - Base Execution Environment that has it's own IP-address obtained by DHCP from br-lan. Based on BEE.
+  - [bip-brlxc-static-ee](#223-bip-brlxc-static-ee) - Base Execution Environment that has it's own static IP-address in br-lxc. Based on BEE.
+  - [iot-ee](#224-iot-ee) - IoT Execution Environment (IOT-EE). Define an allocation of a set of resources that required for IoT applications. Based on BEE. It provides access to ZigBee and Z-Wave(optional) ports.
+  - [iot-ip-ee](#225-iot-ip-ee) - IoT Execution Environment that is based on bip-brlxc-static-ee.
+
+### 2.2.1. BEE
+
+Perenio Base Execution Environment.
+
+The BEE template is a root parent of any other Perenio LXC EE templates. It configures and implements base LXC features, like:
+
+  - The overlay rootfs filesystem.
+  - The tmpfs (`/tmp`) filesystem.
+  - The LXC user for ACL-based access.
+  - The root process (`procd`).
+  - The `ubus` service.
+  - The `rpcd` service.
+  - The `log` service.
+  - The `logrotate` service.
+  - The `cron` service.
+  - The LXC wrapper package for the host opkg.
+
+#### 2.2.1.1. The LXC overlay rootfs filesystem
+
+Perenio LXC EE uses the [overlay](https://en.wikipedia.org/wiki/OverlayFS) rootfs filesystem over the host rootfs. It provides selective access to files in the host filesystem from an LXC. This avoids duplicate files that used on the host and on LXCs. All LXCs can access to the set of permitted original files on the host filesystem. At the same time, it's impossible to change or delete original host files from inside the LXC.  
+A set of accessible host filesystem files can be defined individually
+for every LXC template.
+
+#### 2.2.1.2. The LXC user
+
+An LXC user is required for ACL-based access to host features from the LCX. Each template specifies its own set of permitted features. 
+
+#### 2.2.1.3. Logs and the logrotate service
+
+Logs are stored in the `/logs/` directory.  
+The logrotate service is configured to compress the log when it is larger than 500 kB. The maximum number of compressed logs is 10.  
+Log messages from the syslogd's circular buffer can be displayed by the `logread` command or `l` command.  
+Log messages from the files in `/logs/` directory can be displayed by the `l -x` command.
+
+#### 2.2.1.4. The LXC wrapper package
+
+This is a special opkg package for the host. It is created and installed during the installation process of an LXC-package based on BEE. It is required to remove LXC-package by the `opkg remove` command.  
+The LXC wrapper package includes:
+1.  LXC-package description information. It is placed in the
+    `/etc/lxc-packages/` directory.
+2.  Information that needs to remove LXC-package by `opkg remove`
+    command
+
+### 2.2.2. BIP-brlan-DHCP-EE
+
+Base Execution Environment that has it's own IP-address obtained by DHCP from br-lan. It provides an LXC that has a virtual network interface connected to br-lan bridge and get its IP by DHCP. It has IP from the LAN.  
+DNS access by the name of LXC is available. It provides network access to the LXC created based on this EE by the name of LXC.  
+This execution environment is based on BEE.
+
+### 2.2.3. BIP-brlxc-STATIC-EE
+
+Base Execution Environment that has it's own static IP-address in br-lxc. It provides an LXC that has a virtual network interface connected to br-lxc bridge and gets static IP. It has IP from the LXC network that is based on dedicated br-lxc bridge. By default this network has address 192.168.192.0/24. Routing to/from WAN and LAN is provided by.   
+Static address is automatically allocated and assigned to the LXC at the time of LXC creation.  
+DNS access by the name of LXC is available. It provides network access to the LXC created based on this EE by the name of LXC.  
+This execution environment is based on BEE.  
+An additional option - LXC_PROXY - is available for LXC-packages based on this execution environment. It provides HTTP-proxy to redirect HTTP/REST requests of the specified port from the router to the LXC.
+
+### 2.2.4. IOT-EE
+
+Perenio IoT Execution Environment. It is based on BEE. UART ports for ZigBee and Z-Wave as well as Z/IP Gateway support are added. 
+
+### 2.2.5. IOT-IP-EE
+
+Perenio IoT Execution Environment based on bip-brlxc-static-ee. This execution environment is an analogue of IOT-EE but it provides dedicated IP address for inherited LXCs.
+
+## 2.3. LXC-package installation process
+
+### 2.3.1. LXC creation
 
 ![](attachments/429293760/438698013.png)
 
-### 2.5.2. LXC-package contents installation
+### 2.3.2. LXC-package contents installation
 
 ![](attachments/429293760/438698015.png)
 
-### 2.5.3. Final clean-up
+### 2.3.3. Final clean-up
 
 ![](attachments/429293760/438698014.png)
 
