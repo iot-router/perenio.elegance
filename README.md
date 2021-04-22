@@ -23,7 +23,7 @@ Otherwise, here is a small selection of essential developer guides as well as th
 
 ## Essential Documentation
 
-- [Getting clarity about the available hardware components.](/docs/)
+- [Getting clarity about the available hardware components.](/docs/Hardware.md)
   - Get an overview of the system structure, the components used and the associated application possibilities.
 - [Knowing the pre-installed software stacks and libraries of the Perenio Elegance IoT Router.](/docs/pre-installed_software_list.md)
   - Get familiar with the existing software parts, so that good things do not have to be invented again.
