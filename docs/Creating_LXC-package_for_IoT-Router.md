@@ -1,6 +1,6 @@
 # Creating LXC-package for IoT-Router
 
-v2.1
+v3.0
 
 <!-- TOC -->
 
@@ -91,20 +91,29 @@ Create a makefile for your LXC-package by the template [Makefile](attachments/C
 ### 2.3.1. Settings to be specified in the Makefile
 You have to specify the following settings in the Makefile:
 
-1.  (Mandatory) The required Execution Environment name. For example:
+1.  (Mandatory)  
+   The required Execution Environment name. For example:
     ```makefile
     LXC_EE=bee
     ```
-2. (Optional) The default LXC name. This name will be used for LXC operations (start, stop, attach, etc.). For example:
+2. (Optional)  
+   The default LXC name. This name will be used for LXC operations (start, stop, attach, etc.). For example:
     ```makefile
     LXC_DEFAULT_NAME=lxc-example-perl
     ```
     Note: If the default LXC is not specified then the Execution Environment name is used as the default LXC name.
-3. (Mandatory) The LXC-package name. For example:
+3. (Optional, only for LXC-packages based on bip-brlxc-static-ee)  
+   The port number (numbers) for HTTP/REST proxy. It activates an HTTP-proxy creation to redirect HTTP/REST requests of the specified port from the router to the same port of the created LXC. Several ports can be specified using 'space' as a delimiter.
+    ```makefile
+    LXC_PROXY=8080 7023
+    ```
+4. (Mandatory)  
+   The LXC-package name. For example:
     ```makefile
     PKG_NAME:=lxc-package-example-perl
     ```
-4.  (Optional) The packages to include. For example:
+5. (Optional)  
+   The packages to include. For example:
     1.  Out of any section: 
         ```makefile
         PKG_BUILD_DEPENDS:=perl
@@ -130,7 +139,8 @@ You have to specify the following settings in the Makefile:
         $(CP) $(OUTPUT_DIR)/packages/$(ARCH_PACKAGES)/packages/perl_*.ipk $(1)/$(LXC_PKG_DIR)
         $(CP) $(OUTPUT_DIR)/packages/$(ARCH_PACKAGES)/packages/perlbase-*.ipk $(1)/$(LXC_PKG_DIR)
         ```
-5.  (Optional) Files and/or dirs to include. For example:  
+6. (Optional)  
+   Files and/or dirs to include. For example:  
     In the section `Package/$(PKG_NAME)/install`:  
     ```makefile
     $(INSTALL_DIR) $(1)/root/test-perl/
