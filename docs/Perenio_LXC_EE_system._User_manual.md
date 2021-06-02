@@ -1,6 +1,6 @@
 # Perenio LXC EE system. User manual
 
-v3.0
+v4.0.0
 
 <!-- TOC -->
 
@@ -68,6 +68,10 @@ Purposes of the Perenio LXC EE are:
 4.  To provide a single-file form for the LXC installation pack.
 5.  To provide a single-action flow for an LXC install.
 6.  To provide an interface to TR-069 for LXC management.
+7.  To provide built-in options to configure LXC network connection type (host IP, DHCP IP in the host LAN, static IP in the LXC area network).
+8.  To provide a smooth integration of LXC's Web pages to the router's Web interface.
+9.  To provide a set of service options to simplify tools integration to user's LXC (ssh, zeroconf, proxy, etc.).
+
 
 # 2\. The perenio-ee package
 
@@ -89,19 +93,32 @@ LXC-package has to be installed by the [ee-install.sh](#211-ee-installsh) tool 
 #### 2.1.1.1 Usage
 
 ```shell
-ee-install.sh -h|--help | [-n|--name=<name>] [-t|--templ=<template_name>] [--no-destroy] [--decrypt] [-k|--key=<cipher-key>] [[-p|--pkg=]<pkg.ipk>]
-```
+ee-install.sh -h|--help|<options>
 
-Where:  
-\--name - the name of the created LXC.  
-\--template\_name - the name of the template used to create the LXC.  
-\--pkg=\<pkg.ipk\> - the path and filename of LXC-package to be installed. If
-the LXC-package is specified then the name and the template\_name options can be skipped.  
-\--no-destroy - do not destroy an LXC when an error found.  
-\--decrypt - decrypt the LXC-package by the device credentials. By default,
-`*.ipk` LXC-packages are not encrypted, `*.bin` LXC-packages are encrypted and should be decrypted before install.  
-\--key=\<cipher-key\> - the key to decrypt. By default, device
-credentials are used.
+Mandatory options:
+    [-p|--pkg=]<pkg.ipk>                - The path and the filename of the LXC-package to be installed.
+    -n|--name=<name>                    - The name of the creating LXC.
+Additional options:
+    -t|--templ=<template_name>          - The name of the template used to create the LXC
+    --decrypt                           - Decrypt the LXC-package by the device credentials.
+                                          By default, *.ipk LXC-packages are not encrypted,
+                                          *.bin LXC-packages are encrypted and should be decrypted before install.
+    --hidden=<dirs/files to hide>       - Hide the specified files/dirs of the host filesystem.
+                                          For example, --hidden="/etc/file_example /usr/dir_example"
+    --opaque=<dirs to be opaque>        - Makes the specified dirs of the host filesystem opaque.
+                                          For example, --opaque="/etc/dir_example1 /usr/dir_example2"
+    -s|--ssh                            - Enable SSH access to LXC.
+    --sshport=<port>                    - The port number for SSH access.
+    --sshkey=<public_keyfile>           - The key-file for SSH access.
+    -w|--web                            - Enable Web-Server in LXC (HTTP only. Tha same as --web_http=on).
+    --web_mode=<HTTP|HTTPS|both>        - Select HTTP/HTTPS mode. "HTTP only" is default.
+    --web_http=<port>                   - HTTP port number for Web-Server ("on" - using the port default value).
+    --web_https=<port>                  - HTTPS port number for Web-Server ("on" - using the port default value).
+    --proxy=<proxy ports>               - Ports that should be proxied to the LXC from the host.
+    -e|--events=<ubus_events_pattern>   - The available UBUS-events pattern file.
+    --no_autostart                      - Disable LXC autostart at system startup.
+
+```
 
 #### 2.1.1.2 Examples
 
@@ -117,9 +134,9 @@ credentials are used.
     ```shell
     ee-install.sh -n Smart-home -p perenio-iot-lxc_2020-11-17_mipsel_24kc.ipk
     ```
-* Setup an empty iot-ee template
+* Setup an empty bip-brlxc-static-ee template
     ```shell
-    ee-install.sh -t iot-ee -n empty_iot
+    ee-install.sh -t bip-brlxc-static-ee -n empty_iot
     ```
 
 
@@ -147,6 +164,9 @@ The BEE template is a root parent of any other Perenio LXC EE templates. It conf
   - The `logrotate` service.
   - The `cron` service.
   - The LXC wrapper package for the host opkg.
+  - LXC-package options: OPAQUE_DIRS, HIDDEN_FILES, SSH, SSH_KEY, WEB_HTTP, WEB_HTTPS.
+
+Other EE templates inherit all BEE features.
 
 #### 2.2.1.1. The LXC overlay rootfs filesystem
 
@@ -174,11 +194,20 @@ The LXC wrapper package includes:
 2.  Information that needs to remove LXC-package by `opkg remove`
     command
 
+#### 2.2.1.5. LXC-package options
+
+Available LXC-package options: OPAQUE_DIRS, HIDDEN_FILES, SSH, SSH_KEY, WEB_HTTP, WEB_HTTPS.  
+The default SSH port is 10022. Step to find the first available port is 1000.  
+The default HTTP port is 10080. Step to find the first available port is 1000.  
+The default HTTPS port is 10443. Step to find the first available port is 1000.
+
 ### 2.2.2. BIP-brlan-DHCP-EE
 
 Base Execution Environment that has it's own IP-address obtained by DHCP from br-lan. It provides an LXC that has a virtual network interface connected to br-lan bridge and get its IP by DHCP. It has IP from the LAN.  
 DNS access by the name of LXC is available. It provides network access to the LXC created based on this EE by the name of LXC.  
-This execution environment is based on BEE.
+This execution environment is based on BEE.  
+Additional available LXC-package option is PROXY. It provides HTTP-proxy to redirect HTTP/REST requests of the specified port from the router to the LXC.  
+The default SSH port is 22. The default HTTP port is 80. The default HTTPS port is 443. Unlike BEE, there is no ports availability check.
 
 ### 2.2.3. BIP-brlxc-STATIC-EE
 
@@ -186,7 +215,8 @@ Base Execution Environment that has it's own static IP-address in br-lxc. It pro
 Static address is automatically allocated and assigned to the LXC at the time of LXC creation.  
 DNS access by the name of LXC is available. It provides network access to the LXC created based on this EE by the name of LXC.  
 This execution environment is based on BEE.  
-An additional option - LXC_PROXY - is available for LXC-packages based on this execution environment. It provides HTTP-proxy to redirect HTTP/REST requests of the specified port from the router to the LXC.
+An additional option - LXC_PROXY - is available for LXC-packages based on this execution environment. It provides HTTP-proxy to redirect HTTP/REST requests of the specified port from the router to the LXC.  
+The default SSH port is 22. The default HTTP port is 80. The default HTTPS port is 443. Unlike BEE, there is no ports availability check.
 
 ### 2.2.4. IOT-EE
 
@@ -196,17 +226,83 @@ Perenio IoT Execution Environment. It is based on BEE. UART ports for ZigBee and
 
 Perenio IoT Execution Environment based on bip-brlxc-static-ee. This execution environment is an analogue of IOT-EE but it provides dedicated IP address for inherited LXCs.
 
-## 2.3. LXC-package installation process
+## 2.3. LXC-package options
 
-### 2.3.1. LXC creation
+### 2.3.1. HIDDEN_FILES
+
+Description: Makes the specified dirs or files of the host filesystem hidden for the LXC. Can be used to avoid overwrite warnings/errors during package install in the LXC. Such warnings/errors may appear when host files/dirs that are visible through OverlayFS.  
+Templates: All  
+Command-line usage:  
+```
+--hidden="/etc/file_example /usr/dir_example"
+```
+Makefile usage:
+```makefile
+HIDDEN_FILES=/etc/file_example /usr/dir_example
+```
+
+### 2.3.2. OPAQUE_DIRS
+
+Description: Makes the specified dirs of the host filesystem opaque for the LXC. Can be used to avoid overwrite warnings/errors during package install in the LXC. Such warnings/errors may appear when host files/dirs that are visible through OverlayFS.  
+Templates: All  
+Command-line usage:  
+```
+--opaque="/etc/dir_example1 /usr/dir_example2"
+```
+Makefile usage:
+```makefile
+OPAQUE_DIRS=/etc/dir_example1 /usr/dir_example2
+```
+
+
+### 2.3.3. SSH
+
+Description: Enables SSH support. Sets port number.  
+Templates: All  
+Command-line usage:  
+```
+-s
+--ssh
+--sshport=<port_number>
+```
+Makefile usage:
+```makefile
+SSH=on
+SSH=2222
+```
+
+### 2.3.4. SSH_KEY
+
+### 2.3.5. WEB_HTTP
+
+Description: Enables Web-server support. Sets port number.  
+Templates: All  
+Command-line usage:  
+```
+-w
+--web
+--web_http=<port_number>
+```
+Makefile usage:
+```makefile
+WEB_HTTP=on
+WEB_HTTP=8080
+```
+
+### 2.3.6. WEB_HTTPS
+
+
+## 2.4. LXC-package installation process
+
+### 2.4.1. LXC creation
 
 ![](attachments/429293760/438698013.png)
 
-### 2.3.2. LXC-package contents installation
+### 2.4.2. LXC-package contents installation
 
 ![](attachments/429293760/438698015.png)
 
-### 2.3.3. Final clean-up
+### 2.4.3. Final clean-up
 
 ![](attachments/429293760/438698014.png)
 
