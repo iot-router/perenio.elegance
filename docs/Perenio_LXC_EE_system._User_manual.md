@@ -4,6 +4,7 @@ v4.0.0
 
 <!-- TOC -->
 
+- [Perenio LXC EE system. User manual](#perenio-lxc-ee-system-user-manual)
 - [1. Introduction](#1-introduction)
     - [1.1 Purposes](#11-purposes)
 - [2\. The perenio-ee package](#2\-the-perenio-ee-package)
@@ -17,17 +18,27 @@ v4.0.0
             - [2.2.1.2. The LXC user](#2212-the-lxc-user)
             - [2.2.1.3. Logs and the logrotate service](#2213-logs-and-the-logrotate-service)
             - [2.2.1.4. The LXC wrapper package](#2214-the-lxc-wrapper-package)
+            - [2.2.1.5. LXC-package options](#2215-lxc-package-options)
         - [2.2.2. BIP-brlan-DHCP-EE](#222-bip-brlan-dhcp-ee)
         - [2.2.3. BIP-brlxc-STATIC-EE](#223-bip-brlxc-static-ee)
         - [2.2.4. IOT-EE](#224-iot-ee)
         - [2.2.5. IOT-IP-EE](#225-iot-ip-ee)
-    - [2.3. LXC-package installation process](#23-lxc-package-installation-process)
-        - [2.3.1. LXC creation](#231-lxc-creation)
-        - [2.3.2. LXC-package contents installation](#232-lxc-package-contents-installation)
-        - [2.3.3. Final clean-up](#233-final-clean-up)
+    - [2.3. LXC-package options](#23-lxc-package-options)
+        - [2.3.1. HIDDEN_FILES](#231-hidden_files)
+        - [2.3.2. OPAQUE_DIRS](#232-opaque_dirs)
+        - [2.3.3. SSH](#233-ssh)
+        - [2.3.4. SSH_KEY](#234-ssh_key)
+        - [2.3.5. WEB_HTTP](#235-web_http)
+        - [2.3.6. WEB_HTTPS](#236-web_https)
+        - [2.3.7. PROXY](#237-proxy)
+    - [2.4. LXC-package installation process](#24-lxc-package-installation-process)
+        - [2.4.1. LXC creation](#241-lxc-creation)
+        - [2.4.2. LXC-package contents installation](#242-lxc-package-contents-installation)
+        - [2.4.3. Final clean-up](#243-final-clean-up)
 - [3\. Prepare an LXC-package](#3\-prepare-an-lxc-package)
-    - [3.1. Files](#31-files)
-    - [3.2. Packages](#32-packages)
+    - [3.1. LXC-package options](#31-lxc-package-options)
+    - [3.2. Files](#32-files)
+    - [3.3. Packages](#33-packages)
 - [4\. LXC-packages Lifecycle Management](#4\-lxc-packages-lifecycle-management)
     - [4.1. CLI management](#41-cli-management)
         - [4.1.1. Install](#411-install)
@@ -215,7 +226,7 @@ Base Execution Environment that has it's own static IP-address in br-lxc. It pro
 Static address is automatically allocated and assigned to the LXC at the time of LXC creation.  
 DNS access by the name of LXC is available. It provides network access to the LXC created based on this EE by the name of LXC.  
 This execution environment is based on BEE.  
-An additional option - LXC_PROXY - is available for LXC-packages based on this execution environment. It provides HTTP-proxy to redirect HTTP/REST requests of the specified port from the router to the LXC.  
+An additional option - PROXY - is available for LXC-packages based on this execution environment. It provides HTTP-proxy to redirect HTTP/REST requests of the specified port from the router to the LXC.  
 The default SSH port is 22. The default HTTP port is 80. The default HTTPS port is 443. Unlike BEE, there is no ports availability check.
 
 ### 2.2.4. IOT-EE
@@ -227,6 +238,10 @@ Perenio IoT Execution Environment. It is based on BEE. UART ports for ZigBee and
 Perenio IoT Execution Environment based on bip-brlxc-static-ee. This execution environment is an analogue of IOT-EE but it provides dedicated IP address for inherited LXCs.
 
 ## 2.3. LXC-package options
+
+Perenio-EE provides a set of built-in features for LXC, such as SSH access, WEB-server, etc. These features can be enabled by Makefile settings or by command-line options.  
+To enable a feature for every LXC-package install a developer should use Makefile settings. To apply it the developer should create config-file, set a proper setting there and mention this file by the Makefile LXC_config variable.  
+To enable a feature for one time install a developer should mention required feature as a command-line option during LXC-package install. [A list of command-line options](#211-ee-installsh) is available by `ee-install.sh --help`.
 
 ### 2.3.1. HIDDEN_FILES
 
@@ -291,6 +306,9 @@ WEB_HTTP=8080
 
 ### 2.3.6. WEB_HTTPS
 
+### 2.3.7. PROXY
+
+
 
 ## 2.4. LXC-package installation process
 
@@ -313,7 +331,9 @@ An LXC-package is an extension of a regular OpenWRT package. That's why it suppo
 The detailed description of the LXC-package creation is available [here](Creating_LXC-package_for_IoT-Router.md) .  
 The most useful options are described below.
 
-## 3.1. Files
+## 3.1. LXC-package options
+
+Perenio-EE provides for LXC set of built-in features such as SSH access, WEB-server, etc. ([LXC-package options])
 
 An LXC-package can contain any files. Just copy them to the LXC-package filesystem in the Makefile.   
 For example,
@@ -325,7 +345,20 @@ For example,
  endif
 ```
 
-## 3.2. Packages
+
+## 3.2. Files
+
+An LXC-package can contain any files. Just copy them to the LXC-package filesystem in the Makefile.   
+For example,
+```makefile
+ define Package/$(PKG_NAME)/install  
+     $(INSTALL_DIR) $(1)/etc  
+     $(CP) files/etc/* $(1)/etc/  
+     ...  
+ endif
+```
+
+## 3.3. Packages
 
 An LXC-package can contain a set of packages that should be installed in the LXC. Just copy them to the `/packages/` folder in the Makefile. They are going to be installed to the LXC right after its creation.  
 For example,
@@ -337,6 +370,7 @@ For example,
      $(CP) $(OUTPUT_DIR)/packages/$(ARCH_PACKAGES)/base/package2.ipk $(1)/$(LXC_PKG_DIR)
  endif
 ```
+
 
 # 4\. LXC-packages Lifecycle Management
 

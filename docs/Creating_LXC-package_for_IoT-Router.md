@@ -1,18 +1,21 @@
 # Creating LXC-package for IoT-Router
 
-v3.0
+v4.0
 
 <!-- TOC -->
 
+- [Creating LXC-package for IoT-Router](#creating-lxc-package-for-iot-router)
 - [1\. Prepare](#1\-prepare)
     - [1.1. Prepare your Linux system to OpenWRT build](#11-prepare-your-linux-system-to-openwrt-build)
         - [1.1.1 Prepare Ubuntu to OpenWRT build](#111-prepare-ubuntu-to-openwrt-build)
     - [1.2. Get OpenWRT sources and set it up](#12-get-openwrt-sources-and-set-it-up)
-- [2\. Create LXC-package](#2\-create-lxc-package)
-    - [2.1. Create a package dir](#21-create-a-package-dir)
-    - [2.2. (Optional) Add supplementary files](#22-optional-add-supplementary-files)
-    - [2.3. Create a makefile](#23-create-a-makefile)
-        - [2.3.1. Settings to be specified in the Makefile](#231-settings-to-be-specified-in-the-makefile)
+- [2\. Install Perenio-EE SDK](#2\-install-perenio-ee-sdk)
+- [3\. Create LXC-package](#3\-create-lxc-package)
+    - [3.1. Create a package dir](#31-create-a-package-dir)
+    - [3.2. (Optional) Add supplementary files](#32-optional-add-supplementary-files)
+    - [3.3. Create a makefile](#33-create-a-makefile)
+        - [3.3.1. Settings to be specified in the Makefile](#331-settings-to-be-specified-in-the-makefile)
+        - [3.3.2. Settings to be specified in the LXC-package config file](#332-settings-to-be-specified-in-the-lxc-package-config-file)
 - [3\. Build](#3\-build)
     - [3.1. Prepare OpenWRT configuration](#31-prepare-openwrt-configuration)
     - [3.2. Build OpenWRT tools and toolchain](#32-build-openwrt-tools-and-toolchain)
@@ -68,16 +71,42 @@ tools/mkimage/patches/060-remove_kernel_includes.patch
 lmax@ubuntu:~/work/owrt$
 ```
 
-# 2\. Create LXC-package
+# 2\. Install Perenio-EE SDK
 
-## 2.1. Create a package dir
+Perenio-EE SDK is available [here](attachments/Creating_LXC-package_for_IoT-Router/perenio-ee_v4.0.2_sdk.tar.gz) in tar.gz file. Copy this TAR to the OpenWRT root and run a command:
+```shell
+tar -xzvf perenio-ee_v4.0.2_sdk.tar.gz
+```
+```
+lmax@ubuntu:~/work/owrt$ tar -xzvf perenio-ee_v4.0.2_sdk.tar.gz
+/
+./include/
+./include/lxc-package.mk
+./PEJIR_SDK.config
+./package/
+./package/lxc-package_example/
+./package/lxc-package_example/files/
+./package/lxc-package_example/files/root/
+./package/lxc-package_example/files/root/test-perl/
+./package/lxc-package_example/files/root/test-perl/test.perl
+./package/lxc-package_example/Makefile
+./package/lxc-package_example/lxc-package.config
+lmax@ubuntu:~/work/owrt$
+```
+
+# 3\. Create LXC-package
+
+Perenio-EE SDK contains an LXC-package example `package/lxc-package_example`. It is worth using this example as a source for custom LXC-package.
+
+## 3.1. Create a package dir
 Create the `package/<package name>` dir in the OpenWRT root, where *\<package name\>* is your LXC-package name.  
 For example:
 ```shell
 mkdir package/lxc-package-example-perl
 ```
+Tip: You can copy the LXC-package example `package/lxc-package_example` to your dir and then update its files and Makefile according to your requirements.
 
-## 2.2. (Optional) Add supplementary files
+## 3.2. (Optional) Add supplementary files
 Your service may need some additional files. To add them to the LXC-package put these files to the required dir in `package/<package name>/files`
 For example, to put the [test.perl](attachments/Creating_LXC-package_for_IoT-Router/test.perl) file to the `/root/test-perl` dir in the LXC:
 ```shell
@@ -85,11 +114,11 @@ mkdir -p package/lxc-package-example-perl/files/root/test-perl
 cp test.perl package/lxc-package-example-perl/files/root/test-perl/
 ```
 
-## 2.3. Create a makefile
+## 3.3. Create a makefile
 Create a makefile for your LXC-package by the template [Makefile](attachments/Creating_LXC-package_for_IoT-Router/Makefile) and put it to the `package/<package name>/Makefile` file.
 
-### 2.3.1. Settings to be specified in the Makefile
-You have to specify the following settings in the Makefile:
+### 3.3.1. Settings to be specified in the Makefile
+The developer have to specify the following settings in the Makefile (pay attention - 1,4 and 7 are mandatory):
 
 1.  (Mandatory)  
    The required Execution Environment name. For example:
@@ -102,10 +131,10 @@ You have to specify the following settings in the Makefile:
     LXC_DEFAULT_NAME=lxc-example-perl
     ```
     Note: If the default LXC is not specified then the Execution Environment name is used as the default LXC name.
-3. (Optional, only for LXC-packages based on bip-brlxc-static-ee)  
-   The port number (numbers) for HTTP/REST proxy. It activates an HTTP-proxy creation to redirect HTTP/REST requests of the specified port from the router to the same port of the created LXC. Several ports can be specified using 'space' as a delimiter.
+3. (Optional)  
+   To configure and use [LXC-package built-in features](Perenio_LXC_EE_system._User_manual.md#23-lxc-package-options), a config-file should be mentioned in LXC_CONFIG variable. This config-file should contain required LXC-package features settings ([see below](#332-settings-to-be-specified-in-the-lxc-package-config-file)).
     ```makefile
-    LXC_PROXY=8080 7023
+    LXC_CONFIG=lxc-package.config
     ```
 4. (Mandatory)  
    The LXC-package name. For example:
@@ -113,12 +142,12 @@ You have to specify the following settings in the Makefile:
     PKG_NAME:=lxc-package-example-perl
     ```
 5. (Optional)  
-   The packages to include. For example:
-    1.  Out of any section: 
+   The packages to include. To include packages to the LXC-package the developer needs to set build dependency, enable required packages in OpenWRT config and specify required packages to copy them into the LXC-package. For example:
+    1.  To set build dependency. Out of any section: 
         ```makefile
         PKG_BUILD_DEPENDS:=perl
         ```
-    2.   In the section `Package/$(PKG_NAME)/config`:
+    2.  To enable required packages in OpenWRT config. In the section `Package/$(PKG_NAME)/config`:
         ```makefile
         select PACKAGE_perl
         select PACKAGE_perlbase-base
@@ -134,10 +163,9 @@ You have to specify the following settings in the Makefile:
         > Then save config.
 
 
-    3.  In the section `Package/$(PKG_NAME)/install`: 
+    3.  To specify required packages to copy them into the LXC-package. Out of any section: 
         ```makefile
-        $(CP) $(OUTPUT_DIR)/packages/$(ARCH_PACKAGES)/packages/perl_*.ipk $(1)/$(LXC_PKG_DIR)
-        $(CP) $(OUTPUT_DIR)/packages/$(ARCH_PACKAGES)/packages/perlbase-*.ipk $(1)/$(LXC_PKG_DIR)
+        LXC_PREINSTALLED_PACKAGES:=perl_ perlbase-
         ```
 6. (Optional)  
    Files and/or dirs to include. For example:  
@@ -147,13 +175,41 @@ You have to specify the following settings in the Makefile:
     $(CP) files/root/test-perl/* $(1)/root/test-perl/
     ```
 
+7. (Mandatory)  
+   Service lines.  
+   Before `Package/*` sections:
+    ```makefile
+    include $(INCLUDE_DIR)/package.mk
+    include $(INCLUDE_DIR)/lxc-package.mk
+    ```
+    At the end of Makefile:
+     ```makefile
+    $(eval $(call BuildLXCPackage,$(PKG_NAME)))
+
+    #$(eval $(call BuildPackage,$(PKG_NAME)))
+    ```
+
+### 3.3.2. Settings to be specified in the LXC-package config file
+
+The developer can specify the following settings in the config-file:
+
+- [HIDDEN_FILES](Perenio_LXC_EE_system._User_manual.md#231-hidden_files)
+- [OPAQUE_DIRS](Perenio_LXC_EE_system._User_manual.md#232-opaque_dirs)
+- [SSH](Perenio_LXC_EE_system._User_manual.md#233-ssh)
+- [SSH_KEY](Perenio_LXC_EE_system._User_manual.md#234-ssh_key)
+- [WEB_HTTP](Perenio_LXC_EE_system._User_manual.md#235-web_http)
+- [WEB_HTTPS](Perenio_LXC_EE_system._User_manual.md#236-web_https)
+- [PROXY](Perenio_LXC_EE_system._User_manual.md#237-proxy)
+
+Detailed information is available in the User Manual ([2.2. Templates](Perenio_LXC_EE_system._User_manual.md#22-templates), [2.3. LXC-package options](Perenio_LXC_EE_system._User_manual.md#23-lxc-package-options))
+
 # 3\. Build
 
 ## 3.1. Prepare OpenWRT configuration
 1. Put the [PEJIR.config](attachments/Creating_LXC-package_for_IoT-Router/PEJIR.config) file to the OpenWRT root dir.
 2. Follow the next command sequence to prepare OpenWRT configuration:
 ```shell
-cp PEJIR.config .config
+cp PEJIR_SDK.config .config
 make defconfig
 ```
 
@@ -192,27 +248,11 @@ For example, `bin/packages/mipsel_24kc/base/lxc-package-example-perl_2021-03-18_
 
 1. Perform the [section 1 - Prepare](#1\-prepare).
 
-2. Extract [lxc-package-example-perl.tar.gz](attachments/Creating_LXC-package_for_IoT-Router/lxc-package-example-perl.tar.gz) to the OpenWRT root:
-
-    ```shell
-    tar -xzvf lxc-package-example-perl.tar.gz
-    ```
-    ```
-    lmax@ubuntu:~/work/owrt$ tar -xzvf lxc-package-example-perl.tar.gz
-    package/
-    package/lxc-package-example-perl/
-    package/lxc-package-example-perl/files/
-    package/lxc-package-example-perl/files/root/
-    package/lxc-package-example-perl/files/root/test-perl/
-    package/lxc-package-example-perl/files/root/test-perl/test.perl
-    package/lxc-package-example-perl/Makefile
-    PEJIR.config
-    lmax@ubuntu:~/work/owrt$
-    ```
+2. Perform the [section 2 - Install Perenio-EE SDK](#2\-install-perenio-ee-sdk).
 
 3. Perform the [section 3 - Build](#3\-build) for the `lxc-package-example-perl` package.
 
-4. You should get the LXC-package [lxc-package-example-perl\_2021-03-18\_mipsel\_24kc.ipk](attachments/Creating_LXC-package_for_IoT-Router/lxc-package-example-perl_2021-03-18_mipsel_24kc.ipk)
+4. You should get the LXC-package [lxc-package-example-perl\_2021-05-26\_mipsel\_24kc.ipk](attachments/Creating_LXC-package_for_IoT-Router/lxc-package-example-perl_2021-05-26_mipsel_24kc.ipk)
 
 ## 4.2. Test the example
 
@@ -220,17 +260,17 @@ For example, `bin/packages/mipsel_24kc/base/lxc-package-example-perl_2021-03-18_
 2.  At the SSH shell run the command:
     1.  Install the LXC-package:
         ```shell
-        ee-install.sh -p /root/lxc-package-example-perl_2021-03-18_mipsel_24kc.ipk
+        ee-install.sh /root/lxc-package-example-perl_2021-05-26_mipsel_24kc.ipk
         ```
 
         ```
-        root@PEJIR01_ACKU:~# ee-install.sh -p lxc-package-example-perl_2021-03-18_mipsel_24kc.ipk
-        LXCPKG_VER=1.0
-        LXCPKG_EE=bee
-        LXCPKG_DEFAULT_NAME=lxc-example-perl
-        ee-install(lxc-example-perl/bee): Installation started (lxc-package-example-perl_2021-03-18_mipsel_24kc.ipk)
-        passwd: password for lxc-example-perl changed by root
-        Installing lxc-package-example-perl (2021-03-18) to root...
+        root@PEJIR01_ACKf:~# ee-install.sh lxc-package-example-perl_2021-05-26_mipsel_24kc.ipk
+        LXC name: lxc-example-perl
+        LXC template: bip-brlxc-static-ee
+        (+) SSH=on
+        ee-install(lxc-example-perl/bip-brlxc-static-ee): Installation started (lxc-package-example-perl_2021-05-26_mipsel_24kc.ipk)
+        SSH-by-password on the port 22.
+        Installing lxc-package-example-perl (2021-05-26) to root...
         Configuring lxc-package-example-perl.
         Installing perl (5.28.0-2) to root...
         Installing perlbase-base (5.28.0-2) to root...
@@ -242,10 +282,12 @@ For example, `bin/packages/mipsel_24kc/base/lxc-package-example-perl_2021-03-18_
         Configuring perlbase-config.
         Configuring perlbase-essential.
         Configuring perlbase-base.
-        Installing lxc-package-example-perl.lxc-example-perl (2021-03-18) to root...
+        Installing lxc-package-example-perl.lxc-example-perl (2021-05-26) to root...
         Configuring lxc-package-example-perl.lxc-example-perl.
-        ee-install(lxc-example-perl/bee): Installation done
-        root@PEJIR01_ACKU:~#
+        LXCPKG_SSH: 22
+        LXC_IP: 192.168.192.3
+        ee-install(lxc-example-perl/bip-brlxc-static-ee): Installation done
+        root@PEJIR01_ACKf:~#
         ```
     2.  Check the installed LXC:
         ```shell
@@ -272,14 +314,12 @@ For example, `bin/packages/mipsel_24kc/base/lxc-package-example-perl_2021-03-18_
 # Attachments
 
 ![](images/icons/bullet_blue.gif)
-[PEJIR.config](attachments/Creating_LXC-package_for_IoT-Router/PEJIR.config)  
+[openwrt18.04-patch.tar.gz](attachments/Creating_LXC-package_for_IoT-Router/openwrt18.04-patch.tar.gz)  
+![](images/icons/bullet_blue.gif)
+[perenio-ee\_v4.0.2\_sdk.tar.gz](attachments/Creating_LXC-package_for_IoT-Router/perenio-ee_v4.0.2_sdk.tar.gz)  
 ![](images/icons/bullet_blue.gif)
 [Makefile](attachments/Creating_LXC-package_for_IoT-Router/Makefile)  
 ![](images/icons/bullet_blue.gif)
-[lxc-package-example-perl.tar.gz](attachments/Creating_LXC-package_for_IoT-Router/lxc-package-example-perl.tar.gz)  
-![](images/icons/bullet_blue.gif)
-[openwrt18.04-patch.tar.gz](attachments/Creating_LXC-package_for_IoT-Router/openwrt18.04-patch.tar.gz)  
-![](images/icons/bullet_blue.gif)
 [test.perl](attachments/Creating_LXC-package_for_IoT-Router/test.perl)  
 ![](images/icons/bullet_blue.gif)
-[lxc-package-example-perl\_2021-03-18\_mipsel\_24kc.ipk](attachments/Creating_LXC-package_for_IoT-Router/lxc-package-example-perl_2021-03-18_mipsel_24kc.ipk)  
+[lxc-package-example-perl\_2021-05-26\_mipsel\_24kc.ipk](attachments/Creating_LXC-package_for_IoT-Router/lxc-package-example-perl_2021-05-26_mipsel_24kc.ipk)  
