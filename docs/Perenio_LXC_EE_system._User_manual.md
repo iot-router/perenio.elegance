@@ -1,6 +1,6 @@
 # Perenio LXC EE system. User manual
 
-v4.0.0
+v4.1.0
 
 <!-- TOC -->
 
@@ -9,10 +9,12 @@ v4.0.0
     - [1.1 Purposes](#11-purposes)
 - [2\. The perenio-ee package](#2\-the-perenio-ee-package)
     - [2.1. Tools](#21-tools)
-        - [2.1.1. ee-install.sh](#211-ee-installsh)
+        - [2.1.1. ee-install](#211-ee-install)
             - [2.1.1.1 Usage](#2111-usage)
             - [2.1.1.2 Examples](#2112-examples)
-    - [2.2. Templates](#22-templates)
+        - [2.1.2. ee-remove](#212-ee-remove)
+            - [2.1.2.1 Usage](#2121-usage)
+    - [2.2. Perenio Execution Environments (templates)](#22-perenio-execution-environments-templates)
         - [2.2.1. BEE](#221-bee)
             - [2.2.1.1. The LXC overlay rootfs filesystem](#2211-the-lxc-overlay-rootfs-filesystem)
             - [2.2.1.2. The LXC user](#2212-the-lxc-user)
@@ -42,7 +44,7 @@ v4.0.0
 - [4\. LXC-packages Lifecycle Management](#4\-lxc-packages-lifecycle-management)
     - [4.1. CLI management](#41-cli-management)
         - [4.1.1. Install](#411-install)
-            - [4.1.1.1. ee-install.sh](#4111-ee-installsh)
+            - [4.1.1.1. ee-install](#4111-ee-install)
         - [4.1.2. Remove](#412-remove)
             - [4.1.2.1. lxc-destroy](#4121-lxc-destroy)
             - [4.1.2.2. opkg remove (for perenio-ee v2.0+)](#4122-opkg-remove-for-perenio-ee-v20)
@@ -90,21 +92,22 @@ The **perenio-ee** is an OpenWRT package for Perenio IoT-Router that contains a 
 
 **LXC-package** is an extended version of the `.ipk` package that contains files, packages, service scripts, and configuration data to create an LXC and install all required stuff there.
 
-LXC-package has to be installed by the [ee-install.sh](#211-ee-installsh) tool only. The opkg tool can't be used for LXC-package install. This is the result of a security-based approach (to avoid run 3rd-party code or scripts on the host system).
+LXC-package has to be installed by the [ee-install](#211-ee-install) tool only. The opkg tool can't be used for LXC-package install. This is the result of a security-based approach (to avoid run 3rd-party code or scripts on the host system).
 
 
 ## 2.1. Tools
 
-  - **ee-install.sh** - a tool to create an LXC from a template and install the LXC-package into it.
+  - **ee-install** - a tool to create an LXC from a template and install the LXC-package into it.
+  - **ee-remove** - a tool to remove an installed LXC-package.
 
-### 2.1.1. ee-install.sh
+### 2.1.1. ee-install
 
-**ee-install.sh** is a tool to install an LXC-package as a Linux container on the host system.
+**ee-install** is a tool to install an LXC-package as a Linux container on the host system.
 
 #### 2.1.1.1 Usage
 
 ```shell
-ee-install.sh -h|--help|<options>
+ee-install -h|--help|<options>
 
 Mandatory options:
     [-p|--pkg=]<pkg.ipk>                - The path and the filename of the LXC-package to be installed.
@@ -135,23 +138,37 @@ Additional options:
 
 * Setup the perenio-iot-lxc LXC-package
     ```shell
-    ee-install.sh perenio-iot-lxc_2020-11-17_mipsel_24kc.ipk
+    ee-install perenio-iot-lxc_2020-11-17_mipsel_24kc.ipk
     ```
 * Setup the encrypted perenio-iot-lxc LXC-package
     ```shell
-    ee-install.sh perenio-iot-lxc_2020-11-17_mipsel_24kc.bin
+    ee-install perenio-iot-lxc_2020-11-17_mipsel_24kc.bin
     ```
 * Setup the perenio-iot-lxc LXC-package named Smart-home
     ```shell
-    ee-install.sh -n Smart-home -p perenio-iot-lxc_2020-11-17_mipsel_24kc.ipk
+    ee-install -n Smart-home -p perenio-iot-lxc_2020-11-17_mipsel_24kc.ipk
     ```
 * Setup an empty bip-brlxc-static-ee template
     ```shell
-    ee-install.sh -t bip-brlxc-static-ee -n empty_iot
+    ee-install -t bip-brlxc-static-ee -n empty_iot
     ```
 
+### 2.1.2. ee-remove
 
-## 2.2. Templates
+**ee-remove** is a tool to install an LXC-package as a Linux container on the host system.  
+The same result as the original `lxc-destroy` command. However `ee-remove` can use an LXC-package file name instead of an LXC name.
+
+#### 2.1.2.1 Usage
+
+```shell
+ee-remove -h|--help | [ [-n|--name=]<name>] [-p|--pkg=<pkg.ipk>]
+
+```
+Where:  
+    `name` is the LXC name.
+    `pkg.ipk` is the LXC-package file name.
+
+## 2.2. Perenio Execution Environments (templates)
 
   - [bee](#221-bee) - Base Execution Environment (BEE). Define an allocation of a minimal set of resources. Can be used for a simple LXC.
   - [bip-brlan-dhcp-ee](#222-bip-brlan-dhcp-ee) - Base Execution Environment that has it's own IP-address obtained by DHCP from br-lan. Based on BEE.
@@ -241,7 +258,7 @@ Perenio IoT Execution Environment based on bip-brlxc-static-ee. This execution e
 
 Perenio-EE provides a set of built-in features for LXC, such as SSH access, WEB-server, etc. These features can be enabled by Makefile settings or by command-line options.  
 To enable a feature for every LXC-package install a developer should use Makefile settings. To apply it the developer should create config-file, set a proper setting there and mention this file by the Makefile LXC_config variable.  
-To enable a feature for one time install a developer should mention required feature as a command-line option during LXC-package install. [A list of command-line options](#211-ee-installsh) is available by `ee-install.sh --help`.
+To enable a feature for one time install a developer should mention required feature as a command-line option during LXC-package install. [A list of command-line options](#211-ee-install) is available by `ee-install --help`.
 
 ### 2.3.1. HIDDEN_FILES
 
@@ -392,11 +409,11 @@ These actions can be done by:
 
 ### 4.1.1. Install
 
-#### 4.1.1.1. ee-install.sh
+#### 4.1.1.1. ee-install
 
-ee-install.sh is an LXC-package management tool from the Perenio-EE package. It creates LXC and installs a specified LXC-package there. 
+ee-install is an LXC-package management tool from the Perenio-EE package. It creates LXC and installs a specified LXC-package there. 
 
-[Usage](#24-ee-installsh)
+[Usage](#24-ee-install)
 
 ### 4.1.2. Remove
 

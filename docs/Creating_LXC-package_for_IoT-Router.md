@@ -1,6 +1,6 @@
 # Creating LXC-package for IoT-Router
 
-v4.0
+v4.1.0
 
 <!-- TOC -->
 
@@ -125,6 +125,7 @@ The developer have to specify the following settings in the Makefile (pay attent
     ```makefile
     LXC_EE=bee
     ```
+    [Available Perenio Execution Environments](Perenio_LXC_EE_system._User_manual.md#22-perenio-execution-environments-templates)
 2. (Optional)  
    The default LXC name. This name will be used for LXC operations (start, stop, attach, etc.). For example:
     ```makefile
@@ -260,11 +261,11 @@ For example, `bin/packages/mipsel_24kc/base/lxc-package-example-perl_2021-03-18_
 2.  At the SSH shell run the command:
     1.  Install the LXC-package:
         ```shell
-        ee-install.sh /root/lxc-package-example-perl_2021-05-26_mipsel_24kc.ipk
+        ee-install /root/lxc-package-example-perl_2021-05-26_mipsel_24kc.ipk
         ```
 
         ```
-        root@PEJIR01_ACKf:~# ee-install.sh lxc-package-example-perl_2021-05-26_mipsel_24kc.ipk
+        root@PEJIR01_ACKf:~# ee-install lxc-package-example-perl_2021-05-26_mipsel_24kc.ipk
         LXC name: lxc-example-perl
         LXC template: bip-brlxc-static-ee
         (+) SSH=on
