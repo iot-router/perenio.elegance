@@ -78,12 +78,21 @@ Perenio-EE SDK is available [here](attachments/Creating_LXC-package_for_IoT-Rout
 tar -xzvf perenio-ee_v4.2.1_sdk.tar.gz
 ```
 ```
-lmax@ubuntu:~/work/owrt$ tar -xzvf perenio-ee_v4.0.2_sdk.tar.gz
-/
+lmax@ubuntu:~/work/owrt$ tar -xzvf perenio-ee_v4.2.1_sdk.tar.gz
+./
 ./include/
 ./include/lxc-package.mk
 ./PEJIR_SDK.config
 ./package/
+./package/lxc-speedtest-web/
+./package/lxc-speedtest-web/Makefile
+./package/lxc-speedtest/
+./package/lxc-speedtest/files/
+./package/lxc-speedtest/files/root/
+./package/lxc-speedtest/files/root/speedtest/
+./package/lxc-speedtest/files/root/speedtest/speedtest
+./package/lxc-speedtest/Makefile
+./package/lxc-speedtest/lxc-package.config
 ./package/lxc-package_example/
 ./package/lxc-package_example/files/
 ./package/lxc-package_example/files/root/
@@ -102,7 +111,7 @@ Perenio-EE SDK contains an LXC-package example `package/lxc-package_example`. It
 Create the `package/<package name>` dir in the OpenWRT root, where *\<package name\>* is your LXC-package name.  
 For example:
 ```shell
-mkdir package/lxc-package-example-perl
+mkdir package/lxc-package_example
 ```
 Tip: You can copy the LXC-package example `package/lxc-package_example` to your dir and then update its files and Makefile according to your requirements.
 
@@ -110,8 +119,8 @@ Tip: You can copy the LXC-package example `package/lxc-package_example` to your 
 Your service may need some additional files. To add them to the LXC-package put these files to the required dir in `package/<package name>/files`
 For example, to put the [test.perl](attachments/Creating_LXC-package_for_IoT-Router/test.perl) file to the `/root/test-perl` dir in the LXC:
 ```shell
-mkdir -p package/lxc-package-example-perl/files/root/test-perl
-cp test.perl package/lxc-package-example-perl/files/root/test-perl/
+mkdir -p package/lxc-package_example/files/root/test-perl
+cp test.perl package/lxc-package_example/files/root/test-perl/
 ```
 
 ## 3.3. Create a makefile
@@ -123,7 +132,7 @@ The developer have to specify the following settings in the Makefile (pay attent
 1.  (Mandatory)  
    The required Execution Environment name. For example:
     ```makefile
-    LXC_EE=bee
+    LXC_EE=bip-brlxc-static-ee
     ```
     [Available Perenio Execution Environments](Perenio_LXC_EE_system._User_manual.md#22-perenio-execution-environments-templates)
 2. (Optional)  
@@ -164,10 +173,11 @@ The developer have to specify the following settings in the Makefile (pay attent
         > Then save config.
 
 
-    3.  To specify required packages to copy them into the LXC-package. Out of any section: 
+    3.  To specify required packages to copy them into the LXC-package. Prefixes for wildcards should be specified. The whole wildcard format is `<prefix>*`. Out of any section: 
         ```makefile
         LXC_PREINSTALLED_PACKAGES:=perl_ perlbase-
         ```
+        This means to install all packages that fit wildcards `perl_*` and `perlbase-*`.
 6. (Optional)  
    Files and/or dirs to include. For example:  
     In the section `Package/$(PKG_NAME)/install`:  
@@ -235,13 +245,13 @@ make package/<package name>/compile
 ```
 For example:
 ```shell
-make package/lxc-package-example-perl/compile
+make package/lxc-package_example/compile
 ```
 
 ## 3.4. Get the built LXC-package
 
 LXC-packages have `.ipk` extension. The built LXC-package is located in the `bin/packages/mipsel_24kc/base` dir.  
-For example, `bin/packages/mipsel_24kc/base/lxc-package-example-perl_2021-03-18_mipsel_24kc.ipk`.
+For example, `bin/packages/mipsel_24kc/base/lxc-package-example-perl_2021-05-26_mipsel_24kc.ipk`.
 
 # 4\. Example
 
@@ -251,7 +261,7 @@ For example, `bin/packages/mipsel_24kc/base/lxc-package-example-perl_2021-03-18_
 
 2. Perform the [section 2 - Install Perenio-EE SDK](#2\-install-perenio-ee-sdk).
 
-3. Perform the [section 3 - Build](#3\-build) for the `lxc-package-example-perl` package.
+3. Perform the [section 3 - Build](#3\-build) for the `lxc-package_example` package.
 
 4. You should get the LXC-package [lxc-package-example-perl\_2021-05-26\_mipsel\_24kc.ipk](attachments/Creating_LXC-package_for_IoT-Router/lxc-package-example-perl_2021-05-26_mipsel_24kc.ipk)
 
@@ -317,7 +327,7 @@ For example, `bin/packages/mipsel_24kc/base/lxc-package-example-perl_2021-03-18_
 ![](images/icons/bullet_blue.gif)
 [openwrt18.04-patch.tar.gz](attachments/Creating_LXC-package_for_IoT-Router/openwrt18.04-patch.tar.gz)  
 ![](images/icons/bullet_blue.gif)
-[perenio-ee\_v4.0.2\_sdk.tar.gz](attachments/Creating_LXC-package_for_IoT-Router/perenio-ee_v4.0.2_sdk.tar.gz)  
+[perenio-ee\_v4.2.1\_sdk.tar.gz](attachments/Creating_LXC-package_for_IoT-Router/perenio-ee_v4.2.1_sdk.tar.gz)  
 ![](images/icons/bullet_blue.gif)
 [Makefile](attachments/Creating_LXC-package_for_IoT-Router/Makefile)  
 ![](images/icons/bullet_blue.gif)

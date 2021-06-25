@@ -3,7 +3,7 @@ include $(TOPDIR)/rules.mk
 ### LXC Execution Environment name - mandatory.
 LXC_EE=bip-brlxc-static-ee
 ### LXC default name - optional. If it is skipped then the Template name is used as a LXC name.
-LXC_DEFAULT_NAME=lxc-example-perl
+LXC_DEFAULT_NAME=lxc_example_perl
 ### LXC configuration
 LXC_CONFIG=lxc-package.config
 
@@ -25,6 +25,7 @@ define Package/$(PKG_NAME)
   DEFAULT:=m
   SECTION:=utils
   CATEGORY:=Utilities
+  DEPENDS:=+perl
   TITLE:=Example of LXC-package build (Number Guessing Game using Perl inside)
 endef
 

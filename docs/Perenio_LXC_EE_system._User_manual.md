@@ -16,7 +16,7 @@ v4.2.1
             - [2.1.2.1 Usage](#2121-usage)
         - [2.1.3. ee-info](#213-ee-info)
             - [2.1.3.1 Usage](#2131-usage)
-            - [2.1.1.2 Examples](#2112-examples-1)
+            - [2.1.3.2 Examples](#2132-examples)
     - [2.2. Perenio Execution Environments (templates)](#22-perenio-execution-environments-templates)
         - [2.2.1. BEE](#221-bee)
             - [2.2.1.1. The LXC overlay rootfs filesystem](#2211-the-lxc-overlay-rootfs-filesystem)
@@ -35,10 +35,11 @@ v4.2.1
         - [2.3.4. SSH_KEY](#234-ssh_key)
         - [2.3.5. WEB_HTTP and WEB_HTTPS](#235-web_http-and-web_https)
         - [2.3.6. PROXY](#236-proxy)
-    - [2.4. LXC-package installation process](#24-lxc-package-installation-process)
-        - [2.4.1. LXC creation](#241-lxc-creation)
-        - [2.4.2. LXC-package contents installation](#242-lxc-package-contents-installation)
-        - [2.4.3. Final clean-up](#243-final-clean-up)
+    - [2.4. LXC-package Web integration](#24-lxc-package-web-integration)
+    - [2.5. LXC-package installation process](#25-lxc-package-installation-process)
+        - [2.5.1. LXC creation](#251-lxc-creation)
+        - [2.5.2. LXC-package contents installation](#252-lxc-package-contents-installation)
+        - [2.5.3. Final clean-up](#253-final-clean-up)
 - [3\. Prepare an LXC-package](#3\-prepare-an-lxc-package)
     - [3.1. LXC-package options](#31-lxc-package-options)
     - [3.2. Files](#32-files)
@@ -48,8 +49,9 @@ v4.2.1
         - [4.1.1. Install](#411-install)
             - [4.1.1.1. ee-install](#4111-ee-install)
         - [4.1.2. Remove](#412-remove)
-            - [4.1.2.1. lxc-destroy](#4121-lxc-destroy)
-            - [4.1.2.2. opkg remove (for perenio-ee v2.0+)](#4122-opkg-remove-for-perenio-ee-v20)
+            - [4.1.2.1. ee-remove](#4121-ee-remove)
+            - [4.1.2.2. lxc-destroy](#4122-lxc-destroy)
+            - [4.1.2.3. opkg remove (for perenio-ee v2.0+)](#4123-opkg-remove-for-perenio-ee-v20)
         - [4.1.3. Start](#413-start)
             - [4.1.3.1. lxc-start](#4131-lxc-start)
         - [4.1.4. Stop](#414-stop)
@@ -155,8 +157,9 @@ Additional options:
 
 ### 2.1.2. ee-remove
 
-**ee-remove** is a tool to install an LXC-package as a Linux container on the host system.  
+**ee-remove** is a tool to remove an LXC-package from the system.  
 The same result as the original `lxc-destroy` command. However `ee-remove` can use an LXC-package file name instead of an LXC name.
+If LXC is running then it stops automatically before destroying.
 
 #### 2.1.2.1 Usage
 
@@ -183,7 +186,7 @@ Where:
     `name` is the LXC name.
     `pkg.ipk` is the LXC-package file name.
 
-#### 2.1.1.2 Examples
+#### 2.1.3.2 Examples
 
 ```shell
 root@PEJIR01_ACKf:~# ee-info iot
@@ -418,17 +421,30 @@ PROXY=<proxy_ports>
 
 For example: `--proxy=8080`, `--proxy='8080 9090'`, `PROXY=8080`, `PROXY=8080 9090`
 
-## 2.4. LXC-package installation process
+## 2.4. LXC-package Web integration
 
-### 2.4.1. LXC creation
+Any LXC-package may have it's own web-interface. Steps to provide it:
+1. Enable Web-server inside the LXC by using [WEB_HTTP or WEB_HTTPS](#235-web_http-and-web_https) LXC-package options.
+2. Develop web-content and put it inside LXC filesystem. The root is `/www/index.html`.  
+
+LXC-packages Web-interface is available:
+* by a Tab in the host Web-interface main menu.
+* by proxy link `<host IP>:<proxy port>`. Proxy port is available in UCI config `lxcpkg.<LXC name>.WEB_HTTP_PROXY`.
+* by direct link `<LXC IP>:<web port>`.   
+
+
+## 2.5. LXC-package installation process
+
+
+### 2.5.1. LXC creation
 
 ![](attachments/429293760/438698013.png)
 
-### 2.4.2. LXC-package contents installation
+### 2.5.2. LXC-package contents installation
 
 ![](attachments/429293760/438698015.png)
 
-### 2.4.3. Final clean-up
+### 2.5.3. Final clean-up
 
 ![](attachments/429293760/438698014.png)
 
@@ -468,7 +484,7 @@ For example,
 ```makefile
 LXC_PREINSTALLED_PACKAGES:=perl_ perlbase-
 ```
-This specifies to install all packages that fit wildcards `perl_*` and `perlbase-`.
+This specifies to install all packages that fit wildcards `perl_*` and `perlbase-*`.
 
 # 4\. LXC-packages Lifecycle Management
 
@@ -494,14 +510,21 @@ These actions can be done by:
 
 ee-install is an LXC-package management tool from the Perenio-EE package. It creates LXC and installs a specified LXC-package there. 
 
-[Usage](#24-ee-install)
+[Usage](#2111-usage)
 
 ### 4.1.2. Remove
 
 > Note: LXC should be stopped before remove (see
 [here](#414-stop) for details)
 
-#### 4.1.2.1. lxc-destroy
+
+#### 4.1.2.1. ee-remove
+
+ee-remove is a tool to remove an LXC-package from the system. [See details](#212-ee-remove).
+
+[Usage](#2121-usage)
+
+#### 4.1.2.2. lxc-destroy
 
 lxc-destroy is one of the LXC management tools. It removes a specified LXC from the host. According to the BEE template, all created staff (LXC user, LXC wrapper, etc.) is also removed from the host. 
 
@@ -509,7 +532,7 @@ lxc-destroy is one of the LXC management tools. It removes a specified LXC from 
     Options:
         -n, --name=NAME - the name of the container to destroy
 
-#### 4.1.2.2. opkg remove (for perenio-ee v2.0+)
+#### 4.1.2.3. opkg remove (for perenio-ee v2.0+)
 
 opkg is an OpenWRT package management tool. It removes a specified package from the host. According to the BEE template, all created staff (LXC, LXC user, etc.) is also removed from the host. 
 
