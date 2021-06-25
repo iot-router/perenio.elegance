@@ -1,6 +1,6 @@
 # Creating LXC-package for IoT-Router
 
-v4.1.0
+v4.2.1
 
 <!-- TOC -->
 
@@ -73,9 +73,9 @@ lmax@ubuntu:~/work/owrt$
 
 # 2\. Install Perenio-EE SDK
 
-Perenio-EE SDK is available [here](attachments/Creating_LXC-package_for_IoT-Router/perenio-ee_v4.0.2_sdk.tar.gz) in tar.gz file. Copy this TAR to the OpenWRT root and run a command:
+Perenio-EE SDK is available [here](attachments/Creating_LXC-package_for_IoT-Router/perenio-ee_v4.2.1_sdk.tar.gz) in tar.gz file. Copy this TAR to the OpenWRT root and run a command:
 ```shell
-tar -xzvf perenio-ee_v4.0.2_sdk.tar.gz
+tar -xzvf perenio-ee_v4.2.1_sdk.tar.gz
 ```
 ```
 lmax@ubuntu:~/work/owrt$ tar -xzvf perenio-ee_v4.0.2_sdk.tar.gz
@@ -127,9 +127,9 @@ The developer have to specify the following settings in the Makefile (pay attent
     ```
     [Available Perenio Execution Environments](Perenio_LXC_EE_system._User_manual.md#22-perenio-execution-environments-templates)
 2. (Optional)  
-   The default LXC name. This name will be used for LXC operations (start, stop, attach, etc.). For example:
+   The default LXC name. This name will be used for LXC operations (start, stop, attach, etc.). Name may contain only `A..Z`, `a..z`, `0..9`, `_` symbols. For example:
     ```makefile
-    LXC_DEFAULT_NAME=lxc-example-perl
+    LXC_DEFAULT_NAME=lxc_example_perl
     ```
     Note: If the default LXC is not specified then the Execution Environment name is used as the default LXC name.
 3. (Optional)  
@@ -198,9 +198,9 @@ The developer can specify the following settings in the config-file:
 - [OPAQUE_DIRS](Perenio_LXC_EE_system._User_manual.md#232-opaque_dirs)
 - [SSH](Perenio_LXC_EE_system._User_manual.md#233-ssh)
 - [SSH_KEY](Perenio_LXC_EE_system._User_manual.md#234-ssh_key)
-- [WEB_HTTP](Perenio_LXC_EE_system._User_manual.md#235-web_http)
-- [WEB_HTTPS](Perenio_LXC_EE_system._User_manual.md#236-web_https)
-- [PROXY](Perenio_LXC_EE_system._User_manual.md#237-proxy)
+- [WEB_HTTP](Perenio_LXC_EE_system._User_manual.md#235-web_http-and-web_https)
+- [WEB_HTTPS](Perenio_LXC_EE_system._User_manual.md#235-web_http-and-web_https)
+- [PROXY](Perenio_LXC_EE_system._User_manual.md#236-proxy)
 
 Detailed information is available in the User Manual ([2.2. Templates](Perenio_LXC_EE_system._User_manual.md#22-templates), [2.3. LXC-package options](Perenio_LXC_EE_system._User_manual.md#23-lxc-package-options))
 

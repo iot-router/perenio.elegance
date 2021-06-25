@@ -1,6 +1,6 @@
 # Perenio LXC EE system. User manual
 
-v4.1.0
+v4.2.1
 
 <!-- TOC -->
 
@@ -14,6 +14,9 @@ v4.1.0
             - [2.1.1.2 Examples](#2112-examples)
         - [2.1.2. ee-remove](#212-ee-remove)
             - [2.1.2.1 Usage](#2121-usage)
+        - [2.1.3. ee-info](#213-ee-info)
+            - [2.1.3.1 Usage](#2131-usage)
+            - [2.1.1.2 Examples](#2112-examples-1)
     - [2.2. Perenio Execution Environments (templates)](#22-perenio-execution-environments-templates)
         - [2.2.1. BEE](#221-bee)
             - [2.2.1.1. The LXC overlay rootfs filesystem](#2211-the-lxc-overlay-rootfs-filesystem)
@@ -30,9 +33,8 @@ v4.1.0
         - [2.3.2. OPAQUE_DIRS](#232-opaque_dirs)
         - [2.3.3. SSH](#233-ssh)
         - [2.3.4. SSH_KEY](#234-ssh_key)
-        - [2.3.5. WEB_HTTP](#235-web_http)
-        - [2.3.6. WEB_HTTPS](#236-web_https)
-        - [2.3.7. PROXY](#237-proxy)
+        - [2.3.5. WEB_HTTP and WEB_HTTPS](#235-web_http-and-web_https)
+        - [2.3.6. PROXY](#236-proxy)
     - [2.4. LXC-package installation process](#24-lxc-package-installation-process)
         - [2.4.1. LXC creation](#241-lxc-creation)
         - [2.4.2. LXC-package contents installation](#242-lxc-package-contents-installation)
@@ -60,13 +62,10 @@ v4.1.0
 <!-- /TOC -->
 
 
-
-
-
 # 1. Introduction
 
 Perenio LXC EE (LinuX Containers Execution Environment) system is a set of tools to manage LXC's in IoT-Router.  
-This document describes Perenio LXC EE v3.1.1.
+This document describes Perenio LXC EE v4.2.1.
 
 ## 1.1 Purposes
 
@@ -99,6 +98,7 @@ LXC-package has to be installed by the [ee-install](#211-ee-install) tool only.
 
   - **ee-install** - a tool to create an LXC from a template and install the LXC-package into it.
   - **ee-remove** - a tool to remove an installed LXC-package.
+  - **ee-info** - a tool to display information about an installed LXC-package.
 
 ### 2.1.1. ee-install
 
@@ -168,6 +168,52 @@ Where:
     `name` is the LXC name.
     `pkg.ipk` is the LXC-package file name.
 
+### 2.1.3. ee-info
+
+**ee-info** a tool to display information about an installed LXC-package.
+
+#### 2.1.3.1 Usage
+
+```shell
+ee-info -h|--help | -l|--list | [ [-n|--name=]<name>] [-p|--pkg=<pkg.ipk>]
+
+```
+Where:
+    `--list` is an option to display a list of installed LXC-packages.
+    `name` is the LXC name.
+    `pkg.ipk` is the LXC-package file name.
+
+#### 2.1.1.2 Examples
+
+```shell
+root@PEJIR01_ACKf:~# ee-info iot
+LXC info:
+    Name:           iot
+    State:          RUNNING
+    PID:            20643
+    IP:             192.168.192.2
+    CPU use:        31.32 seconds
+    Memory use:     10.73 MiB
+    KMem use:       2.51 MiB
+    Link:           vethD7AUKP
+     TX bytes:      11.07 KiB
+     RX bytes:      10.46 KiB
+     Total bytes:   21.53 KiB
+LXC-package config:
+    lxcpkg.iot=iot-ip-ee
+    lxcpkg.iot.lxcpkg='perenio-lxc-iot_2021-05-31_mipsel_24kc.ipk'
+    lxcpkg.iot.AUTOSTART='1'
+    lxcpkg.iot.ip='192.168.192.2'
+    lxcpkg.iot.hostpkg='perenio-lxc-iot.iot'
+Host-package config:
+    Package: perenio-lxc-iot.iot
+    Version: 2021-05-31
+    Status: install user installed
+    Architecture: mipsel_24kc
+    Installed-Time: 1624433478
+
+```        
+
 ## 2.2. Perenio Execution Environments (templates)
 
   - [bee](#221-bee) - Base Execution Environment (BEE). Define an allocation of a minimal set of resources. Can be used for a simple LXC.
@@ -180,7 +226,7 @@ Where:
 
 Perenio Base Execution Environment.
 
-The BEE template is a root parent of any other Perenio LXC EE templates. It configures and implements base LXC features, like:
+The BEE template is a root of any other Perenio LXC EE templates. It configures and implements base LXC features, like:
 
   - The overlay rootfs filesystem.
   - The tmpfs (`/tmp`) filesystem.
@@ -191,6 +237,7 @@ The BEE template is a root parent of any other Perenio LXC EE templates. It conf
   - The `log` service.
   - The `logrotate` service.
   - The `cron` service.
+  - The `avahi` service (zeroconf).
   - The LXC wrapper package for the host opkg.
   - LXC-package options: OPAQUE_DIRS, HIDDEN_FILES, SSH, SSH_KEY, WEB_HTTP, WEB_HTTPS.
 
@@ -224,7 +271,7 @@ The LXC wrapper package includes:
 
 #### 2.2.1.5. LXC-package options
 
-Available LXC-package options: OPAQUE_DIRS, HIDDEN_FILES, SSH, SSH_KEY, WEB_HTTP, WEB_HTTPS.  
+Available LXC-package options: OPAQUE_DIRS, HIDDEN_FILES, SSH, SSH_KEY, WEB_HTTP, WEB_HTTPS. Detailed description is available [below](#23-lxc-package-options).  
 The default SSH port is 10022. Step to find the first available port is 1000.  
 The default HTTP port is 10080. Step to find the first available port is 1000.  
 The default HTTPS port is 10443. Step to find the first available port is 1000.
@@ -290,6 +337,12 @@ OPAQUE_DIRS=/etc/dir_example1 /usr/dir_example2
 ### 2.3.3. SSH
 
 Description: Enables SSH support. Sets port number.  
+Values:  
+* integer number - enable SSH on the specified port number.
+* `on` - enable SSH on the default port. The default port number depends on the selected template.  
+      For templates that use the host IP-address, default port is the first available port starting from 10022, step 1000 (i.e. 10022, 11022, 12022, 13022, etc.).  
+      For templates that have its own IP-address, default port is 22.  
+
 Templates: All  
 Command-line usage:  
 ```
@@ -300,32 +353,70 @@ Command-line usage:
 Makefile usage:
 ```makefile
 SSH=on
-SSH=2222
+SSH=<port_number>
 ```
+For example: `--sshport=2222`, `SSH=2222`
 
 ### 2.3.4. SSH_KEY
 
-### 2.3.5. WEB_HTTP
+Description: Enables SSH support. Specifies the key-file for SSH access. The key-file should be placed in the LXC-package filesystem.
+Templates: All  
+Command-line usage:  
+```
+--sshkey=<public_keyfile>
+```
+Makefile usage:
+```makefile
+SSH_KEY=<public_keyfile>
+```
+For example: `--sshkey=/etc/ssh_key`, `SSH_KEY=/etc/ssh_key`
 
-Description: Enables Web-server support. Sets port number.  
+### 2.3.5. WEB_HTTP and WEB_HTTPS
+
+Description: Enables Web-server support. Sets port number. For templates that have its own IP-address, additional proxy called WEB_HTTP_PROXY/WEB_HTTPS_PROXY is created. It is used for integration the LXC Web-server to the host Web-interface. It can also be used for external access to the LXC Web-server by the host IP-address.  
+Values:  
+* integer number - enable Web-server on the specified port number.  
+* `on` - enable Web-server on the default port. The default port number depends on the selected template.  
+    - For HTTP:  
+      For templates that use the host IP-address, default port is the first available port starting from 10080, step 1000 (i.e. 10080, 11080, 12080, 13080, etc.).  
+      For templates that have its own IP-address, default port is 80.   
+    - For HTTPS:  
+      For templates that use the host IP-address, default port is the first available port starting from 10443, step 1000 (i.e. 10443, 11443, 12443, 13443, etc.).  
+      For templates that have its own IP-address, default port is 443.   
+
 Templates: All  
 Command-line usage:  
 ```
 -w
 --web
 --web_http=<port_number>
+--web_https=<port_number>
 ```
 Makefile usage:
 ```makefile
 WEB_HTTP=on
-WEB_HTTP=8080
+WEB_HTTP=<port_number>
+WEB_HTTPS=on
+WEB_HTTPS=<port_number>
 ```
 
-### 2.3.6. WEB_HTTPS
+For example: `--web_http=8080`, `--web_https=8443`, `WEB_HTTP=8080`, `WEB_HTTPS=8443`
 
-### 2.3.7. PROXY
+### 2.3.6. PROXY
 
+Description: Enables HTTP-proxy support. Sets port number that should be proxied to the LXC. It's possible to specify several ports. Space char should be used as a delimiter.  
+Values:  integer number or integer numbers.  
+Templates: bip-brlan-dhcp-ee, bip-brlxc-static-ee, iot-ee, iot-ip-ee  
+Command-line usage:  
+```
+--proxy=<proxy_ports>
+```
+Makefile usage:
+```makefile
+PROXY=<proxy_ports>
+```
 
+For example: `--proxy=8080`, `--proxy='8080 9090'`, `PROXY=8080`, `PROXY=8080 9090`
 
 ## 2.4. LXC-package installation process
 
@@ -350,16 +441,11 @@ The most useful options are described below.
 
 ## 3.1. LXC-package options
 
-Perenio-EE provides for LXC set of built-in features such as SSH access, WEB-server, etc. ([LXC-package options])
+Perenio-EE provides for LXC set of built-in features such as SSH access, WEB-server, etc. ([LXC-package options](#23-lxc-package-options))
+LXC-package options should be specified in a config file. This config file should be specified by the LXC_CONFIG variable.
 
-An LXC-package can contain any files. Just copy them to the LXC-package filesystem in the Makefile.   
-For example,
 ```makefile
- define Package/$(PKG_NAME)/install  
-     $(INSTALL_DIR) $(1)/etc  
-     $(CP) files/etc/* $(1)/etc/  
-     ...  
- endif
+LXC_CONFIG=lxc-package.config
 ```
 
 
@@ -377,17 +463,12 @@ For example,
 
 ## 3.3. Packages
 
-An LXC-package can contain a set of packages that should be installed in the LXC. Just copy them to the `/packages/` folder in the Makefile. They are going to be installed to the LXC right after its creation.  
+An LXC-package can contain a set of packages that should be installed in the LXC. Variable LXC_PREINSTALLED_PACKAGES should be used to specify packages that should be automatically installed into the LXC-package. This variable should be used out of any section. Wildcard prefixes should be specified.  
 For example,
 ```makefile
- LXC_PKG_DIR:=packages
- define Package/$(PKG_NAME)/install
-     $(INSTALL_DIR) $(1)/$(LXC_PKG_DIR)
-     $(CP) $(OUTPUT_DIR)/packages/$(ARCH_PACKAGES)/base/package1.ipk $(1)/$(LXC_PKG_DIR)
-     $(CP) $(OUTPUT_DIR)/packages/$(ARCH_PACKAGES)/base/package2.ipk $(1)/$(LXC_PKG_DIR)
- endif
+LXC_PREINSTALLED_PACKAGES:=perl_ perlbase-
 ```
-
+This specifies to install all packages that fit wildcards `perl_*` and `perlbase-`.
 
 # 4\. LXC-packages Lifecycle Management
 
@@ -435,7 +516,7 @@ opkg is an OpenWRT package management tool. It removes a specified package from
     usage: opkg remove <pkg>
     Remove an LXC-package
         <pkg> - the LXC-package name.
-    *NOTE: The LXC-package name is not the LXC-package file name. It is the package name. It can be found by the `opkg list-installed` command.
+    *NOTE: The LXC-package name is not the LXC-package file name. It is the package name. It can be found by the `uci show lxcpkg.<LXC name>.hostpkg` command.
 
 ### 4.1.3. Start
 
