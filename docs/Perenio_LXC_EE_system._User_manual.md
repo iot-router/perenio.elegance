@@ -1,6 +1,6 @@
 # Perenio LXC EE system. User manual
 
-v4.2.1
+v4.3.0
 
 <!-- TOC -->
 
@@ -67,7 +67,7 @@ v4.2.1
 # 1. Introduction
 
 Perenio LXC EE (LinuX Containers Execution Environment) system is a set of tools to manage LXC's in IoT-Router.  
-This document describes Perenio LXC EE v4.2.1.
+This document describes Perenio LXC EE v4.3.0.
 
 ## 1.1 Purposes
 
@@ -377,15 +377,13 @@ For example: `--sshkey=/etc/ssh_key`, `SSH_KEY=/etc/ssh_key`
 ### 2.3.5. WEB_HTTP and WEB_HTTPS
 
 Description: Enables Web-server support. Sets port number. For templates that have its own IP-address, additional proxy called WEB_HTTP_PROXY/WEB_HTTPS_PROXY is created. It is used for integration the LXC Web-server to the host Web-interface. It can also be used for external access to the LXC Web-server by the host IP-address.  
-Values:  
-* integer number - enable Web-server on the specified port number.  
-* `on` - enable Web-server on the default port. The default port number depends on the selected template.  
-    - For HTTP:  
-      For templates that use the host IP-address, default port is the first available port starting from 10080, step 1000 (i.e. 10080, 11080, 12080, 13080, etc.).  
-      For templates that have its own IP-address, default port is 80.   
-    - For HTTPS:  
-      For templates that use the host IP-address, default port is the first available port starting from 10443, step 1000 (i.e. 10443, 11443, 12443, 13443, etc.).  
-      For templates that have its own IP-address, default port is 443.   
+Values: composite port value ([see below](#2351))
+* For HTTP:  
+    - The proxy ports bunch starts from 8000, step 1 (i.e. 8000, 8001, 8002, etc.).  
+    - The default port is 80.   
+* For HTTPS:  
+    - The proxy ports bunch starts from 8443, step 1 (i.e. 8443, 8444, 8445, etc.).  
+    - The default port is 443.   
 
 Templates: All  
 Command-line usage:  
@@ -403,12 +401,29 @@ WEB_HTTPS=on
 WEB_HTTPS=<port_number>
 ```
 
-For example: `--web_http=8080`, `--web_https=8443`, `WEB_HTTP=8080`, `WEB_HTTPS=8443`
+For example: `--web_http=8080`, `--web_https=8443`, `WEB_HTTP=8080`, `WEB_HTTPS=8443`, `--web_http=on`, `WEB_HTTPS=:`, `--web_http=8080:`, `--web_http=:8080`, `WEB_HTTPS=8080:443`
+
+### 2.3.5.1 Composite port specification for proxy usage
+
+The composite port format is used to specify an internal port (service in the LXC) and an external port (proxy on the host) by the single definition. The usage of the composite port depends on IP address.  
+Format specification:  
+`on` | `<port>` | [`<host_port>`]:[`<lxc_port>`]
+
+| Value               |       No IP                                           |      own IP |
+|----|--------|--------|
+| `on` or `:`  | lxc_port = the first available port from the proxy bunch. (*)<br>Proxy is not available. | lxc_port = the default port number. (**)<br> host_port = the first available port from the proxy bunch. (*)|
+| `<port>`     | lxc_port = `<port>`.<br>Proxy is not available.       | lxc_port = `<port>`.<br>host_port = `<port>`           |
+|`:<lxc_port>` | lxc_port = `<lxc_port>`.<br>Proxy is not available.   | lxc_port = `<port>`.<br>Proxy is not available.        |
+|`<host_port>:`| lxc_port = `<host_port>`.<br>Proxy is not available.  | lxc_port = the default port number. (**)<br>host_port = `<port>`.|
+|`<host_port>:<lxc_port>`  | if `<host_port>`==`<lxc_port>` then lxc_port = `<lxc_port>`, no proxy.<br>else ERROR.| lxc_port = `<lxc_port>`.<br>host_port = `<host_port>`.|
+
+\* The bunch of ports for proxy depends on protocol: for HTTP it starts from 8000, for HTTPS it starts from 8443.  
+\** Default port depends on protocol: for HTTP it is 80, for HTTPS it is 443.
 
 ### 2.3.6. PROXY
 
 Description: Enables HTTP-proxy support. Sets port number that should be proxied to the LXC. It's possible to specify several ports. Space char should be used as a delimiter.  
-Values:  integer number or integer numbers.  
+Values: a set of [composite ports](#2351).  
 Templates: bip-brlan-dhcp-ee, bip-brlxc-static-ee, iot-ee, iot-ip-ee  
 Command-line usage:  
 ```
@@ -419,7 +434,7 @@ Makefile usage:
 PROXY=<proxy_ports>
 ```
 
-For example: `--proxy=8080`, `--proxy='8080 9090'`, `PROXY=8080`, `PROXY=8080 9090`
+For example: `--proxy=8080`, `--proxy='8080 9090'`, `PROXY=8080`, `PROXY=8080 9090`, `--proxy='8080:80 9090'`, `PROXY=8080:80 9090:443`
 
 ## 2.4. LXC-package Web integration
 
