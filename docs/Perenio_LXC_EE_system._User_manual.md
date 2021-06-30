@@ -34,6 +34,7 @@ v4.3.0
         - [2.3.3. SSH](#233-ssh)
         - [2.3.4. SSH_KEY](#234-ssh_key)
         - [2.3.5. WEB_HTTP and WEB_HTTPS](#235-web_http-and-web_https)
+            - [2.3.5.1 Composite port specification for proxy usage](#2351-composite-port-specification-for-proxy-usage)
         - [2.3.6. PROXY](#236-proxy)
     - [2.4. LXC-package Web integration](#24-lxc-package-web-integration)
     - [2.5. LXC-package installation process](#25-lxc-package-installation-process)
@@ -377,7 +378,7 @@ For example: `--sshkey=/etc/ssh_key`, `SSH_KEY=/etc/ssh_key`
 ### 2.3.5. WEB_HTTP and WEB_HTTPS
 
 Description: Enables Web-server support. Sets port number. For templates that have its own IP-address, additional proxy called WEB_HTTP_PROXY/WEB_HTTPS_PROXY is created. It is used for integration the LXC Web-server to the host Web-interface. It can also be used for external access to the LXC Web-server by the host IP-address.  
-Values: composite port value ([see below](#2351))
+Values: composite port value ([see below](#2351-composite-port-specification-for-proxy-usage))
 * For HTTP:  
     - The proxy ports bunch starts from 8000, step 1 (i.e. 8000, 8001, 8002, etc.).  
     - The default port is 80.   
@@ -403,7 +404,7 @@ WEB_HTTPS=<port_number>
 
 For example: `--web_http=8080`, `--web_https=8443`, `WEB_HTTP=8080`, `WEB_HTTPS=8443`, `--web_http=on`, `WEB_HTTPS=:`, `--web_http=8080:`, `--web_http=:8080`, `WEB_HTTPS=8080:443`
 
-### 2.3.5.1 Composite port specification for proxy usage
+#### 2.3.5.1 Composite port specification for proxy usage
 
 The composite port format is used to specify an internal port (service in the LXC) and an external port (proxy on the host) by the single definition. The usage of the composite port depends on IP address.  
 Format specification:  
@@ -423,7 +424,7 @@ Format specification:
 ### 2.3.6. PROXY
 
 Description: Enables HTTP-proxy support. Sets port number that should be proxied to the LXC. It's possible to specify several ports. Space char should be used as a delimiter.  
-Values: a set of [composite ports](#2351).  
+Values: a set of [composite ports](#2351-composite-port-specification-for-proxy-usage).  
 Templates: bip-brlan-dhcp-ee, bip-brlxc-static-ee, iot-ee, iot-ip-ee  
 Command-line usage:  
 ```
