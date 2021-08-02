@@ -14,7 +14,7 @@ v4.3.0
             - [2.1.1.2 Examples](#2112-examples)
         - [2.1.2 ee-remove](#212-ee-remove)
             - [2.1.2.1 Usage](#2121-usage)
-        - [2.1.3. ee-info](#213-ee-info)
+        - [2.1.3 ee-info](#213-ee-info)
             - [2.1.3.1 Usage](#2131-usage)
             - [2.1.3.2 Examples](#2132-examples)
     - [2.2 Perenio Execution Environments (templates)](#22-perenio-execution-environments-templates)
@@ -491,7 +491,7 @@ For example,
  endif
 ```
 
-## 3.3. Packages
+## 3.3 Packages
 
 An LXC-package can contain a set of packages to be installed in the LXC. Variable LXC_PREINSTALLED_PACKAGES should be used to specify packages to be automatically installed into the LXC-package. This variable should be used out of any section. Wildcard prefixes should be specified.  
 For example,
