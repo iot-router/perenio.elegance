@@ -1,18 +1,21 @@
 include $(TOPDIR)/rules.mk
 
 ### LXC Execution Environment name - mandatory.
-LXC_EE=bee
+LXC_EE=bip-brlxc-static-ee
 ### LXC default name - optional. If it is skipped then the Template name is used as a LXC name.
-LXC_DEFAULT_NAME=lxc-example-perl
+LXC_DEFAULT_NAME=lxc_example_perl
+### LXC configuration
+LXC_CONFIG=lxc-package.config
 
 ### Packages to be included
 PKG_BUILD_DEPENDS:=perl
 
 ### Package credential
 PKG_NAME:=lxc-package-example-perl
-PKG_VERSION:=2021-03-18
+PKG_VERSION:=2021-05-26
 
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/lxc-package.mk
 
 define Package/$(PKG_NAME)/description
   Test of LXC container build
@@ -22,6 +25,7 @@ define Package/$(PKG_NAME)
   DEFAULT:=m
   SECTION:=utils
   CATEGORY:=Utilities
+  DEPENDS:=+perl
   TITLE:=Example of LXC-package build (Number Guessing Game using Perl inside)
 endef
 
@@ -31,21 +35,18 @@ define Package/$(PKG_NAME)/config
 	select PACKAGE_perlbase-base
 endef
 
-define Build/Compile
+LXC_PREINSTALLED_PACKAGES:=perl_ perlbase-
+
+define Package/$(PKG_NAME)/install
+	$(INSTALL_DIR) $(1)/root/test-perl/
+	$(CP) files/root/test-perl/* $(1)/root/test-perl/
+
 endef
 
-LXC_PKG_DIR:=packages
-
-define Package/$(PKG_NAME)/preinst
+### Uncomment to use pre-install script
+#define Package/$(PKG_NAME)/preinst
 #!/bin/sh
-LXCPKG_VER=1.0
-LXCPKG_EE=$(LXC_EE)
-LXCPKG_DEFAULT_NAME=$(LXC_DEFAULT_NAME)
-### Uncomment the line below to forbid using different template by the command line argument.
-#[ "$$TMPL" != "$$LXCPKG_EE" ] && { echo "$(PKG_NAME): Wrong execution environment (template)"; exit 1; }
-
-exit 0
-endef
+#endef
 
 ### Uncomment to use post-install script
 #define Package/$(PKG_NAME)/postinst
@@ -59,17 +60,6 @@ endef
 #exit 0
 #endef
 
+$(eval $(call BuildLXCPackage,$(PKG_NAME)))
 
-define Package/$(PKG_NAME)/install
-### Uncomment to install additional files
-	$(INSTALL_DIR) $(1)/root/test-perl/
-	$(CP) files/root/test-perl/* $(1)/root/test-perl/
-
-	$(INSTALL_DIR) $(1)/$(LXC_PKG_DIR)
-### Packages files to include
-	$(CP) $(OUTPUT_DIR)/packages/$(ARCH_PACKAGES)/packages/perl_*.ipk $(1)/$(LXC_PKG_DIR)
-	$(CP) $(OUTPUT_DIR)/packages/$(ARCH_PACKAGES)/packages/perlbase-*.ipk $(1)/$(LXC_PKG_DIR)
-
-endef
-
-$(eval $(call BuildPackage,$(PKG_NAME)))
+#$(eval $(call BuildPackage,$(PKG_NAME)))
