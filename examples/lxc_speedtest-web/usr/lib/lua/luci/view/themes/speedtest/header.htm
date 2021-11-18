@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<% 
+    local ipkg = require "luci.model.ipkg"
+
+	local version = ipkg and ipkg.status("perenio-lxc-speedtest-web")["perenio-lxc-speedtest-web"].Version or "h83246832462384"
+%>
+
+<html> 
+
+    <head>
+
+        <meta charset="utf-8">
+
+        <title>IoT</title>
+
+        <meta name="viewport" content="initial-scale=1.0">
+
+        <link rel="stylesheet" href="/luci-static/resources/styles/material.css">
+
+        <link rel="stylesheet" href="/luci-static/resources/styles/main.css?v=<%=version%>">
+
+        <link rel="stylesheet" href="/luci-static/resources/styles/root.css?v=<%=version%>">
+
+        <link rel="stylesheet" href="/luci-static/resources/styles/mobile.css?v=<%=version%>" type="text/css" />
+
+        <link rel="shortcut icon" href="/luci-static/perenio/images/favicon.ico">
+
+        <script defer src="/luci-static/resources/js/libs/material.js"></script>
+
+        <script defer type="module" src="/luci-static/resources/js/init.js?v=<%=version%>"></script>
+
+    </head>
+
+    <body>
+        <div id="maincontent">

@@ -1,0 +1,2045 @@
+@media screen and (max-width: 1440px) {
+    #cbi-mwan3-rule .td.cbi-section-actions input.cbi-button {
+        min-width: 45px;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    /* Main content */
+    body {
+        /* padding: 55px 15px 5px; */
+        margin-top: 0;
+    }
+    .viewer-grid {
+        display: block;
+        max-width: 100%;
+    }
+    /* Header */
+    header, header .fill {
+        height: 48px!important;
+    }
+    header .fill {
+        padding: 0 15px;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.12);
+    }
+    header #logo {
+        box-shadow: none!important;
+        height: 48px!important;
+        padding: 0!important;
+        background-position: center!important;
+    }
+    #a1 header #logo, #a1 header .brand {
+        width: 50px !important;
+    }
+    #perenio header #logo, #perenio header .brand {
+        width: 77px !important;
+    }
+    header .brand {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        padding: 0!important;
+    }
+    header .slogan {
+        display: none;
+    }
+    header .container {
+        display: flex;
+        justify-content: space-between;
+    }
+    header .pull-right {
+        margin-left: auto;
+    }
+    .menu-toggler {
+        display: block!important;
+        margin-right: auto;
+        cursor: pointer;
+    }
+    #languages, #logout, #reboot {
+        display: none;
+    }
+    .battery {
+        margin-top: 13px!important;
+    }
+    .cellular {
+        margin-top: 5px!important;
+    }
+    #check-update {
+        margin-top: 4px;
+    }
+    /* Left nav */
+    .mobile-menu-opened {
+        overflow: hidden;
+    }
+    .mobile-menu-opened:before {
+        content: '';
+        display: block;
+        position: fixed;
+        z-index: 10;
+        top: 48px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+    #a1 .mobile-menu-opened:before {
+        background: rgba(0, 0, 0, 0.15);
+    }
+    #perenio .mobile-menu-opened:before {
+        background: rgba(41, 51, 82, 0.7);
+    }
+    #quick-setup .tooltip-wrapper {
+        display: none;
+    }
+    #quick-setup .inputs-wrapper>fieldset:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+    #quick-setup .wan-dynamic-settings-grid {
+        grid-template-columns: 47% auto;
+    }
+    #quick-setup .paginator button {
+        width: 123px;
+    }
+    .material-icons.mdc-select__dropdown-icon #quick-setup .inputs-wrapper>div .mdc-select, #quick-setup .buttons-wrapper button {
+        width: 100%;
+    }
+    #quick-setup .inputs-wrapper,
+    #quick-setup .buttons-wrapper {
+        width: 360px;
+        max-width: 100%;
+    }
+    #quick-setup .inputs-wrapper fieldset {
+        min-width: 0;
+    }
+    #quick-setup[data-module="iot"][data-step="login"] .inputs-wrapper,
+    #skip-iot {
+        width: 340px;
+        max-width: 100%;
+    }
+    .mdc-drawer {
+        transition: transform 0.2s cubic-bezier(0.4, 0, 1, 1);
+        position: fixed;
+        z-index: 110!important;
+        left: 0;
+        right: 0;
+        top: 48px;
+        bottom: 0;
+        width: auto!important;
+        height: auto!important;
+        max-width: 360px;
+        transform: translateX(-100%);
+    }
+    #a1 .mdc-drawer {
+        background: #fff;
+    }
+    #perenio .mdc-drawer {
+        background: #3B4161;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    }
+    #perenio .mdc-drawer .mdc-list {
+        border-radius: 0 !important;
+    }
+    .mobile-menu-opened .mdc-drawer {
+        transform: translateX(0);
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    }
+    .mobile-menu-opened header {
+        z-index: 12;
+    }
+    #quick-setup-button {
+        display: none;
+    }
+    #languages-mobile, #reboot-mobile, #logout-mobile, #firmware-version-mobile {
+        display: block!important;
+    }
+    #perenio #main-menu .mdc-drawer__content #view-mode {
+        margin-top: 0;
+        border-radius: 0;
+        border-right: none;
+        border-left: none;
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+    #main-menu .mdc-drawer__content button {
+        margin-bottom: 0;
+    }
+    .mdc-select:not(.mdc-select--disabled) {
+        border-radius: 0;
+        background-color: transparent;
+    }
+    #languages-mobile {
+        margin-bottom: 25px;
+        margin-left: 15px;
+    }
+    #a1 #languages-mobile {
+        width: 115px;
+    }
+    #perenio #languages-mobile {
+        width: 105px;
+    }
+    #languages-mobile, #languages-mobile::before, #languages-mobile::after {
+        background-color: transparent;
+    }
+    #languages-mobile .mdc-select__dropdown-icon {
+        bottom: 10px;
+    }
+    #languages-mobile .mdc-select__selected-text {
+        padding-left: 0;
+    }
+    #perenio #languages-mobile .mdc-select__selected-text {
+        font-size: 14px;
+    }
+    #main-menu #reboot-mobile button, #main-menu #logout-mobile button {
+        width: auto !important;
+        border: 0;
+        background: transparent !important;
+    }
+    #a1 #main-menu #reboot-mobile button {
+        color: #999999;
+    }
+    #a1 #main-menu #logout-mobile button {
+        color: #DA291C;
+    }
+    #perenio #main-menu #reboot-mobile button, #perenio #main-menu #logout-mobile button {
+        color: #ffffff;
+    }
+    #main-menu #reboot-mobile button svg, #main-menu #logout-mobile button svg {
+        margin-right: 16px;
+    }
+    #perenio #main-menu #reboot-mobile button svg, #perenio #main-menu #logout-mobile button svg {
+        width: 21px;
+    }
+    #a1 #firmware-version-mobile {
+        padding: 20px 0 15px;
+    }
+    #perenio #firmware-version-mobile {
+        padding: 10px 0 18px;
+    }
+    #firmware-version-mobile {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.16px;
+        color: #999999;
+        line-height: 1.4;
+    }
+    #firmware-version-mobile span {
+        display: block;
+        margin-bottom: 2px;
+        padding: 0 15px;
+    }
+    #perenio #firmware-version-mobile span {
+        font-weight: 350;
+        font-size: 12px;
+        letter-spacing: 0.16px;
+        color: rgba(255, 255, 255, 0.5);
+    }
+    /*styles for legacy views*/
+    .table .tr, .table .tr:before, .table .tr:after, .table .th, .table .td, .cbi-button, .cbi-value, .cbi-value-field, .cbi-value-title {
+        box-sizing: border-box !important;
+    }
+    #maincontent .table .cbi-section-actions>div {
+        display: flex;
+        flex-direction: column;
+    }
+    #maincontent .table .cbi-section-actions>div .cbi-button {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .tr.cbi-section-table-row:before {
+        width: 25%;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .td[data-widget="firewall_zoneforwards"] {
+        width: 75%;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .td[data-widget="firewall_zoneforwards"]:before {
+        content: attr(data-title) ": ";
+        display: inline-block;
+        padding-right: 2.5%;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .td[data-name="input"], #cbi-firewall-zone .table.cbi-section-table .td[data-name="output"], #cbi-firewall-zone .table.cbi-section-table .td[data-name="forward"] {
+        display: block;
+        width: 33.3%;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .td[data-title]:before {
+        content: attr(data-title) ": ";
+        display: block;
+        font-size: 14px;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .td[data-name="input"]:before, #cbi-firewall-zone .table.cbi-section-table .td[data-name="output"]:before, #cbi-firewall-zone .table.cbi-section-table .td[data-name="forward"]:before {
+        margin-bottom: 10px;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .td[data-name="masq"], #cbi-firewall-zone .table.cbi-section-table .td[data-name="mtu_fix"] {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .td[data-name="masq"]:before, #cbi-firewall-zone .table.cbi-section-table .td[data-name="mtu_fix"]:before {
+        margin-right: 15px;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .cbi-section-actions {
+        flex-grow: 1;
+        display: block;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .cbi-section-actions>div {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .cbi-section-actions>div .cbi-button {
+        margin-left: 1%;
+        margin-right: 1%;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .cbi-section-actions>div .cbi-button:first-child {
+        margin-left: 0;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .cbi-section-actions>div .cbi-button:last-child {
+        margin-right: 0;
+    }
+    #cbi-firewall-zone .table.cbi-section-table {
+        display: flex;
+        flex-direction: column;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .tr.cbi-section-table-titles {
+        display: none;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .tr.cbi-section-table-row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 50px;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .td {
+        margin: 0;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .td[data-name="_info"] {
+        justify-content: space-around;
+        display: flex;
+        flex-wrap: wrap;
+        width: 75%;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .tr.cbi-section-table-row:before, #cbi-firewall-zone .table.cbi-section-table .td[data-widget="firewall_zoneforwards"] {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+    }
+    #cbi-firewall-zone .zone-forwards {
+        flex-wrap: nowrap;
+    }
+    #cbi-firewall-zone .zone-forwards>* {
+        display: flex;
+        align-items: center;
+        flex: 1 1 auto;
+    }
+    #cbi-firewall-zone .table.cbi-section-table {
+        display: flex;
+        flex-direction: column;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .tr.cbi-section-table-titles {
+        display: none;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .tr.cbi-section-table-row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 50px;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .td {
+        margin: 0;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .tr.cbi-section-table-row:before, #cbi-firewall-zone .table.cbi-section-table .td[data-widget="firewall_zoneforwards"] {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+    }
+    #cbi-firewall-zone .zone-forwards {
+        flex-wrap: nowrap;
+    }
+    #cbi-firewall-zone .zone-forwards>* {
+        display: flex;
+        align-items: center;
+        flex: 1 1 auto;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .tr.cbi-section-table-row:before {
+        width: 25%;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .td[data-widget="firewall_zoneforwards"] {
+        width: 75%;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .td[data-widget="firewall_zoneforwards"]:before {
+        content: attr(data-title) ": ";
+        display: inline-block;
+        padding-right: 2.5%;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .td[data-name="input"], #cbi-firewall-zone .table.cbi-section-table .td[data-name="output"], #cbi-firewall-zone .table.cbi-section-table .td[data-name="forward"] {
+        display: block;
+        width: 33.3%;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .td[data-title]:before {
+        content: attr(data-title) ": ";
+        display: block;
+        font-size: 14px;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .td[data-name="input"]:before, #cbi-firewall-zone .table.cbi-section-table .td[data-name="output"]:before, #cbi-firewall-zone .table.cbi-section-table .td[data-name="forward"]:before {
+        margin-bottom: 10px;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .td[data-name="masq"], #cbi-firewall-zone .table.cbi-section-table .td[data-name="mtu_fix"] {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .td[data-name="masq"]:before, #cbi-firewall-zone .table.cbi-section-table .td[data-name="mtu_fix"]:before {
+        margin-right: 15px;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .cbi-section-actions {
+        flex-grow: 1;
+        display: block;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .cbi-section-actions>div {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .cbi-section-actions>div .cbi-button {
+        margin-left: 1%;
+        margin-right: 1%;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .cbi-section-actions>div .cbi-button:first-child {
+        margin-left: 0;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .cbi-section-actions>div .cbi-button:last-child {
+        margin-right: 0;
+    }
+    #cbi-mwan3-rule .table, #cbi-mwan3-interface .table {
+        display: flex;
+        flex-direction: column;
+    }
+    #cbi-mwan3-rule .table .tr.cbi-section-table-titles, #cbi-mwan3-interface .table .tr.cbi-section-table-titles {
+        display: none;
+    }
+    #cbi-mwan3-rule .table .tr.cbi-section-table-row, #cbi-mwan3-interface .table .tr.cbi-section-table-row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-top: 0;
+    }
+    #cbi-mwan3-rule .table .td.cbi-value-field, #cbi-mwan3-interface .table .td.cbi-value-field {
+        display: block;
+        width: 25%;
+        margin: 0;
+    }
+    #cbi-mwan3-rule .table .tr.cbi-section-table-row:before, #cbi-mwan3-rule .table .tr .td.cbi-value-field:nth-child(1), #cbi-mwan3-rule .table .tr .td.cbi-value-field:nth-child(2) {
+        width: 33.333%;
+    }
+    #cbi-mwan3-interface .table .tr.cbi-section-table-row:before {
+        width: 25%;
+    }
+    #cbi-mwan3-rule .table .tr .td.cbi-value-field:before, #cbi-mwan3-interface .table .tr .td.cbi-value-field:before {
+        content: attr(data-title) ": ";
+        display: flex;
+        font-size: 13px;
+        color: #6f6b6b;
+    }
+    #cbi-mwan3-rule .table .tr.cbi-section-table-row:before, #cbi-mwan3-interface .table .tr.cbi-section-table-row:before {
+        display: flex;
+        align-items: center;
+    }
+    #cbi-mwan3-rule .table .cbi-section-actions, #cbi-mwan3-interface .table .cbi-section-actions {
+        width: 100%;
+        display: block;
+    }
+    #cbi-mwan3-rule .table .cbi-section-actions>div, #cbi-mwan3-interface .table .cbi-section-actions>div {
+        flex-direction: row;
+    }
+    #cbi-mwan3-interface .table .cbi-section-actions>div {
+        justify-content: center;
+    }
+    #cbi-mwan3-rule .table .td.cbi-section-actions>div .cbi-button, #cbi-mwan3-interface .table .td.cbi-section-actions>div .cbi-button {
+        box-sizing: border-box;
+    }
+    #cbi-mwan3-rule .table .td.cbi-section-actions>div .cbi-button {
+        width: 24.25%;
+        margin: 0 0.5%;
+        min-width: auto;
+    }
+    #cbi-mwan3-rule .table .td.cbi-section-actions>div .cbi-button:first-child, #cbi-mwan3-interface .table .td.cbi-section-actions>div .cbi-button:first-child {
+        margin-left: 0;
+    }
+    #cbi-mwan3-rule .table .td.cbi-section-actions>div .cbi-button:last-child, #cbi-mwan3-interface .table .td.cbi-section-actions>div .cbi-button:last-child {
+        margin-right: 0;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+
+    .inputs-wrapper,
+    .inputs-wrapper .mdc-text-field, .inputs-wrapper .mdc-select,
+    div[data-module="iot"] .inputs-wrapper .mdc-text-field, div[data-module="iot"] .inputs-wrapper .mdc-select, div[data-module="iot"] .mdc-button {
+        width: 100%;
+    }
+    [data-module="iot"] .inputs-wrapper {
+        width: 360px;
+        max-width: 100%;
+    }
+    * {
+        -webkit-tap-highlight-color: transparent;
+    }
+    #perenio .per-container {
+        border-radius: 4px!important;
+    }
+
+    .per-tabs {
+        padding-bottom: 10px;
+    }
+    .per-tabs .mdc-tab-scroller {
+        margin: 0 -15px;
+    }
+    .per-tabs .mdc-tab {
+        background: transparent!important;
+        margin-right: 0!important;
+        padding: 0 15px;
+    }
+    .per-tabs .mdc-tab-scroller__scroll-content .mdc-tab:first-child {
+        margin-left: 15px;
+    }
+    .per-tabs .mdc-tab-scroller__scroll-content .mdc-tab:last-child {
+        margin-right: 15px;
+    }
+    #a1 .per-tabs .mdc-tab-indicator {
+        border: 0!important;
+    }
+    #a1 .per-tabs .mdc-tab__content {
+        font-family: 'A1Serif-Regular';
+        font-weight: 700;
+        font-size: 16px;
+        color: #999999;
+    }
+    #a1 .per-tabs .mdc-tab__text-label {
+        color: #999999;
+    }
+    #a1 .per-tabs .mdc-tab--active .mdc-tab__text-label {
+        color: #000000;
+    }
+    #a1 .per-tabs .mdc-tab-indicator__content {
+        border-color: transparent!important;
+    }
+    #a1 .per-tabs .mdc-tab-scroller__scroll-content:after {
+        display: none!important;
+    }
+    #a1 .per-container.active {
+        border-top: 1px solid #DA291C!important;
+    }
+    /* #a1 #refresh-button-wrapper, #a1 #quick-setup[data-type-setup="iot"][data-step="complete"] button#refresh {
+        width: 80px;
+    } */
+    #ballance-query .modal-dialog #responce-inner {
+        width: 100%;
+        max-height: 100px;
+    }
+    #ballance-query .mdc-dialog__surface {
+        width: 100%;
+    }
+    #scaned-net-points {
+        width: 100%;
+        padding-right: 8px;
+    }
+    #change-pin {
+        text-align: right;
+        position: relative;
+        top: 1px;
+    }
+    #change-pin-operation .modal-dialog {
+        min-width: auto;
+    }
+    /* div[data-module="modem"] .modem-mode .modem-switch {
+        text-align: right;
+    } */
+    #modal-reboot .modal-dialog, .modal-dialog button {
+        width: auto;
+    }
+    #quick-setup[data-type-setup="wifi-client"] .wifi-client {
+        min-width: 100%;
+    }
+    .tamper-wrapper {
+        display: none;
+    }
+    .modal-dialog #close {
+        position: relative;
+        bottom: initial;
+        left: initial;
+    }
+    .img-scheme-wrapper {
+        margin: 0 auto;
+    }
+    .modal-dialog .mdc-text-field {
+        width: 100%;
+    }
+    #perenio .absolute.refresh-left {
+        position: relative;
+    }
+    .uci_change_indicator {
+        display: none;
+    }
+    #perenio-login button, #perenio-login .cbi-value .mdc-text-field {
+        width: 100%;
+    }
+    body[data-is-logged-in="false"] .viewer-grid {
+        display: block;
+        width: auto;
+    }
+    body#perenio {
+        background: linear-gradient(180deg, #656282 0%, #353C5B 29.69%, #293352 63.02%) center fixed;
+    }
+    /* Main content */
+    #perenio .viewer-grid {
+        margin-bottom: 40px;
+    }
+    #perenio .wifi-mode-data .dtitle {
+        font-size: 12px;
+    }
+    #lte-scheme-tutor {
+        display: block;
+        margin: initial;
+        width: calc(50% - 27px);
+        right: -5px;
+        bottom: 0px;
+    }
+    #lte-scheme-tutor>div {
+        height: 190px;
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+    }
+    .lte-puk-code-require {
+        width: 100%;
+    }
+    .no-sim-card-warning {
+        flex-direction: column;
+    }
+    .no-sim-card-warning:before {
+        width: 32px;
+        height: 32px;
+        margin: 0 0 10px;
+    }
+    /* Footer */
+    footer {
+        padding-bottom: 17px;
+    }
+    #perenio footer {
+        height: auto;
+    }
+    footer .grid {
+        width: 100%;
+        max-width: 325px!important;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        grid-gap: 0;
+    }
+    footer .grid>.app-link:last-of-type {
+        margin-left: 8px;
+    }
+    footer .grid>div:first-child {
+        margin-top: 30px;
+        text-align: center;
+        order: 1;
+    }
+    footer #kit-google, footer #kit-appstore {
+        height: 47px !important;
+        background-position: center;
+    }
+    #perenio footer #kit-google {
+        background-image: url('/luci-static/perenio/images/kit_google.svg');
+        width: 164px !important;
+        background-size: 164px 46px !important;
+    }
+    #perenio footer #kit-appstore {
+        background-image: url('/luci-static/perenio/images/kit_appstore.svg');
+        width: 150px !important;
+        background-size: 150px 47px !important;
+    }
+    footer .grid>div:first-child a {
+        display: inline-block;
+        letter-spacing: 0.16px;
+        font-size: 14px;
+        line-height: 1.1;
+    }
+    #a1 footer .grid>div:first-child a {
+        border-bottom: 1px solid #000;
+        font-weight: 700;
+    }
+    #perenio footer .grid>div:first-child a {
+        border-bottom: 1px solid #fff;
+        font-weight: 350;
+        color: #ffffff !important;
+        text-transform: uppercase;
+    }
+    #qs-lte-connection-settings .grid-wrapper {
+        grid-template-columns: 100%;
+        width: 360px;
+        max-width: 100%;
+    }
+    #create-new-pincode .centered-header {
+        width: 360px;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #qs-lte-connection-settings .grid-wrapper>div {
+        text-align: center;
+    }
+    #qs-lte-connection-settings #show-ballance-dialog {
+        margin-top: 0px;
+        margin-bottom: 44px;
+    }
+    #perenio #send .absolute.refresh-right {
+        display: none;
+    }
+    div[data-module="modem"] .sim-pin, div[data-module="modem"] .modem-mode {
+        grid-template-columns: 45% 53%;
+        width: 100%;
+    }
+    div[data-module="modem"] .per-wrapper-ussd {
+        position: relative;
+        right: auto;
+        width: 140px;
+        margin: 0 auto;
+        margin-bottom: 16px;
+    }
+    div[data-module="modem"] .per-grid-3 {
+        grid-template-columns: 42% 20% auto;
+    }
+    div[data-module="modem"] .per-grid-2 {
+        grid-template-columns: 57% 32%;
+    }
+    .mdc-text-field {
+        width: 100%;
+    }
+    #quick-setup .wifi-settings-grid [data-wifi-iface="default_radio0"] {
+        margin-bottom: 20px;
+    }
+    #perenio .card-tray-scheme {
+        background: url('/luci-static/perenio/images/lte/mobile-scheme.svg') center 50% no-repeat;
+        height: 630px;
+        width: 100%;
+    }
+    #lte-scheme-tutor .action-text {
+        margin-top: 0;
+    }
+    #a1 .card-tray-scheme {
+        background: url('/luci-static/a1/images/lte/mobile-scheme.svg') center 50% no-repeat;
+        height: 630px;
+        width: 100%;
+    }
+    #quick-setup h2 {
+        width: 100%;
+    }
+    #quick-setup[data-type-setup="iot"][data-step="location-adding"] .mdc-button {
+        width: 140px;
+    }
+    .card-tray-scheme {
+        background: url('/luci-static/perenio/images/lte/desktop-scheme.svg') 0 50% no-repeat;
+    }
+    #get-app-wrapper {
+        display: none;
+    }
+    #quick-setup .wifi-settings-grid .mdc-text-field, #quick-setup .wifi-settings-grid .mdc-select, #quick-setup[data-type-setup="wifi"][data-mode="Sta"] .form-mixed-wrapper, #quick-setup[data-type-setup="wifi"][data-mode="Dual"] .form-mixed-wrapper {
+        width: 100%;
+    }
+    #quick-setup[data-type-setup="iot"] #location-list .location {
+        width: 100%;
+        height: auto;
+    }
+    .lte-pin-tries-info, #qs-lte-connection-settings .mdc-text-field, #quick-setup[data-type-setup="iot"] .mdc-button, #quick-setup[data-type-setup="iot"] .inputs-wrapper, #quick-setup[data-type-setup="iot"] .inputs-wrapper .mdc-text-field, #quick-setup[data-type-setup="iot"] .inputs-wrapper .mdc-select {
+        width: 100%;
+    }
+    .cbi-value-description {
+        font-size: 14px;
+        line-height: 1.35;
+        margin-top: 5px;
+        background-position: 0 1px;
+    }
+    .cbi-value-description code {
+        margin: 0 3px;
+    }
+    .cbi-section-table-titles.named:before {
+        padding: 9px 10px;
+    }
+    form[action$="bin/luci/admin/network/firewall/forwards"] .table:not(.cbi-section-table) .tr.table-titles {
+        display: none;
+    }
+    #maincontent .cbi-dropdown {
+        max-width: 100%;
+    }
+    #cbi-network .table div[id$="-ifc-description"] br {
+        display: block;
+        margin-bottom: 5px;
+    }
+    #cbi-firewall-rule {
+        overflow: hidden;
+    }
+    #cbi-firewall .td[data-name="target"], #cbi-firewall .td[data-name="enabled"] {
+        text-align: center;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 854px) {
+    /* Main content */
+    .grid.mix-statuses {
+        display: none !important;
+    }
+    .dashboard {
+        margin-top: 0;
+    }
+    .dheader {
+        font-size: 14px;
+    }
+    .dtitle {
+        font-size: 12px;
+    }
+    .dvalue {
+        font-size: 12px;
+    }
+    .grid.iot-connections-table .item-value .mdc-ripple-surface {
+        width: 45px;
+    }
+    .upstream .upstream-icon-holder {
+        border-radius: 0;
+    }
+    .upstream .current-upstream {
+        left: 23px;
+    }
+    .grid.wired-wireless-statuses, .grid.upstream-system-statuses {
+        display: flex;
+        flex-direction: column;
+    }
+    .grid.upstream-system-statuses {
+        margin-top: 0;
+    }
+    .dashboard .cell-container {
+        position: relative;
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+    }
+    .system .key-value-table {
+        margin-top: 2px;
+    }
+    .system .key-value-table .dvalue, .upstream .key-value-table .dvalue {
+        text-align: right;
+    }
+    .grid.online-connections-head {
+        grid-template-columns: 70% auto;
+        padding: 0 10px;
+    }
+    #a1 .grid.online-connections-head {
+        margin-bottom: 10px;
+    }
+    #perenio .grid.online-connections-head {
+        margin-bottom: 25px;
+    }
+    .online-connections-head .dvalue {
+        letter-spacing: 0.16px;
+    }
+    #a1 .online-connections-head .dvalue {
+        font-size: 14px !important;
+    }
+    #perenio .conn-filter-tab:not(.active) {
+        font-family: 'Open Sans', sans-serif;
+    }
+    #perenio .conn-filter-tab.active {
+        color: #E9E0CE;
+    }
+    .grid.online-connections-colmns {
+        display: flex;
+        flex-direction: column;
+        float: left;
+        grid-gap: 0 !important;
+    }
+    .grid.online-connections-colmns:after {
+        display: none!important;
+    }
+    #a1 .grid.online-connections-colmns {
+        width: 80px;
+        margin: 15px 0 0;
+        padding: 0 5px 0 10px;
+    }
+    #perenio .grid.online-connections-colmns {
+        width: 140px;
+        margin: 0;
+        padding: 0 10px;
+    }
+    .grid.online-connections-colmns .dtitle {
+        margin: 0 0 5px 0!important;
+    }
+    .grid.online-connections-data {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        grid-gap: 0 !important;
+        border: 1px solid #D8D8D8;
+        padding: 5px 9px;
+    }
+    #a1 .grid.online-connections-data {
+        margin-top: 8px;
+    }
+    #perenio .grid.online-connections-data {
+        margin-top: 0;
+    }
+    .grid.online-connections-data .dvalue {
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    #a1 .grid.online-connections-data .dvalue {
+        margin-bottom: 4px;
+        font-size: 12px;
+        line-height: 16px;
+    }
+    #perenio .grid.online-connections-data .dvalue {
+        margin-bottom: 5px;
+    }
+    #perenio .grid.iot-connections-table, #perenio .grid.key-value-table {
+        padding-left: 23px;
+        padding-right: 23px;
+    }
+    #perenio .grid.iot-connections-table .item-value .mdc-ripple-surface {
+        width: 48px;
+        height: 16px;
+        background: transparent;
+        border: 1px solid #E9E0CE;
+        border-radius: 4px;
+        color: #E9E0CE;
+        font-weight: 350;
+        font-size: 12px;
+        line-height: 14px;
+    }
+    #perenio .grid.iot-connections-table .item-value .mdc-ripple-surface.active {
+        background: #F44336;
+        border-color: #F44336;
+    }
+    #perenio .grid.iot-connections-table .item-value .mdc-ripple-surface.enabled {
+        border-color: rgba(255, 255, 255, 0.5);
+        color: rgba(255, 255, 255, 0.5);
+    }
+    .online-connections.cell-container {
+        overflow: auto;
+        padding: 16px 0
+    }
+    #perenio .online-connections.cell-container {
+        margin-top: 0;
+    }
+    #perenio .upstream .upstream-icon-holder {
+        background-color: rgba(125, 209, 112, 0.1);
+    }
+    .grid.wifi-mode-tabs {
+        width: 146px;
+    }
+    .grid.wifi-mode-tabs>div {
+        padding: 5px 15px;
+    }
+    #perenio .grid.wifi-mode-tabs>div {
+        display: inline-block;
+        width: auto !important;
+        padding: 3px 12px;
+        letter-spacing: 0.16px;
+    }
+    .wifi-mode-toggler .wifi-mode {
+        font-size: 10px;
+        max-width: 51px;
+    }
+    .wifi-mode-toggler .dvalue {
+        font-weight: 700;
+        letter-spacing: 0.16px;
+    }
+    #a1 .conn-filter-tab.active {
+        color: #DA291C;
+        border-bottom-color: #DA291C;
+    }
+    .online-connections-data-wrap {
+        overflow: hidden;
+        width: auto;
+    }
+    #a1 .online-connections-data-wrap {
+        padding: 0 11px;
+    }
+    #perenio .online-connections-data-wrap {
+        margin-right: 10px;
+        padding: 0 15px;
+    }
+    #a1 .online-connections-data-wrap.slider-container .slider-arrow--left {
+        left: -3px;
+    }
+    #a1 .online-connections-data-wrap.slider-container .slider-arrow--right {
+        right: -3px;
+    }
+    #perenio .online-connections-data-wrap.slider-container .slider-arrow--left::after {
+        transform: translate(0%, -50%);
+        left: 0;
+    }
+    #perenio .online-connections-data-wrap.slider-container .slider-arrow--right::after {
+        transform: translate(0%, -50%) rotate(180deg);
+        right: 0;
+    }
+    .online-connections-data-wrap .slider-frame>div {
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+    /* Header */
+    #check-update {
+        position: absolute;
+        left: 43px;
+        margin-top: 7px;
+    }
+    #check-update button {
+        display: none;
+    }
+    #check-update svg {
+        display: block;
+    }
+    .device-info {
+        padding-right: 25px;
+        margin-top: 5px;
+        line-height: 1.75;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    #road-map {
+        display: none !important;
+    }
+    #quick-setup[data-type-setup="wifi"][data-mode="Standart"] .wifi-settings-grid {
+        grid-template-columns: 100%;
+    }
+    div[data-module="iot"] #location-list {    
+        grid-template-columns: 48.5% 48.5%;
+        width: 100%;
+        column-gap: 3%;
+    }
+    /*styles for legacy views*/
+    #cbi-mwan3-member .table {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    #cbi-mwan3-member .table .tr.cbi-section-table-row, #cbi-mwan3-member .table .tr.cbi-section-table-titles {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    #cbi-mwan3-member .table .tr.cbi-section-table-row {
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-top: 0;
+    }
+    #cbi-mwan3-member .table .td, #cbi-mwan3-member .table .th, #cbi-mwan3-member .table .tr:before {
+        width: 20%;
+        display: block;
+        margin: 0;
+    }
+    #cbi-mwan3-member .table .tr:before {
+        width: 35%;
+        word-wrap: break-all;
+    }
+    #cbi-mwan3-member .table .tr .th:first-child, #cbi-mwan3-member .table .tr .td:first-child {
+        width: 25%;
+    }
+    #cbi-mwan3-member .table .tr .th:nth-of-type(n+2), #cbi-mwan3-member .table .tr .td:nth-of-type(2), #cbi-mwan3-member .table .tr .td:nth-of-type(3) {
+        text-align: center;
+    }
+    #cbi-mwan3-member .table .tr .th:nth-of-type(3) {
+        border-right: 1px solid #ddd;
+    }
+    #cbi-mwan3-member .table .tr.cbi-section-table-titles:before {
+        border-left: 1px solid #ddd;
+    }
+    #cbi-mwan3-member .table .tr.cbi-section-table-titles .th.cbi-section-actions {
+        display: none;
+    }
+    #cbi-mwan3-member .table .td.cbi-section-actions {
+        width: 100%;
+        border-top: 0;
+    }
+    #cbi-mwan3-member .table .td.cbi-section-actions>div {
+        flex-direction: row;
+    }
+    #cbi-mwan3-member .table .td.cbi-section-actions>div .cbi-button {
+        box-sizing: border-box;
+        width: 24.25%;
+        margin: 0 0.5%;
+        min-width: auto;
+    }
+    #cbi-mwan3-member .table .td.cbi-section-actions>div .cbi-button:first-child {
+        margin-left: 0;
+    }
+    #cbi-mwan3-member .table .td.cbi-section-actions>div .cbi-button:last-child {
+        margin-right: 0;
+    }
+    #cbi-firewall .table .tr.cbi-section-table-titles {
+        font-size: 12px;
+    }
+    #cbi-firewall .cbi-section-actions {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    #maincontent .cbi-tabmenu, #maincontent .tabs {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    #maincontent .cbi-tabmenu>li, #maincontent .tabs>li {
+        min-width: 50%;
+        text-align: center;
+        flex-grow: 1;
+    }
+    #maincontent .cbi-tabmenu>li.active, #maincontent .tabs>li.active {
+        order: 1;
+    }
+    #maincontent .cbi-tabmenu>li>a, #maincontent .tabs>li>a {
+        line-height: 1;
+        margin-right: 0px;
+        padding: 9px 5px;
+    }
+    #cbi-dropbear .cbi-section-remove {
+        margin-bottom: 20px;
+    }
+    #cbi-network div[id^="cbi-network-lan-"][id$="__status"] .cbi-value-field span {
+        white-space: pre-line;
+    }
+    #cbi-network div[id^="cbi-network-lan-"][id$="__status"] .cbi-value-field span br {
+        display: block;
+        margin-bottom: 5px;
+    }
+    form[action$="admin/network/network/lan"] .cbi-page-actions, form[action$="admin/network/firewall/zones"] .cbi-page-actions {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    form[action$="admin/network/network/lan"] .cbi-page-actions .cbi-button, form[action$="admin/network/firewall/zones"] .cbi-page-actions .cbi-button {
+        width: 49%;
+        margin: 0 0 1.5%;
+    }
+    form[action$="admin/network/network/lan"] .cbi-page-actions .cbi-button:nth-child(even), form[action$="admin/network/firewall/zones"] .cbi-page-actions .cbi-button:nth-child(even) {
+        margin-left: 2%;
+    }
+    #maincontent .cbi-page-actions {
+        padding: 17px 0 18px 0;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .td[data-name="input"], #cbi-firewall-zone .table.cbi-section-table .td[data-name="output"], #cbi-firewall-zone .table.cbi-section-table .td[data-name="forward"], #cbi-firewall-zone .table.cbi-section-table .td[data-name="masq"], #cbi-firewall-zone .table.cbi-section-table .td[data-name="mtu_fix"], #cbi-firewall-zone .table.cbi-section-table .td.cbi-section-actions {
+        max-width: 330px;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        border: 0;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .td .cbi-input-select {
+        width: 100%;
+        height: 37px;
+        text-indent: 5px;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .td[data-name="masq"], #cbi-firewall-zone .table.cbi-section-table .td[data-name="mtu_fix"] {
+        justify-content: space-between;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .td[data-name="masq"]>div, #cbi-firewall-zone .table.cbi-section-table .td[data-name="mtu_fix"]>div {
+        margin-left: auto;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .td .cbi-input-checkbox {
+        margin: 0;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .td.cbi-section-actions>div {
+        justify-content: center;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .td.cbi-section-actions>div .cbi-button {
+        min-width: 150px;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    div[data-module="iot"] #location-list {    
+        grid-template-columns: 100%;
+        width: 360px;
+        max-width: 100%;
+    }
+    /*styles for legacy views*/
+    #cbi-mwan3-member .table .tr.cbi-section-table-titles {
+        font-size: 13px;
+    }
+    #cbi-firewall-rule .table {
+        display: block;
+    }
+    #cbi-firewall-rule .table.cbi-section-table .tr.cbi-section-table-titles, #cbi-firewall-redirect .table.cbi-section-table .tr.cbi-section-table-titles {
+        display: none;
+    }
+    #cbi-firewall-rule .table.cbi-section-table+h4+.table, #cbi-firewall-redirect .table:not(.cbi-section-table):last-of-type {
+        display: flex;
+        position: relative;
+    }
+    #cbi-firewall-rule .table.cbi-section-table+h4+.table .tr, #cbi-firewall-redirect .table:not(.cbi-section-table):last-of-type .tr {
+        display: flex;
+        flex-direction: column;
+    }
+    #cbi-firewall-rule .table.cbi-section-table+h4+.table .th, #cbi-firewall-redirect .table:not(.cbi-section-table):last-of-type .th {
+        height: 50px;
+        display: flex;
+        align-items: center;
+        background: #f9f9f9;
+    }
+    #cbi-firewall-rule .table.cbi-section-table+h4+.table .th:last-child, #cbi-firewall-redirect .table:not(.cbi-section-table):last-of-type .th:last-child {
+        background: #ffffff !important;
+    }
+    #cbi-firewall-rule .table:not(.cbi-section-table) .td.bottom, #cbi-firewall-redirect .table:not(.cbi-section-table):last-of-type .td.bottom {
+        height: 57px;
+    }
+    #cbi-firewall-rule .table.cbi-section-table+h4+.table .td.bottom .cbi-button, #cbi-firewall-redirect .table:not(.cbi-section-table):last-of-type .td.bottom .cbi-button {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    #cbi-firewall-rule .table.cbi-section-table+h4+.table .tr.cbi-section-table-titles, #cbi-firewall-redirect .table:not(.cbi-section-table):last-of-type .tr.cbi-section-table-titles {
+        width: 100px;
+        background: transparent;
+        font-size: 12px;
+    }
+    #cbi-firewall-rule .table.cbi-section-table+h4+.table .tr:not(.cbi-section-table-titles), form[action$="bin/luci/admin/network/firewall/rules"] #cbi-firewall-redirect .table:not(.cbi-section-table):last-of-type .tr:not(.cbi-section-table-titles) {
+        width: calc(100% - 100px);
+    }
+    #cbi-firewall-rule .table.cbi-section-table+h4+.table .td, #cbi-firewall-redirect .table:not(.cbi-section-table):last-of-type .td {
+        display: flex;
+        padding: 10px 0 9px 10px;
+    }
+    #cbi-firewall-rule .table.cbi-section-table+h4+.table+h4+.table .tr {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    #cbi-firewall-rule .table.cbi-section-table+h4+.table+h4+.table .td {
+        display: block;
+    }
+    #cbi-firewall-rule .table.cbi-section-table+h4+.table+h4+.table .tr .td:last-child {
+        width: 100%;
+        text-align: center;
+    }
+    #cbi-firewall-rule .table.cbi-section-table+h4+.table+h4+.table .tr.cbi-section-table-titles .th {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 33%;
+        padding: 10px 5px 9px;
+        font-size: 15px;
+    }
+    #cbi-firewall-rule .table.cbi-section-table+h4+.table+h4+.table .tr.cbi-section-table-titles .th:last-child {
+        display: none;
+    }
+    #cbi-firewall-rule .table.cbi-section-table+h4+.table+h4+.table .td {
+        width: 30%;
+        padding: 10px 5px 9px;
+    }
+    #cbi-firewall-rule .table.cbi-section-table+h4+.table+h4+.table .tr .td:first-child {
+        width: 40%;
+        padding-left: 0;
+    }
+    #cbi-firewall-rule .table.cbi-section-table+h4+.table+h4+.table .tr .td:nth-child(3) {
+        padding-right: 0;
+    }
+    #cbi-firewall-redirect .table:not(.cbi-section-table):last-of-type .tr.table-titles {
+        width: 125px;
+        background: transparent;
+        font-size: 13px;
+    }
+    form[action$="bin/luci/admin/network/firewall/forwards"] #cbi-firewall-redirect .table:not(.cbi-section-table):last-of-type .tr:not(.table-titles) {
+        width: calc(100% - 125px);
+    }
+    #cbi-firewall-redirect .table.cbi-section-table {
+        display: flex;
+        flex-direction: column;
+    }
+    #cbi-firewall-rule .table.cbi-section-table .tr.cbi-section-table-row, #cbi-firewall-redirect .table.cbi-section-table .tr.cbi-section-table-row {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 25px;
+    }
+    #cbi-firewall-redirect .table.cbi-section-table .tr.cbi-section-table-row:before, #cbi-firewall-rule .table .tr.cbi-section-table-row:before {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+    #cbi-firewall-rule .td:not(.cbi-section-actions), #cbi-firewall-redirect .table.cbi-section-table .td:not(.cbi-section-actions) {
+        display: flex;
+        align-items: center;
+        margin: 0;
+    }
+    #cbi-firewall-rule .td[data-name="match"] {
+        width: calc(100% - 95px);
+    }
+    #cbi-firewall-rule .td[data-name="target"] {
+        width: 60px;
+        font-size: 12px;
+        line-height: 1.15;
+    }
+    #cbi-firewall-rule .td[data-name="enabled"] {
+        width: 35px;
+    }
+    form[action$="bin/luci/admin/network/firewall/rules"] #cbi-firewall-redirect .td[data-name="match"] {
+        width: 100%;
+        padding-right: 80px;
+    }
+    form[action$="bin/luci/admin/network/firewall/rules"] #cbi-firewall-redirect .td[data-name="via"] {
+        width: calc(100% - 70px);
+    }
+    form[action$="bin/luci/admin/network/firewall/rules"] #cbi-firewall-redirect .td[data-name="enabled"] {
+        width: 70px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        border: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    form[action$="bin/luci/admin/network/firewall/forwards"] #cbi-firewall-redirect .td[data-name="match"], form[action$="bin/luci/admin/network/firewall/forwards"] #cbi-firewall-redirect .td[data-name="dest"], form[action$="bin/luci/admin/network/firewall/forwards"] #cbi-firewall-redirect .td[data-name="enabled"] {
+        flex-grow: 1;
+    }
+    #cbi-firewall-redirect .td[data-name="enabled"] .cbi-input-checkbox {
+        margin: 0;
+    }
+    #cbi-firewall-rule .cbi-section-actions, #cbi-firewall-redirect .cbi-section-actions {
+        display: block;
+        width: 100%;
+        padding: 5px 0;
+    }
+    #cbi-firewall-rule .table .cbi-section-actions>div, #cbi-firewall-redirect .table .cbi-section-actions>div {
+        width: 100%;
+        flex-direction: row;
+    }
+    #cbi-firewall-rule .table .td.cbi-section-actions>div .cbi-button, #cbi-firewall-redirect .table .td.cbi-section-actions>div .cbi-button {
+        width: 23.5%;
+        margin: 1%;
+        min-width: auto;
+    }
+    #cbi-firewall-rule .table .td.cbi-section-actions>div .cbi-button:first-child, #cbi-firewall-redirect .table .td.cbi-section-actions>div .cbi-button:first-child {
+        margin-left: 0;
+    }
+    #cbi-firewall-rule .table .td.cbi-section-actions>div .cbi-button:last-child, #cbi-firewall-redirect .table .td.cbi-section-actions>div .cbi-button:last-child {
+        margin-right: 0;
+    }
+    #cbi-network .table .tr, #cbi-network .table .td {
+        display: block;
+        flex-basis: 100%;
+    }
+    #cbi-network .table .cbi-section-actions>div, form[action$="bin/luci/admin/network/firewall/forwards"] .table .cbi-section-actions>div {
+        align-items: center;
+    }
+    #cbi-network .table .cbi-section-actions>div .cbi-button {
+        width: 100%;
+        max-width: 330px;
+        margin: 5px 0 !important;
+    }
+    #cbi-network .cbi-tabmenu>li {
+        min-width: 100%;
+    }
+    #cbi-network .cbi-value {
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        max-width: 330px;
+        clear: both;
+        display: flex;
+        flex-direction: column;
+    }
+    #cbi-network .cbi-value-field {
+        margin-left: 0;
+    }
+    #cbi-network .cbi-value .cbi-input-checkbox {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    #cbi-network .cbi-value-title {
+        float: none;
+        text-align: center;
+        display: block;
+        width: 100%;
+        margin-bottom: 7px;
+    }
+    #cbi-network div[id^="cbi-network-lan-"][id$="__status"] {
+        min-width: 100%;
+    }
+    #cbi-network div[id^="cbi-network-lan-"][id$="__status"] .cbi-value-field {
+        display: flex;
+        justify-content: center;
+        max-width: 100%;
+        min-width: 100%;
+    }
+    #cbi-network .cbi-input-text, #cbi-network .cbi-input-select {
+        width: 100%;
+        height: 37px;
+        text-indent: 5px;
+    }
+    #cbi-mwan3-rule .table .tr.cbi-section-table-row {
+        border: 0;
+    }
+    #cbi-mwan3-rule .table .tr.cbi-section-table-row .td, #cbi-mwan3-rule .table .tr.cbi-section-table-row:before {
+        width: 350px !important;
+        max-width: 100%;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        border: 1px solid #ddd;
+        border-top: 0;
+    }
+    #cbi-mwan3-rule .table .tr.cbi-section-table-row .td.cbi-value-field, #cbi-mwan3-rule .table .tr.cbi-section-table-row:before {
+        height: 57px;
+    }
+    #cbi-mwan3-rule .table .tr.cbi-section-table-row:before {
+        border-top: 1px solid #ddd;
+        justify-content: center;
+    }
+    #cbi-mwan3-rule .cbi-tblsection-create, #cbi-mwan3-policy .cbi-tblsection-create {
+        width: 100%;
+        justify-content: center;
+        margin: 0 0 20px;
+        padding: 0;
+    }
+    #cbi-mwan3-rule .cbi-tblsection-create .cbi-section-create-name, #cbi-mwan3-rule .cbi-tblsection-create .cbi-button-add, #cbi-mwan3-policy .cbi-tblsection-create .cbi-section-create-name, #cbi-mwan3-policy .cbi-tblsection-create .cbi-button-add {
+        height: 37px;
+    }
+    #cbi-mwan3-policy .table {
+        display: flex;
+        flex-direction: column;
+    }
+    #cbi-mwan3-policy .table .tr {
+        display: flex;
+        font-size: 14px;
+    }
+    #cbi-mwan3-policy .table .tr.cbi-section-table-titles {
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+    }
+    #cbi-mwan3-policy .table .tr.cbi-section-table-row {
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-top: 0;
+    }
+    #cbi-mwan3-policy .table .tr:before, #cbi-mwan3-policy .table .tr .th, #cbi-mwan3-policy .table .tr .td {
+        width: 33.333%;
+        margin: 0;
+        display: block;
+        word-break: break-all;
+    }
+    #cbi-mwan3-policy .table .tr .th.cbi-section-actions {
+        display: none;
+    }
+    #cbi-mwan3-policy .tr .td.cbi-section-actions {
+        width: 100%;
+    }
+    #cbi-mwan3-policy .tr .td.cbi-section-actions>div {
+        flex-direction: row;
+    }
+    #cbi-mwan3-policy .tr .td.cbi-section-actions>div .cbi-button {
+        min-width: auto;
+    }
+    #cbi-mwan3-policy .table .cbi-section-actions>div .cbi-button {
+        width: 23.5%;
+        margin-left: 1%;
+        margin-right: 1%;
+    }
+    #cbi-mwan3-policy .table .cbi-section-actions>div .cbi-button:first-child {
+        margin-left: 0;
+    }
+    #cbi-mwan3-policy .table .cbi-section-actions>div .cbi-button:last-child {
+        margin-right: 0;
+    }
+    #cbi-mwan3-rule .table .tr.cbi-section-table-row {
+        margin-bottom: 0;
+        padding: 20px 0;
+    }
+    #cbi-mwan3-rule .table .cbi-rowstyle-2 {
+        background: transparent;
+    }
+    #cbi-mwan3-rule .table .cbi-rowstyle-2:before, #cbi-mwan3-rule .table .cbi-rowstyle-2 .td, #cbi-mwan3-rule .table .cbi-rowstyle-2 .th {
+        background: #f9f9f9;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    /*styles for legacy views*/
+    #maincontent.container {
+        margin-top: 30px;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    /*styles for legacy views*/
+    #maincontent .cbi-page-actions>.cbi-button, #maincontent .cbi-page-actions>form.inline {
+        width: 49%;
+        margin: 0 0 1.5%;
+    }
+    #maincontent .cbi-page-actions>.cbi-button:nth-child(even), #maincontent .cbi-page-actions>form.inline:nth-child(even) {
+        margin-left: 2%;
+    }
+    form[action$="bin/luci/admin/network/firewall/forwards"] .table:not(.cbi-section-table) {
+        display: flex;
+    }
+    form[action$="bin/luci/admin/network/firewall/forwards"] .table:not(.cbi-section-table) .tr.table-titles {
+        width: 125px;
+        display: flex;
+        flex-direction: column;
+        background: transparent;
+    }
+    form[action$="bin/luci/admin/network/firewall/forwards"] .table:not(.cbi-section-table) .tr:not(.table-titles) {
+        width: calc(100% - 125px);
+    }
+    form[action$="bin/luci/admin/network/firewall/forwards"] .table:not(.cbi-section-table) .th {
+        display: flex;
+        align-items: center;
+        background: #f9f9f9;
+    }
+    form[action$="bin/luci/admin/network/firewall/forwards"] .table:not(.cbi-section-table) .tr .th:last-child {
+        background: transparent;
+    }
+    form[action$="bin/luci/admin/network/firewall/rules"] #cbi-firewall-rule .table.cbi-section-table+h4+.table .th, #cbi-firewall-redirect .table:not(.cbi-section-table) .th {
+        height: 57px !important;
+    }
+    form[action$="bin/luci/admin/network/firewall/forwards"] .table:not(.cbi-section-table) .td {
+        padding-right: 0;
+    }
+    form[action$="bin/luci/admin/network/firewall/forwards"] .table:not(.cbi-section-table) .td.bottom .cbi-button {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    #cbi-firewall-zone .table.cbi-section-table .tr.cbi-section-table-row:before {
+        width: 15%;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .td[data-name="_info"] {
+        width: 85%;
+    }
+    form[action$="admin/network/diagnostics"] .table .td {
+        display: block;
+        margin-bottom: 5px;
+    }
+    #cbi-firewall-rule .table.cbi-section-table+h4+.table .th, #cbi-firewall-rule .table.cbi-section-table+h4+.table .td, form[action$="bin/luci/admin/network/firewall/rules"] #cbi-firewall-redirect .table:last-of-type .th, form[action$="bin/luci/admin/network/firewall/rules"] #cbi-firewall-redirect .table:last-of-type .td {
+        height: 57px;
+    }
+    #cbi-firewall-rule .table.cbi-section-table+h4+.table .th, #cbi-firewall-redirect .table:last-of-type .th, form[action$="bin/luci/admin/network/firewall/rules"] #cbi-firewall-redirect .table:last-of-type .th {
+        padding: 10px 10px 9px;
+    }
+    #cbi-firewall-rule .table.cbi-section-table+h4+.table .td, #cbi-firewall-redirect .table:last-of-type .td {
+        padding: 10px 0 9px 10px;
+    }
+    #maincontent .cbi-input-text, #maincontent .cbi-input-password, #maincontent .cbi-input-select, form[action$="admin/network/diagnostics"] input[type="text"] {
+        width: 100%;
+        height: 37px;
+        text-indent: 5px;
+    }
+    #maincontent .cbi-dropdown {
+        max-width: 100%;
+    }
+    #maincontent .cbi-dropdown:not(open)>ul>li {
+        width: 100%;
+    }
+    #maincontent .cbi-dropdown>ul {
+        max-width: 100%;
+        flex-wrap: wrap;
+    }
+    #maincontent .cbi-dropdown>ul>li {
+        padding: .5em;
+    }
+    #maincontent .cbi-dropdown>ul>li>label {
+        white-space: normal;
+    }
+    #maincontent .cbi-dropdown>ul>li>label>img {
+        flex-grow: 0;
+        flex-shrink: 0;
+        align-self: center;
+    }
+    #maincontent .cbi-dropdown>ul>li input[type="text"] {
+        height: 30px;
+    }
+    #maincontent .cbi-dropdown>ul>li .create-item-input {
+        width: auto;
+    }
+    #maincontent .cbi-page-actions {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 17px 0 18px 0;
+    }
+    #maincontent .cbi-value-title {
+        float: none;
+        text-align: center;
+        display: block;
+        width: 100%;
+        margin-bottom: 7px;
+    }
+    #maincontent .cbi-value-field:not(.td), #cbi-system-ntp>div, #cbi-firewall-defaults .cbi-value, div[id^="cbi-dropbear-"][id$="PasswordAuth"], div[id^="cbi-dropbear-"][id$="GatewayPorts"], form[action$="admin/system/flashops/backup"] .cbi-value, form[action$="admin/system/flashops/sysupgrade"] .cbi-value {
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        max-width: 330px;
+        clear: both;
+        display: flex;
+        flex-direction: column;
+    }
+    #cbi-system-ntp .cbi-value {
+        position: relative;
+    }
+    #maincontent .cbi-value-field input[type="file"] {
+        text-align: center;
+    }
+    #cbi-dropbear .cbi-value-field, #cbi-system .cbi-value-field {
+        text-align: center;
+    }
+    #cbi-dropbear div[id^="cbi-dropbear"][id$="_keys"] .cbi-value-field {
+        max-width: 100%;
+    }
+    #cbi-dropbear-dropbear .cbi-value {
+        margin-bottom: 30px;
+    }
+    #cbi-system div[id^="cbi-system-"][id$="_pass"] .cbi-input-password, #cbi-system-ntp-server .cbi-value-field .cbi-input-text {
+        width: calc(100% - 40px);
+    }
+    #cbi-system div[id^="cbi-system-"][id$="_change-pass-btn-luci"] .cbi-value-title {
+        display: none;
+    }
+    #cbi-system div[id^="cbi-system-"][id$="_change-pass-btn-luci"] .cbi-value-field {
+        justify-content: center;
+    }
+    #cbi-system div[id^="cbi-system-"][id$="_pass-pw1"] .cbi-button, #cbi-system div[id^="cbi-system-"][id$="_pass-pw2"] .cbi-button, #cbi-system-ntp-server .cbi-value-field .cbi-button {
+        width: 40px;
+        height: 37px;
+        text-align: center;
+        line-height: 37px;
+    }
+    #cbi-system div[id^="cbi-system-"][id$="_pass"] .cbi-value-field, #cbi-system div[id^="cbi-system-"][id$="-log_size"] .cbi-value-field {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    #cbi-system div[id^="cbi-system-"][id$="_pass"] .cbi-value-field .cbi-value-description, #cbi-system div[id^="cbi-system-"][id$="-log_size"] .cbi-value-field .cbi-value-description {
+        width: 100%;
+        display: flex;
+        align-items: center;
+    }
+    #cbi-system div[id^="cbi-system-"][id$="-log_size"] .cbi-value-field {
+        align-items: center;
+    }
+    #cbi-system .cbi-button:hover {
+        border-color: #ccc !important;
+    }
+    #cbi-system .cbi-map-descr {
+        text-align: center;
+    }
+    #maincontent .cbi-value, #cbi-dropbear div[id^="cbi-dropbear-"][id$="PasswordAuth"], #cbi-dropbear div[id^="cbi-dropbear-"][id$="GatewayPorts"], #maincontent form[action$="admin/system/flashops/sysupgrade"] .cbi-value {
+        position: relative;
+    }
+    #cbi-firewall-defaults .cbi-value-title, #cbi-dropbear div[id^="cbi-dropbear-"][id$="PasswordAuth"] .cbi-value-title, #cbi-dropbear div[id^="cbi-dropbear-"][id$="GatewayPorts"] .cbi-value-title, #maincontent form[action$="admin/system/flashops/sysupgrade"] .cbi-value-title[for="keep"], #maincontent div[id^="container.network.lan."] .cbi-value .cbi-value-title {
+        text-align: left;
+        margin-bottom: 0;
+        padding-right: 25px;
+        padding-bottom: 7px;
+    }
+    #cbi-firewall-defaults .cbi-input-checkbox, #cbi-dropbear div[id^="cbi-dropbear-"][id$="PasswordAuth"] .cbi-input-checkbox, #cbi-dropbear div[id^="cbi-dropbear-"][id$="GatewayPorts"] .cbi-input-checkbox, #maincontent form[action$="admin/system/flashops/sysupgrade"] input#keep, #maincontent #cbi-system-ntp .cbi-input-checkbox {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    #cbi-system-timeserver legend {
+        text-align: center;
+    }
+    #cbi-system-ntp>div {
+        margin-bottom: 10px;
+    }
+    #cbi-system-ntp>div:last-child {
+        margin-bottom: 15px;
+    }
+    #cbi-system-ntp label.cbi-value-title {
+        flex-grow: 1;
+        padding-bottom: 6px;
+        text-align: left;
+    }
+    #cbi-system-ntp .cbi-value-field {
+        margin-left: auto;
+    }
+    #cbi-system-ntp-server {
+        flex-wrap: wrap;
+    }
+    #cbi-system-ntp-server .cbi-value-field {
+        margin-left: 0;
+    }
+    #cbi-system-ntp-server .cbi-value-field>div {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .tr.cbi-section-table-row {
+        margin-bottom: 35px;
+    }
+    #maincontent div[id^="cbi-perenio-"][id$="_pass-iot_pw"] {
+        display: block;
+    }
+    #maincontent div[id^="cbi-perenio-"][id$="_pass-iot_pw"] .cbi-value-field {
+        flex-direction: row;
+    }
+    #maincontent div[id^="cbi-perenio-"][id$="_pass-iot_pw"] .cbi-input-password, #cbi-network-wan-dns .cbi-value-field>div .cbi-input-text, #cbi-network-wan-domain .cbi-value-field>div .cbi-input-text, #cbi-dhcp-wan-dns .cbi-value-field>div .cbi-input-text, #cbi-dhcp-wan-domain .cbi-value-field>div .cbi-input-text {
+        width: calc(100% - 40px);
+    }
+    #maincontent div[id^="cbi-perenio-"][id$="_pass-iot_pw"] .cbi-button, #cbi-network-wan-dns .cbi-value-field>div .cbi-button, #cbi-network-wan-domain .cbi-value-field>div .cbi-button, #cbi-dhcp-wan-dns .cbi-value-field>div .cbi-button, #cbi-dhcp-wan-domain .cbi-value-field>div .cbi-button {
+        width: 40px;
+        height: 37px;
+        text-align: center;
+        line-height: 37px;
+    }
+    #maincontent div[id^="cbi-perenio-"][id$="_pass-iot_pw"] .cbi-button:hover {
+        border-color: #ccc !important;
+    }
+    #maincontent div[id^="cbi-perenio-"][id$="_pass-_hup"] .cbi-value-title {
+        display: none;
+    }
+    #cbi-network-wan-dns .cbi-value-field>div, #cbi-network-wan-domain .cbi-value-field>div, #cbi-dhcp-wan-dns .cbi-value-field>div, #cbi-dhcp-wan-domain .cbi-value-field>div {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    /*styles for legacy views*/
+    #cbi-wireless .table {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    #cbi-wireless .cbi-section-node .table .tr {
+        margin-bottom: 40px;
+    }
+    #cbi-wireless .table .tr, #cbi-wireless .table .td {
+        display: block;
+        flex-basis: 100%;
+    }
+    #cbi-wireless .table .cbi-section-actions>div {
+        align-items: center;
+    }
+    #maincontent .cbi-page-actions {
+        flex-wrap: wrap;
+    }
+    #maincontent .cbi-page-actions>form.inline>.cbi-button {
+        width: 100%;
+        margin: 0;
+    }
+    #cbi-system-system.cbi-section .cbi-value-field {
+        flex-direction: column;
+    }
+    #cbi-system-system.cbi-section .cbi-value-field #_systime-clock-status {
+        margin-bottom: 5px;
+    }
+    #cbi-system-system.cbi-section .cbi-value-field {
+        margin-left: auto !important;
+        margin-right: auto;
+        align-items: stretch;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    /*styles for legacy views*/
+    #maincontent .cbi-tabmenu>li>a, #maincontent .tabs>li>a {
+        border-color: #eee #eee #ddd !important;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    /*styles for legacy views*/
+    #cbi-mwan3-member .table .tr {
+        font-size: 14px !important;
+    }
+    #maincontent .cbi-page-actions {
+        justify-content: center;
+    }
+    #maincontent .cbi-page-actions>.cbi-button, #maincontent .cbi-page-actions>form.inline {
+        width: 330px !important;
+        max-width: 100% !important;
+        margin: 0 0 10px !important;
+    }
+    #maincontent .cbi-tabmenu>li, #maincontent .tabs>li {
+        min-width: 100%;
+    }
+    #cbi-mwan3-interface .table .td.cbi-section-actions>div .cbi-button {
+        width: 49%;
+        min-width: auto;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    /*styles for legacy views*/
+    #perenio-login .cbi-map {
+        width: 100%;
+    }
+    #cbi-firewall-rule .table .td.cbi-section-actions .cbi-button-up, #cbi-firewall-redirect .table .td.cbi-section-actions .cbi-button-up, #cbi-mwan3-member .table .td.cbi-section-actions .cbi-button-up, #cbi-mwan3-rule .table .td.cbi-section-actions .cbi-button-up, #cbi-mwan3-policy .table .td.cbi-section-actions .cbi-button-up {
+        background-image: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjY0MCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQgbWVldCIgdmlld0JveD0iMCAwIDY0MCA2NDAiIHdpZHRoPSI2NDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxkZWZzPjxwYXRoIGlkPSJhIiBkPSJtNTM5LjA2IDI1MS4zNGMxMi41OC0xMy4wMiAxMi41OC0zMy41MiAwLTQ2LjU0LTE5LjUtMTkuNS0xNzUuNTEtMTc1LjUzLTE5NS4wMS0xOTUuMDQtNi4wNC02LjA0LTE0LjQyLTkuNzYtMjMuNzItOS43NnMtMTcuNjggMy43Mi0yMy43NSA5Ljc2Yy0xOS41IDE5LjUxLTE3NS41MSAxNzUuNTQtMTk1LjAxIDE5NS4wNC0xMy4wMiAxMy4wMi0xMy4wMiAzMy41MiAwIDQ2LjU0czMzLjUyIDEzLjAyIDQ2LjU0IDBjOS4yOC05LjMxIDU1LjY3LTU1Ljg2IDEzOS4xNy0xMzkuNjR2NDk1LjcyYy0uMDMgMTguMTUgMTQuODcgMzIuNTggMzMuMDIgMzIuNThzMzIuNTgtMTQuNDMgMzIuNTgtMzIuNThjMC0zMy4wNSAwLTE5OC4yOCAwLTQ5NS42OWwxMzkuNjQgMTM5LjYxYzIyLjM1IDguNjggMzcuODYgOC42OCA0Ni41NCAweiIvPjwvZGVmcz48dXNlIGZpbGw9IiMxZTIwMWQiIHhsaW5rOmhyZWY9IiNhIi8+PHVzZSBmaWxsPSJub25lIiB4bGluazpocmVmPSIjYSIvPjwvc3ZnPg==);
+    }
+    #cbi-firewall-rule .table .td.cbi-section-actions .cbi-button-down, #cbi-firewall-redirect .table .td.cbi-section-actions .cbi-button-down, #cbi-mwan3-member .table .td.cbi-section-actions .cbi-button-down, #cbi-mwan3-rule .table .td.cbi-section-actions .cbi-button-down, #cbi-mwan3-policy .table .td.cbi-section-actions .cbi-button-down {
+        background-image: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjY0MCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQgbWVldCIgdmlld0JveD0iMCAwIDY0MCA2NDAiIHdpZHRoPSI2NDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxkZWZzPjxwYXRoIGlkPSJhIiBkPSJtNTM4LjkxIDM4OC42NmMxMi41OCAxMy4wMiAxMi41OCAzMy41MiAwIDQ2LjU0LTE5LjUgMTkuNS0xNzUuNTEgMTc1LjUzLTE5NS4wMSAxOTUuMDQtNi4wNCA2LjA0LTE0LjQyIDkuNzYtMjMuNzIgOS43NnMtMTcuNjgtMy43Mi0yMy43NS05Ljc2Yy0xOS41LTE5LjUxLTE3NS41MS0xNzUuNTQtMTk1LjAxLTE5NS4wNC0xMy4wMi0xMy4wMi0xMy4wMi0zMy41MiAwLTQ2LjU0czMzLjUyLTEzLjAyIDQ2LjU0IDBjOS4yOCA5LjMxIDU1LjY3IDU1Ljg2IDEzOS4xNyAxMzkuNjQgMC0yOTcuNDMgMC00NjIuNjcgMC00OTUuNzItLjAzLTE4LjE1IDE0Ljg3LTMyLjU4IDMzLjAyLTMyLjU4czMyLjU4IDE0LjQzIDMyLjU4IDMyLjU4djQ5NS42OWwxMzkuNjQtMTM5LjYxYzIyLjM1LTguNjggMzcuODYtOC42OCA0Ni41NCAweiIvPjwvZGVmcz48dXNlIGZpbGw9IiMxZTIwMWQiIHhsaW5rOmhyZWY9IiNhIi8+PHVzZSBmaWxsPSJub25lIiB4bGluazpocmVmPSIjYSIvPjwvc3ZnPg==);
+    }
+    #cbi-firewall-rule .table .td.cbi-section-actions .cbi-button-up, #cbi-firewall-rule .table .td.cbi-section-actions .cbi-button-down, #cbi-firewall-redirect .table .td.cbi-section-actions .cbi-button-up, #cbi-firewall-redirect .table .td.cbi-section-actions .cbi-button-down, #cbi-mwan3-member .table .td.cbi-section-actions .cbi-button-up, #cbi-mwan3-member .table .td.cbi-section-actions .cbi-button-down, #cbi-mwan3-rule .table .td.cbi-section-actions .cbi-button-up, #cbi-mwan3-rule .table .td.cbi-section-actions .cbi-button-down, #cbi-mwan3-policy .table .td.cbi-section-actions .cbi-button-up, #cbi-mwan3-policy .table .td.cbi-section-actions .cbi-button-down {
+        max-width: 40px;
+        background-color: #ececec;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: auto 60%;
+        color: transparent;
+    }
+    #cbi-firewall-rule .table .td.cbi-section-actions>div .cbi-button, #cbi-firewall-redirect .table .td.cbi-section-actions>div .cbi-button, #cbi-mwan3-member .table .td.cbi-section-actions>div .cbi-button, #cbi-mwan3-rule .table .td.cbi-section-actions>div .cbi-button, #cbi-mwan3-policy .table .td.cbi-section-actions>div .cbi-button {
+        width: calc(47% - 40px);
+    }
+    #cbi-mwan3-member .table .td.cbi-section-actions>div .cbi-button, #cbi-mwan3-rule .table .td.cbi-section-actions>div .cbi-button {
+        margin: 1%;
+    }
+    form[action$="bin/luci/admin/network/firewall/forwards"] #cbi-firewall-redirect .td[data-name="enabled"] {
+        width: 100%;
+    }
+    form[action$="bin/luci/admin/network/firewall/forwards"] #cbi-firewall-redirect .td[data-name="enabled"]:before {
+        content: attr(data-title) ": ";
+        display: block;
+        margin: 0 10px 0 0;
+        font-size: 14px;
+    }
+    #cbi-mwan3-policy .table .tr, #cbi-mwan3-interface .table .tr, #cbi-mwan3-interface .table .td:before {
+        font-size: 12px !important;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    /*styles for legacy views*/
+    #cbi-mwan3-member .table .tr {
+        font-size: 12px !important;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    /*styles for legacy views*/
+    #cbi-mwan3-member .table .tr .th, #cbi-mwan3-member .table .tr .td, #cbi-mwan3-member .table .tr:before {
+        padding: 10px 5px 9px;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .td[data-widget="firewall_zoneforwards"]:before {
+        display: none;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .tr.cbi-section-table-row::before {
+        justify-content: flex-start;
+    }
+    #cbi-firewall-zone .table.cbi-section-table .td.cbi-section-actions>div .cbi-button {
+        width: 100%;
+        min-width: 100%;
+        height: 37px;
+        margin: 7px 0 !important;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    div[data-module="modem"] .per-tabs>.per-tab {
+        font-size: 12px;
+    }
+    footer .grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    footer .grid .app-link {
+        margin: 0 auto 10px!important;
+    }
+    footer .grid>div:first-child {
+        margin-top: 15px;
+    }
+    #maincontent.container {
+        margin-top: 60px;
+    }
+    #perenio-login .cbi-map .centered-header {
+        margin-left: -20px;
+        margin-right: -20px;
+        font-size: 20px;
+        line-height: 1.15;
+    }
+    .no-sim-card-warning,
+    #lte-scheme-tutor .action-text {
+        font-size: 12px!important;
+        line-height: 18px;
+    }
+    .card-tray-scheme {
+        margin-left: -25px;
+    }
+    #lte-scheme-tutor {
+        width: calc(50% - 5px);
+        right: -5px;
+        text-align: left;
+    }
+    #pincode {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 200px) {
+    #maincontent.container {
+        margin-top: 230px;
+    }
+}
+
+@media screen and (min-width: 855px) and (max-width: 1280px) {
+    .grid.iot-connections-table {
+        margin-bottom: 10px;
+    }
+}
+
+@media screen and (min-width: 855px) and (max-width: 1024px) {
+    .grid.online-connections-colmns,
+    .grid.online-connections-data {
+        grid-gap: 1.895%;
+        grid-template-columns: 23% 20% 24% 12% 13%;
+    }
+    #main-menu .menu.mdc-list-item {
+        padding-left: 10%;
+    }
+    .cell-container.wired .grid {
+        padding: 0 2px;
+    }
+    .cell-container.wired .icon-holder {
+        width: 45px;
+        height: 45px;
+    }
+    .grid.mix-statuses {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    .grid.mix-statuses>div .dtitle {
+        display: block;
+    }
+    .mix-statuses .wifi-icon {
+        background-position: 0 center;
+    }
+    .mix-statuses .wifi-icon .freq {
+        top: 50%;
+        margin-top: 3px;
+    }
+    .grid.upstream-system-statuses {
+        grid-template-columns: 32% 28% auto;
+    }
+}
+
+@media screen and (min-width: 855px) and (max-width: 900px) {
+    #main-menu .menu.mdc-list-item {
+        padding-left: 15px;
+    }
+    .grid.online-connections-data .dvalue {
+        font-size: 11px;
+    }
+}
+
+@media screen and (min-width: 621px) and (max-width: 854px) {
+    /*styles for legacy views*/
+    form[action$="bin/luci/admin/network/firewall/forwards"] .table {
+        display: flex;
+        flex-direction: column;
+    }
+    form[action$="bin/luci/admin/network/firewall/forwards"] .table .tr.cbi-section-table-titles {
+        display: flex;
+        width: 100%;
+    }
+    form[action$="bin/luci/admin/network/firewall/forwards"] .table .tr.cbi-section-table-titles .th {
+        display: block;
+        flex-grow: 1;
+    }
+    form[action$="bin/luci/admin/network/firewall/forwards"] .table:not(.cbi-section-table) .td[data-title]:before {
+        content: attr(data-title) ": ";
+        display: block;
+        margin: auto 0 10px;
+        font-size: 14px;
+    }
+    form[action$="bin/luci/admin/network/firewall/forwards"] .table:not(.cbi-section-table) .cbi-input-text, form[action$="bin/luci/admin/network/firewall/forwards"] .table:not(.cbi-section-table) .cbi-input-select {
+        height: 37px;
+        align-self: flex-end;
+        margin-top: auto;
+    }
+    form[action$="bin/luci/admin/network/firewall/forwards"] .table:not(.cbi-section-table) .tr:not(.table-titles) {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    form[action$="bin/luci/admin/network/firewall/forwards"] .table:not(.cbi-section-table) .tr .td {
+        width: 25%;
+        padding-left: 5px;
+        padding-right: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    form[action$="bin/luci/admin/network/firewall/forwards"] .table:not(.cbi-section-table) .tr .td[data-title]:nth-child(1), form[action$="bin/luci/admin/network/firewall/forwards"] .table:not(.cbi-section-table) .tr .td[data-title]:nth-child(5) {
+        padding-left: 0;
+    }
+    form[action$="bin/luci/admin/network/firewall/forwards"] .table:not(.cbi-section-table) .tr .td[data-title]:nth-child(4), form[action$="bin/luci/admin/network/firewall/forwards"] .table:not(.cbi-section-table) .tr .td[data-title]:nth-child(8) {
+        padding-right: 0;
+    }
+    form[action$="bin/luci/admin/network/firewall/forwards"] .table:not(.cbi-section-table) .tr .td.bottom {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+    }
+}
+
+@media screen and (min-width: 441px) and (max-width: 620px) {
+    #cbi-mwan3-rule .table .td.cbi-section-actions>div {
+        flex-wrap: wrap;
+    }
+    #cbi-mwan3-rule .table .td.cbi-section-actions>div .cbi-button {
+        width: 49%;
+        margin: 1%;
+    }
+    #cbi-mwan3-rule .table .td.cbi-section-actions>div .cbi-button:nth-child(odd) {
+        margin-left: 0;
+    }
+    #cbi-mwan3-rule .table .td.cbi-section-actions>div .cbi-button:nth-child(even) {
+        margin-right: 0;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 720px) {
+    #quick-setup[data-type-setup="wifi"] .form-mixed-wrapper {
+        max-width: 400px;
+        margin: auto;
+    }
+        /*styles for legacy views*/
+    #maincontent .cbi-tabmenu>li.active+li:last-child, #maincontent .tabs>li.active+li:last-child {
+        order: 2;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 560px) {
+    /*styles for legacy views*/
+    form[action$="admin/system/flashops/backupfiles"] .cbi-page-actions {
+        justify-content: center;
+    }
+    form[action$="admin/system/flashops/backupfiles"] .cbi-page-actions .cbi-button {
+        width: 49%;
+        margin: 0 0 1.5%;
+    }
+    form[action$="admin/system/flashops/backupfiles"] .cbi-page-actions .cbi-button:nth-child(odd) {
+        margin-left: 2%;
+    }
+}
+
+@media screen and (min-width: 1621px)  {
+    #get-app-wrapper {
+        width: 664px;
+    }
+    #get-app-wrapper div {
+        height: 68px;
+        background-position: center;
+    }
+    #get-app-wrapper #qr-kit-google {
+        width: 68px;
+    }
+    #get-app-wrapper #qr-kit-appstore {
+        width: 68px;
+    }
+    #get-app-wrapper #kit-google {
+        width: 242px;
+        background-size: 242px 68px;
+    }
+    #get-app-wrapper #kit-appstore {
+        width: 221px;
+        background-size: 221px 68px;
+    }
+}

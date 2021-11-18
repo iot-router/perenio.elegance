@@ -1,0 +1,31 @@
+
+config core 'main'
+	option resourcebase '/luci-static/resources'
+	option mediaurlbase '/luci-static/speedtest'
+	option lang 'en'
+
+config extern 'flash_keep'
+	option uci '/etc/config/'
+	option dropbear '/etc/dropbear/'
+	option openvpn '/etc/openvpn/'
+	option passwd '/etc/passwd'
+	option opkg '/etc/opkg.conf'
+	option firewall '/etc/firewall.user'
+	option uploads '/lib/uci/upload/'
+
+config internal 'languages'
+	option en 'English'
+	option ru 'Русский (Russian)'
+	option uk 'Українська (Ukrainian)'
+
+config internal 'sauth'
+	option sessionpath '/tmp/luci-sessions'
+	option sessiontime '3600'
+
+config internal 'ccache'
+	option enable '0'
+
+config internal 'themes'
+	option SPEEDTEST '/luci-static/lxc'
+
+

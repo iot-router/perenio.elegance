@@ -1,0 +1,46 @@
+<div class="mdc-snackbar">
+    <div class="mdc-snackbar__surface">
+        <div class="mdc-snackbar__label" role="status" aria-live="polite"></div>
+        <div class="mdc-snackbar__actions">
+            <button type="button" class="mdc-button ok-button mdc-snackbar__action">
+                <span>OK</span>
+                <svg class="chevron-icon-right" width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 1.17333L14.8571 0L5.71429 8.21333L1.14286 4.69333L0 5.86667L5.71429 11.7333L16 1.17333Z" fill="white"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div 
+    class="mdc-dialog" 
+    role="alertdialog" 
+    aria-modal="true"
+    data-mdc-auto-init="MDCDialog">
+
+    <div class="mdc-dialog__container">
+
+        <div class="mdc-dialog__surface">
+
+            <div class="modal-dialog">
+
+                <h3>Measuring results</h3>
+
+                <test-result></test-result>
+
+                <h4>Do you want to test one more time?</h4>
+
+                <div class="buttons-wrapper">
+
+                    <button id="modal-cancel" class="mdc-button mdc-button--outlined"
+                        data-mdc-auto-init="MDCRipple"><%: Cancel %></button>
+
+                    <button id="modal-ok" class="mdc-button mdc-button--unelevated"
+                        data-mdc-auto-init="MDCRipple"><%: Ok %></button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="mdc-dialog__scrim"></div>
+</div>

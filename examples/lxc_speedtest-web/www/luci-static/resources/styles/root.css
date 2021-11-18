@@ -1,0 +1,1023 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('/luci-static/perenio/fonts/RobotoRegular/Roboto-Regular.eot') format('embedded-opentype'), url('/luci-static/perenio/fonts/RobotoRegular/Roboto-Regular.woff') format('woff'), url('/luci-static/perenio/fonts/RobotoRegular/Roboto-Regular.ttf') format('truetype'), url('/luci-static/perenio/fonts/RobotoRegular/Roboto-Regular.svg#Roboto-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GothamMedium';
+    src: url('/luci-static/perenio/fonts/GothamMedium/GothamMedium.woff') format('woff'), 
+    url('/luci-static/perenio/fonts/GothamMedium/GothamMedium.ttf') format('truetype'), 
+    url('/luci-static/perenio/fonts/GothamMedium/GothamMedium.svg#GothamMedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --mdc-theme-primary: #2196F3;
+}
+
+body {
+    font-family: 'GothamMedium';
+    background-color: #2b3453;
+    color: #ffffff;
+}
+
+body.transparent {
+    background-color: transparent;
+}
+
+body[data-is-logged-in="false"] {
+    background-image: url('/luci-static/perenio/images/circles_fon.svg');
+}
+
+body[data-is-logged-in="true"] {
+    background-image: url('/luci-static/perenio/images/circles_fon_left.svg'), url('/luci-static/perenio/images/circles_fon_right.svg');
+}
+
+h1, h2, h3, legend, h4, h5, h6 {
+    color: #ffffff;
+}
+
+a {
+    color: rgba(233, 224, 206, 0.99)!important;
+    transition: .5s;
+}
+
+header .fill {
+    background: rgba(64, 69, 100, 1);
+    box-shadow: none;
+}
+
+header #logo {
+    width: 106px;
+    height: 41px;
+    background: url("/luci-static/perenio/images/logo.svg") no-repeat;
+}
+
+.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__trailing {
+    border-radius: 0 4px 4px 0!important;
+}
+
+.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__leading {
+    border-radius: 4px 0 0 4px!important;
+}
+
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:active, input:-webkit-autofill:focus {
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.4)!important;
+    transition: background-color 5000s ease-in-out 0s!important;
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(0, 174, 255, 0.04) 50%, rgba(255, 255, 255, 0) 51%, rgba(0, 174, 255, 0.03) 100%)!important;
+    color: #ffffff!important;
+}
+
+.mdc-list {
+    border-radius: 10px!important;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 0;
+}
+
+.mdc-drawer .mdc-list-group__subheader, .menu.mdc-list-item {
+    font-family: 'GothamMedium';
+}
+
+#main-menu h6[data-category].opened {
+    color: #ffffff;
+    border: none;
+}
+
+#main-menu .mdc-list-group__subheader>i.opened {
+    color: #ffffff;
+}
+
+#main-menu .menu-head {
+    font-family: 'GothamMedium';
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#main-menu .mdc-drawer__content button {
+    border-radius: 4px;
+}
+
+#router-img {
+    background-image: url('/luci-static/perenio/images/router.png');
+}
+
+.mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input, .mdc-text-field:not(.mdc-text-field--disabled)+.mdc-text-field-helper-line .mdc-text-field-helper-text {
+    color: #ffffff;
+}
+
+.mdc-select:not(.mdc-select--disabled).mdc-select--focused .mdc-floating-label, .mdc-text-field--focused .mdc-text-field__input:required~.mdc-floating-label::after, .mdc-text-field--focused .mdc-text-field__input:required~.mdc-notched-outline .mdc-floating-label::after, .mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
+    color: #2196F3;
+}
+
+.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__icon {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-floating-label {
+    color: #b00020;
+}
+
+.mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__native-control:hover~.mdc-notched-outline .mdc-notched-outline__leading, .mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__native-control:hover~.mdc-notched-outline .mdc-notched-outline__notch, .mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__native-control:hover~.mdc-notched-outline .mdc-notched-outline__trailing, .mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__selected-text:hover~.mdc-notched-outline .mdc-notched-outline__leading, .mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__selected-text:hover~.mdc-notched-outline .mdc-notched-outline__notch, .mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__selected-text:hover~.mdc-notched-outline .mdc-notched-outline__trailing, .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused) .mdc-text-field__input:hover~.mdc-notched-outline .mdc-notched-outline__leading, .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused) .mdc-text-field__input:hover~.mdc-notched-outline .mdc-notched-outline__notch, .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused) .mdc-text-field__input:hover~.mdc-notched-outline .mdc-notched-outline__trailing, .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused) .mdc-text-field__icon:hover~.mdc-notched-outline .mdc-notched-outline__leading, .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused) .mdc-text-field__icon:hover~.mdc-notched-outline .mdc-notched-outline__notch, .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused) .mdc-text-field__icon:hover~.mdc-notched-outline .mdc-notched-outline__trailing, .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__leading, .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__notch, .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing {
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.mdc-select--outlined:not(.mdc-select--disabled) .mdc-notched-outline__leading, .mdc-select--outlined:not(.mdc-select--disabled) .mdc-notched-outline__notch, .mdc-select--outlined:not(.mdc-select--disabled) .mdc-notched-outline__trailing {
+    border-color: rgb(126, 131, 150);
+}
+
+.mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background, .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background {
+    border-color: #2196F3;
+    background-color: #2196F3;
+}
+
+.mdc-select:not(.mdc-select--disabled) .mdc-floating-label {
+    color: rgb(119, 124, 142);
+}
+
+.mdc-checkbox .mdc-checkbox__native-control:checked~.mdc-checkbox__background::before, .mdc-checkbox .mdc-checkbox__native-control:indeterminate~.mdc-checkbox__background::before {
+    background-color: #2b3453;
+}
+
+form .cbi-value label.cbi-value-title {
+    color: #FFFFFF;
+}
+
+.material-icons.mdc-select__dropdown-icon {
+    background: none;
+    color: #FFFFFF;
+    top:12px;
+}
+
+.mdc-select:not(.mdc-select--disabled) .mdc-select__native-control, .mdc-select:not(.mdc-select--disabled) .mdc-select__selected-text {
+    color: #ffffff;
+    font-family: 'GothamMedium';
+}
+
+#perenio-login button {
+    background: #E9E0CE;
+    border-radius: 4px;
+    color: #293352;
+}
+
+.mdc-select option {
+    background-color: #313957;
+}
+
+#reboot button {
+    border-color: rgba(255, 255, 255, 0.4);
+    color: #ffffff;
+}
+
+#logout button {
+    border-color: rgba(255, 255, 255, 0.4);
+    color: #ffffff;
+    background: transparent;
+}
+
+.cellular {
+    background-image: url('/luci-static/perenio/images/lte/cellular_0.svg');
+}
+
+#gsm[data-signal="no_pin"] {
+    margin-top: 10px;
+    width: 28px;
+    height: 28px;
+    background-image: url('/luci-static/perenio/images/lte/no_pin.svg');
+}
+
+#gsm[data-signal="no_sim"] {
+    background-image: url('/luci-static/perenio/images/lte/no_sim.svg');
+}
+
+#gsm[data-signal="cellular_0"] {
+    background-image: url('/luci-static/perenio/images/lte/cellular_0.svg')
+}
+
+#gsm[data-signal="cellular_1"] {
+    background-image: url('/luci-static/perenio/images/lte/cellular_1.svg');
+}
+
+#gsm[data-signal="cellular_1data"] {
+    background-image: url('/luci-static/perenio/images/lte/cellular_1data.svg');
+}
+
+#gsm[data-signal="cellular_2"] {
+    background-image: url('/luci-static/perenio/images/lte/cellular_2.svg');
+}
+
+#gsm[data-signal="cellular_2data"] {
+    background-image: url('/luci-static/perenio/images/lte/cellular_2data.svg');
+}
+
+#gsm[data-signal="cellular_3"] {
+    background-image: url('/luci-static/perenio/images/lte/cellular_3.svg');
+}
+
+#gsm[data-signal="cellular_3data"] {
+    background-image: url('/luci-static/perenio/images/lte/cellular_3data.svg');
+}
+
+.cbi-section-table .tr:hover .td, .cbi-section-table .tr:hover .th, .cbi-section-table .tr:hover::before {
+    background-color: transparent;
+}
+
+#road-map .divider {
+    border-top: 1px dashed #9ea1b0;
+}
+
+#road-map .pin {
+    background-image: url('/luci-static/perenio/images/pin_unact.svg');
+}
+
+#road-map .pin.active {
+    background-image: url('/luci-static/perenio/images/pin_act.svg');
+}
+
+#road-map .setup-check-point {
+    font-family: 'GothamMedium';
+    color: #BCBCBC;
+}
+
+#road-map .setup-check-point.active {
+    color: #e9e0ce;
+    border-color: #c4c4c4!important;
+}
+
+#road-map .setup-check-point.inet {
+    border-top: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+#road-map .setup-check-point.wifi {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+#road-map .setup-check-point.iot {
+    border-top: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+#no-sim-card h2, #quick-setup h2 {
+    color: #E9E0CE;
+    font-size: 16px;
+}
+
+#quick-setup .buttons-wrapper button {
+    border-color: rgba(255, 255, 255, 0.4);
+    color: #ffffff;
+    border-radius: 4px;
+}
+
+#quick-setup .tooltip-wrapper {
+    background: url('/luci-static/perenio/images/info.svg');
+}
+
+#quick-setup .tooltip {
+    background: #3B4161;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    color: #ffffff;
+}
+
+#quick-setup .paginator button {
+    border-color: rgba(255, 255, 255, 0.4)!important;
+    color: #ffffff!important;
+    border-radius: 4px;
+}
+
+#quick-setup .paginator button#next, #quick-setup .paginator button#save {
+    background: #E9E0CE;
+    color: #293352!important;
+}
+
+#quick-setup .inputs-wrapper>div .mdc-text-field input {
+    color: #ffffff;
+}
+
+#quick-setup .wan-dynamic-settings-grid>div.key {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#quick-setup .wan-dynamic-settings-grid>div.value {
+    color: #ffffff;
+}
+
+#quick-setup #confirm-settings button {
+    background: #E9E0CE;
+    color: #293352;
+}
+
+#quick-setup .wifi-mode {
+    border-bottom: 2px solid #E9E0CE;
+    color: #E9E0CE;
+}
+
+#quick-setup .wifi-settings-grid .mdc-select.encrypt {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#quick-setup #copy-wifi-settings, #quick-setup #copy-wifi-settings i {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.mdc-switch.mdc-switch--checked .mdc-switch__thumb {
+    border-color: #ffffff;
+    background-color: #fff;
+}
+
+.mdc-switch:not(.mdc-switch--checked) .mdc-switch__thumb {
+    border-color: #938FB1;
+    background-color: #938FB1;
+}
+
+.mdc-switch.mdc-switch--checked .mdc-switch__track {
+    background-color: #E9E0CE;
+}
+
+.mdc-switch:not(.mdc-switch--checked) .mdc-switch__track {
+    background-color: rgba(0, 0, 0, 0.34);
+}
+
+.mdc-menu {
+    background-color: #404564;
+}
+
+.mdc-menu .mdc-list .mdc-list-item {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.mdc-switch__thumb-underlay::before, .mdc-switch__thumb-underlay::after {
+    background-color: #404564;
+}
+
+.mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate)~.mdc-checkbox__background {
+    border-color: rgb(196, 196, 196);
+    background-color: transparent;
+}
+
+#icon-complete svg circle {
+    stroke: #2196F3;
+}
+
+#icon-complete svg path {
+    fill: #2196F3;
+    stroke: #2196F3;
+}
+
+.mdc-button {
+    font-family: 'GothamMedium';
+    border-radius: 4px;
+}
+
+.mdc-button.login {
+    background-color: #c4c4c4;
+    color: #293352;
+}
+
+.mdc-button.signup {
+    border-color: #8e90a3;
+    color: #ffffff;
+}
+
+.message, .message label {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.message label a {
+    color: rgba(255, 255, 255, 1);
+}
+
+#location-list .location-name {
+    font-family: 'GothamMedium';
+}
+
+.link-change-photo {
+    color: rgba(255, 255, 255, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+#location-adding button {
+    background-color: rgba(33, 149, 243, 0.2);
+    color: #ffffff;
+}
+
+.add-photo.head {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#quick-setup[data-type-setup="iot"][data-step="complete"] h2 {
+    font-family: 'GothamMedium';
+    color: #E9E0CE;
+}
+
+#resend-email {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#complete-logo {
+    width: 168px;
+    height: 118px;
+    background: url('/luci-static/perenio/images/logo.svg') no-repeat;
+}
+
+#quick-setup[data-type-setup="lte"] h3 {
+    color: #E9E0CE;
+}
+
+.img-scheme-wrapper.first-step {
+    background: url('/luci-static/perenio/images/lte/scheme1.svg') 0 50% no-repeat;
+}
+
+.img-scheme-wrapper.second-step {
+    background: url('/luci-static/perenio/images/lte/scheme2.svg') 0 50% no-repeat;
+}
+
+.img-scheme-wrapper.third-step {
+    background: url('/luci-static/perenio/images/lte/scheme3.svg') 0 50% no-repeat;
+}
+
+#lte-scheme-tutor .action-text {
+    font-family: 'GothamMedium';
+    color: #E9E0CE;
+    font-size: 12px;
+    line-height: 21px;
+}
+
+.no-sim-card-warning {
+    color: #E8404A!important;
+}
+
+.no-sim-card-warning:before {
+    background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10.8 15.6H13.2V18H10.8V15.6ZM10.8 6H13.2V13.2H10.8V6ZM11.988 0C5.364 0 0 5.376 0 12C0 18.624 5.364 24 11.988 24C18.624 24 24 18.624 24 12C24 5.376 18.624 0 11.988 0ZM12 21.6C6.696 21.6 2.4 17.304 2.4 12C2.4 6.696 6.696 2.4 12 2.4C17.304 2.4 21.6 6.696 21.6 12C21.6 17.304 17.304 21.6 12 21.6Z' fill='%23E8404A'/%3E%3C/svg%3E%0A");
+}
+
+#quick-setup[data-type-setup="lte"] #pindisable label {
+    font-family: 'GothamMedium';
+    color: #FFFFFF;
+}
+
+#quick-setup[data-type-setup="lte"] .hint-pin {
+    font-family: 'GothamMedium';
+    color: rgba(255, 255, 255, 0.2);
+}
+
+#quick-setup[data-type-setup="lte"][data-step="connection-settings"] #show-ballance-dialog {
+    background: rgba(125, 209, 112, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-family: 'GothamMedium';
+    color: #ffffff;
+}
+
+.modal-dialog {
+    background: #393e5a;
+}
+
+.waiting {
+    font-family: 'GothamMedium';
+}
+
+.modal-dialog #send {
+    background: #4F6CFF;
+}
+
+.modal-dialog #close {
+    background: #E9E0CE;
+    color: #293352;
+}
+
+#loader {
+    background: url('/luci-static/perenio/images/loader.png') no-repeat;
+    top: 45%;
+    position: relative;
+}
+
+#quick-setup[data-type-setup="wifi-client"] .wifi-client {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+#quick-setup[data-type-setup="wifi-client"] .wifi-client.active {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#quick-setup[data-type-setup="wifi-client"] .wifi-client.active .ssid {
+    color: #ffffff;
+}
+
+#quick-setup[data-type-setup="wifi-client"] .wifi-client .ssid, #quick-setup[data-type-setup="wifi-client"] .wifi-client .freq {
+    font-family: 'GothamMedium';
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.lock .material-icons {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.wifi-antenna[data-level="full"] {
+    background: url('/luci-static/perenio/images/wifi/antenna-full.svg');
+}
+
+.wifi-antenna[data-level="middle"] {
+    background: url('/luci-static/perenio/images/wifi/antenna-middle.svg');
+}
+
+.wifi-antenna[data-level="low"] {
+    background: url('/luci-static/perenio/images/wifi/antenna-low.svg');
+}
+
+.wifi-antenna[data-level="zero"] {
+    background: url('/luci-static/perenio/images/wifi/antenna-zero.svg');
+}
+
+.ifacebox .ifacebox-head.active {
+    background: #2196F3!important;
+}
+
+#main-menu .mdc-drawer__content #view-mode {
+    background-color: transparent!important;
+    border-color: rgba(255, 255, 255, 0.4);
+    color: #ffffff;
+}
+
+#maincontent {
+    background: rgba(83, 88, 115, 0.7);
+    border-radius: 10px!important;
+}
+
+.progress-bar {
+    background-color: #2196F3;
+}
+
+.warning-status {
+    color: #fff;
+}
+
+.error-status {
+    color: red;
+}
+
+#modem-conn-type {
+    font-family: 'GothamMedium';
+    color: #938FB1;
+}
+
+#mwan_status_text .btn.success, .alert-message.success {
+    background: #2196F3;
+}
+
+#mwan_status_text .btn.success, .alert-message.success {
+    background: #2196F3;
+}
+
+/* Battery icon status */
+
+/* Critical low level and not charging */
+.battery[data-status="critical_low"] {
+    margin-top: 18px;
+    background-image: url('/luci-static/perenio/images/battery/critical_low.svg');
+}
+
+/* Low level and not charging */
+.battery[data-status="low"] {
+    margin-top: 18px;
+    background-image: url('/luci-static/perenio/images/battery/low.svg');
+}
+
+/* Middle level and not charging */
+.battery[data-status="middle"] {
+    background-image: url('/luci-static/perenio/images/battery/middle.svg');
+}
+
+/* Pre full level and not charging */
+.battery[data-status="pre_full"] {
+    background-image: url('/luci-static/perenio/images/battery/pre_full.svg');
+}
+
+/* Full level and not charging */
+.battery[data-status="full"] {
+    background-image: url('/luci-static/perenio/images/battery/full.svg');
+}
+
+/* Critical low level and charging */
+.battery[data-status="critical_low_fast"] {
+    margin-top: 18px;
+    background-image: url('/luci-static/perenio/images/battery/critical_low_charge.svg');
+}
+
+/* Low level and charging */
+.battery[data-status="low_fast"]  {
+    margin-top: 18px;
+    background-image: url('/luci-static/perenio/images/battery/low_charge.svg');
+}
+
+/* Middle level and charging */
+.battery[data-status="middle_fast"] {
+    background-image: url('/luci-static/perenio/images/battery/middle_charge.svg');
+}
+
+/* Pre full level and charging */
+.battery[data-status="pre_full_fast"] {
+    background-image: url('/luci-static/perenio/images/battery/pre_full_charge.svg');
+}
+
+/* Full level and charging */
+.battery[data-status="full_fast"] {
+    background-image: url('/luci-static/perenio/images/battery/full_charge.svg');
+}
+
+/* Full level and charging done */
+.battery[data-status="full_done"] {
+    background-image: url('/luci-static/perenio/images/battery/full_done.svg');
+}
+
+/* Overheat */
+.battery[data-status="overheat"] {
+    background-image: url('/luci-static/perenio/images/battery/overheat.svg');
+}
+
+/* Wrong adapter */
+.battery[data-status="wrong_adapter"] {
+    background-image: url('/luci-static/perenio/images/battery/wrong_adapter.svg');
+    margin-top: 19px;
+}
+
+/* Battery not detected */
+.battery[data-status="not_detected"] {
+    background-image: url('/luci-static/perenio/images/battery/not_detected.svg');
+}
+/* end battery */
+
+div[data-module="modem"] .per-modem-counter-reset, div[data-module="modem"] .per-value, div[data-module="modem"] .per-key, div[data-module="modem"] .per-head, div[data-module="modem"] .per-tabs>.per-tab, div[data-module="modem"] {
+    font-family: 'GothamMedium';
+}
+
+div[data-module="modem"] .per-container, div[data-module="modem"] .per-tabs .per-tab.active {
+    background: rgba(83, 88, 115, 0.7);
+}
+
+.languages-select.mdc-select__menu .mdc-list .mdc-list-item--selected {
+    color: #ffffff!important;
+}
+
+#resend-email, #finish-message {
+    font-family: 'Roboto';
+}
+
+footer {
+    border-top: none;
+}
+
+#pre-loader {
+    top: 220px;
+}
+
+.dashboard .cell-container {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.cell-container .ifname {
+    font-family: 'GothamMedium';
+}
+
+.dvalue {
+    color: #ffffff;
+}
+
+.grid.wifi-mode-tabs>div {
+    background-color: transparent;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.grid.wifi-mode-tabs>div.active {
+    background-color: rgba(233, 224, 206, 0.1);
+    color: #E9E0CE;
+    border-radius: 4px;
+}
+
+.os-version-hint {
+    background-color: #2b3453;
+    border-radius: 4px;
+}
+
+.current-upstream .ifname {
+    color: #E9E0CE;
+}
+
+.grid.wifi-mode-tabs {
+    width: 117px;
+}
+
+.dheader {
+    font-weight: normal;
+}
+
+.upstream .upstream-icon-holder {
+    background-color: rgba(125, 209, 112, 0.1);
+}
+
+/* dashboard */
+
+#wired div[data-status-icon="active"] {
+    background-image: url('/luci-static/perenio/images/network/wired_active.svg');
+    background-color: rgba(125, 209, 112, 0.1);
+}
+
+#pindisable label {
+    color: #ffffff;
+}
+
+#wired div[data-status-icon="active"]+.ifname {
+    color: rgba(233, 224, 206, 0.99);
+}
+
+#wired div[data-status-icon="enabled"] {
+    background-image: url('/luci-static/perenio/images/network/wired_enabled.svg');
+    background-color: rgba(251, 188, 15, 0.1);
+}
+
+#wired div[data-status-icon="enabled"]+.ifname {
+    color: #FBBC0F;
+}
+
+#wired div[data-status-icon="disabled"] {
+    background-image: url('/luci-static/perenio/images/network/wired_disabled.svg');
+}
+
+/* wireless */
+
+#wireless div[data-status-icon="active"] {
+    background-image: url('/luci-static/perenio/images/network/wireless_active.svg');
+    background-color: rgba(125, 209, 112, 0.1);
+    color: rgba(233, 224, 206, 0.99);
+}
+
+#wireless div[data-status-icon="active"]+.ifname {
+    color: rgba(233, 224, 206, 0.99);
+}
+
+#wireless div[data-status-icon="enabled"] {
+    background-image: url('/luci-static/perenio/images/network/wireless_enabled.svg');
+    background-color: rgba(251, 188, 15, 0.1);
+}
+
+#wireless div[data-status-icon="enabled"]+.ifname {
+    color: #FBBC0F;
+}
+
+#wireless div[data-status-icon="disabled"] {
+    background-image: url('/luci-static/perenio/images/network/wireless_disabled.svg');
+}
+
+/* current upstream */
+
+.current-upstream[data-active-ifname="lte"] .upstream-icon-holder {
+    background-image: url('/luci-static/perenio/images/network/wireless_active.svg');
+}
+
+.current-upstream[data-active-ifname="wifi"] .upstream-icon-holder {
+    background-image: url('/luci-static/perenio/images/network/wifi_active.svg');
+    background-size: 15px;
+}
+
+.current-upstream[data-active-ifname="wan"] .upstream-icon-holder {
+    background-image: url('/luci-static/perenio/images/network/wired_active.svg');
+    background-size: 17px;
+}
+
+.online-connections-data .dvalue.wifi-signal[data-signal-level="highest"] {
+    background-image: url('/luci-static/perenio/images/network/wifi_active.svg');
+}
+
+.online-connections-data .dvalue.wifi-signal[data-signal-level="high"] {
+    background-image: url('/luci-static/perenio/images/network/wifi_high.svg');
+}
+
+.online-connections-data .dvalue.wifi-signal[data-signal-level="middle"] {
+    background-image: url('/luci-static/perenio/images/network/wifi_middle.svg');
+}
+
+.online-connections-data .dvalue.wifi-signal[data-signal-level="low"] {
+    background-image: url('/luci-static/perenio/images/network/wifi_low.svg');
+}
+
+.online-connections-data .dvalue.wifi-signal[data-signal-level="extralow"] {
+    background-image: url('/luci-static/perenio/images/network/wifi_extralow.svg');
+}
+
+.online-connections-data .dvalue.wifi-signal[data-signal-level="nosignal"] {
+    background-image: url('/luci-static/perenio/images/network/wifi_nosignal.svg');
+}
+
+.online-connections-head .online-connections-toggler {
+    color: rgba(255, 255, 255, 0.39)!important;
+    letter-spacing: 0.16px;
+}
+
+.online-connections-head .online-connections-toggler.active {
+    color: #ffffff!important;
+    border-bottom-color: #ffffff;
+}
+
+#kit-google {
+    width: 192px;
+    background-image: url('/luci-static/perenio/images/kit_google.svg');
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+#kit-appstore {
+    width: 177px;
+    background-image: url('/luci-static/perenio/images/kit_appstore.svg');
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.tabs>li>a, .cbi-tabmenu>li>a {
+    background: #dddddd33;
+    margin-right: 4px;
+    border-radius: 4px 4px 0 0;
+}
+
+.ifacebadge {
+    background-color: transparent;
+}
+
+.tabs .active>a, .tabs .active>a:hover, .cbi-tabmenu .active>a, .cbi-tabmenu .active>a:hover, .cbi-tab>a:link, .cbi-tab>a:hover {
+    color: #808080;
+    background-color: rgba(83, 88, 115, 0.7);
+    border: 1px solid #ddd;
+    /* border-bottom-color: transparent; */
+    cursor: default;
+}
+
+.tabs>li>a:hover, .cbi-tabmenu>li>a:hover {
+    text-decoration: none;
+    background-color: #4f546f;
+    border-color: #eee #eee #ddd;
+}
+
+.tamper[data-tamper-state="opened"] {
+    background-image: url(/luci-static/perenio/images/tamper/opened.svg);
+}
+
+.tamper[data-tamper-state="closed"] {
+    background-image: url(/luci-static/perenio/images/tamper/closed.svg);
+}
+
+.tamper {
+    margin-top: 10px;
+}
+
+.menu-toggler__inner, .menu-toggler__inner:before, .menu-toggler__inner:after {
+    background-color: #E9E0CE!important;
+}
+
+.action-buttons-wrapper button {
+    background-color: #4F6CFF!important;
+    color: #ffffff!important;
+}
+
+.mdc-button.ok-button.mdc-snackbar__action svg, .action-buttons-wrapper button svg {
+    display: none;
+}
+
+.ok-button>span {
+    position: initial;
+}
+
+.card-tray-scheme {
+    background: url('/luci-static/perenio/images/lte/desktop-scheme.svg') 0 50% no-repeat;
+}
+
+.reboot-icon {
+    background-image: url('/luci-static/perenio/images/mobile/reboot.svg');
+}
+
+.logout-icon {
+    background-image: url('/luci-static/perenio/images/mobile/logout.svg');
+}
+
+.cbi-value-description {
+    background-image: url(/luci-static/resources/images/help_white.svg);
+    background-position: 0px 3px;
+}
+
+.per-container {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 0 10px 10px 10px;
+}
+
+.per-tabs .mdc-tab {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 5px 5px 0 0;
+    margin-right: 7px;
+}
+
+.per-tabs .mdc-tab--active {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.per-tabs .mdc-tab__text-label {
+    font-family: 'GothamMedium';
+    font-size: 14px;
+    letter-spacing: 0.16px;
+    font-weight: 350;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.per-tabs .mdc-tab--active .mdc-tab__text-label {
+    color: #E9E0CE;
+}
+
+.per-tabs .mdc-tab-indicator__content {
+    display: none;
+}
+
+.absolute.refresh-right svg {
+    display: none;
+}
+
+
+.mdc-select, .mdc-text-field {
+    height: 48px!important;
+}
+
+div[data-module="iot"] #location-list .location-name {
+    background: #2c3553a6;
+    border-radius: 4px;
+}
+
+.mdc-select--focused .mdc-select__dropdown-icon {
+    background: none;
+}
+#check-update-dialog .mdc-dialog__content,
+#check-update-dialog .mdc-dialog__title {
+    color: #ffffff!important;
+}
+
+#empty-config-dialog .mdc-dialog__content, #empty-config-dialog .mdc-dialog__title {
+    color: #ffffff!important;
+}
+
+#ap-is-active-dialog  .mdc-dialog__content, #ap-is-active-dialog .mdc-dialog__title {
+    color: #ffffff!important;
+}
+
+#quick-setup .buttons-wrapper>div .btn-label {
+    background: #7DD170;
+    padding: 0 8px 0 25px;
+    font-family: 'GothamMedium';
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 10px;
+    line-height: 2;
+}
+
+#quick-setup .buttons-wrapper>div .btn-label:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 4px;
+    left: 6px;
+    background-image: url("data:image/svg+xml,%3Csvg width='14' height='10' viewBox='0 0 14 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14 1L13 0L5 7L1 4L0 5L5 10L14 1Z' fill='white'/%3E%3C/svg%3E");
+    width: 14px;
+    height: 10px;
+}
+
+#quick-setup #net-points-not-found {
+    font-size: 16px;
+    font-weight: 350;
+}
+
+#quick-setup button#repeat-scan {
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-weight: 350;
+    letter-spacing: 0.16px;
+}
+
+#quick-setup button#repeat-scan svg {
+    margin-right: 10px;
+}
+
+.device-info {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.16px;
+}
+
+button#go-sysops {
+    font-size: 14px;
+}
+
+#remove-iot-dialog .mdc-dialog__content ,
+#qlog-path-switcher .mdc-form-field>label{
+    color: #ffffff!important;
+}
+

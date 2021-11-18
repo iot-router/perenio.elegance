@@ -1,0 +1,75 @@
+<%+header%>
+
+<form id="perenio-login" method="post" action="<%=pcdata(FULL_REQUEST_URI)%>" autocomplete="off">
+	
+	<div id="router-img"></div>
+	
+	<div class="cbi-map">
+		
+		<h2 class="centered-header" data-translate="router"><%:Multifunctional IoT Router %></h2>
+		
+		<div class="cbi-section">   
+		
+			<div class="cbi-section-node">
+		
+				<div class="cbi-value">  
+		
+					<div class="mdc-text-field mdc-text-field--outlined" data-mdc-auto-init="MDCTextField">
+		
+						<input id="luci_username-outlined" autocomplete="on" name="luci_username" class="mdc-text-field__input" >
+		
+						<div class="mdc-notched-outline">
+		
+							<div class="mdc-notched-outline__leading"></div>
+							
+							<div class="mdc-notched-outline__notch">
+								<label data-translate="username" for="luci_username-outlined" class="mdc-floating-label"><%: Username %></label>
+							</div>
+		
+							<div class="mdc-notched-outline__trailing"></div>
+		
+						</div>
+			 		
+					</div>
+				
+				</div>
+			
+				<div class="cbi-value cbi-value-last">
+					
+					<div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-trailing-icon <%- if fuser then %> mdc-text-field--invalid <% end -%>" data-mdc-auto-init="MDCTextField">
+					
+						<i class="look-password material-icons mdc-text-field__icon">visibility</i>
+					
+						<input required minlength="8"  name="luci_password" type="password" class="mdc-text-field__input" aria-controls="pw-validation-msg">
+						
+						<div class="mdc-notched-outline">
+						
+							<div class="mdc-notched-outline__leading"></div>
+						
+							<div class="mdc-notched-outline__notch">
+								<label data-translate="password" for="luci_password-outlined" class="mdc-floating-label"><%: Password %></label>
+							</div>
+					 	
+							<div class="mdc-notched-outline__trailing"></div>
+						 
+						</div>
+					</div>
+					
+					<%- if fuser then %>
+						<div data-translate="error" class=""><%:Invalid username and/or password! Please try again.%></div>
+					<% end -%>
+				</div>
+			</div>
+
+			<input id="luci_lang" type="hidden" name="luci_lang" value="auto">
+		
+		</div>
+
+		<div>
+			<button data-translate="login" class="mdc-button mdc-button--unelevated" data-mdc-auto-init="MDCRipple"><%:Login%></button>
+		</div>
+	</div>
+	
+</form>
+
+<%+footer%>

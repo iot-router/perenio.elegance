@@ -1,0 +1,43 @@
+<%+themes/speedtest/header%>
+
+    <style>
+        #output {
+            min-width: 300px;
+            height: 330px;
+            max-height: 800px;
+            background: #0e0e0e;
+            color: #fff;
+            white-space: pre;
+            overflow: auto;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 400;
+            border: 1px solid #dedede;
+            border-radius: 4px;
+            white-space: break-spaces;
+        }
+
+        test-result {
+            width: 500px;
+            height: 290px;
+            background-repeat: no-repeat;
+            background-size: 100%;
+            margin: 0 auto;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .modal-dialog {
+            height: auto !important;
+        }
+    </style>
+
+    <div data-module="speedtest">
+
+        <button tabindex="1" id="start-test" class="mdc-button" data-mdc-auto-init="MDCRipple">Start Test</button>
+
+        <div id="output"></div>
+
+    </div>
+
+<%+themes/speedtest/footer%>
