@@ -1,24 +1,27 @@
 include $(TOPDIR)/rules.mk
 
+### Package identification (according the OpenWRT package specification)
+### Package name. !!! Pay attenetion: Only alphanumeric and '-' (minus) !!!
+PKG_NAME:=lxcpkg-example-perl
+PKG_VERSION:=1.0.0
+
 ### LXC Execution Environment name - mandatory.
 LXC_EE=bip-brlxc-static-ee
-### LXC default name - optional. If it is skipped then the Template name is used as a LXC name.
-LXC_DEFAULT_NAME=lxc_example_perl
+### LXC default name - optional. !!! Pay attenetion: Only alphanumeric and '_' (underscore) !!!
+### If it is skipped then the Template name is used as a LXC name (minuses are changed to underscores).
+LXC_DEFAULT_NAME=example_perl
 ### LXC configuration
 LXC_CONFIG=lxc-package.config
 
 ### Packages to be included
 PKG_BUILD_DEPENDS:=perl
 
-### Package credential
-PKG_NAME:=lxc-package-example-perl
-PKG_VERSION:=2021-05-26
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/lxc-package.mk
 
 define Package/$(PKG_NAME)/description
-  Test of LXC container build
+  Test of LXC container build (Number Guessing Game using Perl inside)
 endef
 
 define Package/$(PKG_NAME)
@@ -26,7 +29,7 @@ define Package/$(PKG_NAME)
   SECTION:=utils
   CATEGORY:=Utilities
   DEPENDS:=+perl
-  TITLE:=Example of LXC-package build (Number Guessing Game using Perl inside)
+  TITLE:=Example of LXC-package build 
 endef
 
 define Package/$(PKG_NAME)/config

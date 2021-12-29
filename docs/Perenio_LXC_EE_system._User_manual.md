@@ -1,6 +1,6 @@
 # Perenio LXC EE system. User manual
 
-v4.3.0
+v5.1.0
 
 <!-- TOC -->
 
@@ -68,7 +68,7 @@ v4.3.0
 # 1. Introduction
 
 Perenio LXC EE (LinuX Containers Execution Environment) system is a set of tools to manage LXC in IoT Router.  
-This document describes Perenio LXC EE v4.3.0.
+This document describes Perenio LXC EE v5.1.0.
 
 ## 1.1 Purposes
 
@@ -98,6 +98,7 @@ LXC-package has to be installed by the [ee-install](#211-ee-install) tool only.
 ## 2.1 Tools
 
   - **ee-install** - a tool to create an LXC from a template and install the LXC-package into it.
+  - **ee-update** - a tool to update an installed LXC-package.
   - **ee-remove** - a tool to remove an installed LXC-package.
   - **ee-info** - a tool to display information about an installed LXC-package.
 
@@ -134,33 +135,60 @@ Additional options:
     --no_autostart                      - Disable LXC autostart at system start up.
 
 ```
+If the specified LXC is already created then it will be updated (see ee-update).
 
 #### 2.1.1.2 Examples
 
-* Set up the perenio-iot-lxc LXC-package
+* Set up the lxcpkg-example-perl LXC-package
     ```shell
-    ee-install perenio-iot-lxc_2020-11-17_mipsel_24kc.ipk
+    ee-install lxcpkg-example-perl_1.0.0_mipsel_24kc.ipk
     ```
-* Set up the encrypted perenio-iot-lxc LXC-package
+* Set up the encrypted lxcpkg-example-perl LXC-package
     ```shell
-    ee-install perenio-iot-lxc_2020-11-17_mipsel_24kc.bin
+    ee-install lxcpkg-example-perl_1.0.0_mipsel_24kc.bin
     ```
-* Set up the perenio-iot-lxc LXC-package named Smart-home
+* Set up the lxcpkg-example-perl LXC-package named Some_LXC
     ```shell
-    ee-install -n Smart-home -p perenio-iot-lxc_2020-11-17_mipsel_24kc.ipk
+    ee-install -n Some_LXC -p lxcpkg-example-perl_1.0.0_mipsel_24kc.ipk
     ```
 * Set up an empty bip-brlxc-static-ee template
     ```shell
-    ee-install -t bip-brlxc-static-ee -n empty_iot
+    ee-install -t bip-brlxc-static-ee -n empty_lxc
     ```
 
-### 2.1.2 ee-remove
+### 2.1.2 ee-update
+
+**ee-update** is a tool to update an existing LXC to the new version of LXC-package.  
+Two conditions to perform an LXC update:
+* the new LXC-package should have the same PKG_NAME as the target LXC.
+* PKG_VERSION of the new LXC-package should be higher the PKG_VERSION of the target LXC.  
+
+*** To force update to the lower version, the option '--force-downgrade' can be used.  
+
+#### 2.1.2.1 Usage
+
+```shell
+ee-update -h|--help|<options>
+
+Mandatory options:
+    [-p|--pkg=]<pkg.ipk>                - The path and the filename of the LXC-package to be updated.
+    -n|--name=<name>                    - The name of the updating LXC.
+Additional options:
+    --decrypt                           - Decrypt the LXC-package by the device credentials.
+                                          By default, *.ipk LXC-packages are not encrypted,
+                                          *.bin LXC-packages are encrypted and should be decrypted before update.
+    --force-downgrade                   - Do not check version
+```
+
+#### 2.1.2.2 Data
+
+### 2.1.3 ee-remove
 
 **ee-remove** is a tool to remove an LXC-package from the system.  
 The same result as the original `lxc-destroy` command. However `ee-remove` can use an LXC-package file name instead of an LXC name.
 If LXC is running then it stops automatically before destroying.
 
-#### 2.1.2.1 Usage
+#### 2.1.3.1 Usage
 
 ```shell
 ee-remove -h|--help | [ [-n|--name=]<name>] [-p|--pkg=<pkg.ipk>]
@@ -170,11 +198,11 @@ Where:
     `name` is the LXC name.
     `pkg.ipk` is the LXC-package file name.
 
-### 2.1.3 ee-info
+### 2.1.4 ee-info
 
 **ee-info** a tool to display information about an installed LXC-package.
 
-#### 2.1.3.1 Usage
+#### 2.1.4.1 Usage
 
 ```shell
 ee-info -h|--help | -l|--list | [ [-n|--name=]<name>] [-p|--pkg=<pkg.ipk>]
@@ -185,7 +213,7 @@ Where:
     `name` is the LXC name.
     `pkg.ipk` is the LXC-package file name.
 
-#### 2.1.3.2 Examples
+#### 2.1.4.2 Examples
 
 ```shell
 root@PEJIR01_ACKf:~# ee-info iot
