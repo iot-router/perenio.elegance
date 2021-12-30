@@ -127,7 +127,8 @@ The developer has to specify the following settings in the Makefile (pay attenti
     PKG_NAME:=lxcpkg-example-perl
     ```
 2. (Mandatory)  
-   The LXC-package version. This version is required for the LXC-package update. By default, an LXC-package update is available to higher version of the same LXC-package name. For example:
+   The LXC-package version. This version is required for the LXC-package update. By default, LXC-package update is available to higher version of the same LXC-package name.  
+   For example:
     ```makefile
     PKG_VERSION:=1.0.0
     ```
@@ -208,6 +209,10 @@ The developer can specify the following settings in the config file:
 - [WEB_HTTP](Perenio_LXC_EE_system._User_manual.md#235-web_http-and-web_https)
 - [WEB_HTTPS](Perenio_LXC_EE_system._User_manual.md#235-web_http-and-web_https)
 - [PROXY](Perenio_LXC_EE_system._User_manual.md#236-proxy)
+- [BKUP_FILES](Perenio_LXC_EE_system._User_manual.md#237-bkup_files)
+- [BKUP_EXCLUDE_FILES](Perenio_LXC_EE_system._User_manual.md#238-bkup_exclude_files)
+- [IGNORE_BKUP_FILES](Perenio_LXC_EE_system._User_manual.md#239-ignore_bkup_files)
+- [REPLICATED_SETTINGS](Perenio_LXC_EE_system._User_manual.md#2310-replicated_settings)
 
 Detailed information is available in the User Manual ([2.2. Templates](Perenio_LXC_EE_system._User_manual.md#22-templates), [2.3. LXC-package options](Perenio_LXC_EE_system._User_manual.md#23-lxc-package-options))
 
@@ -350,7 +355,7 @@ perenio@ubuntu:~/owrt$
 ![](images/icons/bullet_blue.gif)
 [openwrt18.04-patch.tar.gz](attachments/Creating_LXC-package_for_IoT-Router/openwrt18.04-patch.tar.gz)  
 ![](images/icons/bullet_blue.gif)
-[perenio-ee\_v4.2.1\_sdk.tar.gz](attachments/Creating_LXC-package_for_IoT-Router/perenio-ee_v5.1.0_sdk.tar.gz)  
+[perenio-ee\_v5.1.0\_sdk.tar.gz](attachments/Creating_LXC-package_for_IoT-Router/perenio-ee_v5.1.0_sdk.tar.gz)  
 ![](images/icons/bullet_blue.gif)
 [Makefile](attachments/Creating_LXC-package_for_IoT-Router/Makefile)  
 ![](images/icons/bullet_blue.gif)

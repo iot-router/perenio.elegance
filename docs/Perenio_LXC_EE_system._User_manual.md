@@ -12,11 +12,14 @@ v5.1.0
         - [2.1.1 ee-install](#211-ee-install)
             - [2.1.1.1 Usage](#2111-usage)
             - [2.1.1.2 Examples](#2112-examples)
-        - [2.1.2 ee-remove](#212-ee-remove)
+        - [2.1.2 ee-update](#212-ee-update)
             - [2.1.2.1 Usage](#2121-usage)
-        - [2.1.3 ee-info](#213-ee-info)
+            - [2.1.2.2 The LXC update process description](#2122-the-lxc-update-process-description)
+        - [2.1.3 ee-remove](#213-ee-remove)
             - [2.1.3.1 Usage](#2131-usage)
-            - [2.1.3.2 Examples](#2132-examples)
+        - [2.1.4 ee-info](#214-ee-info)
+            - [2.1.4.1 Usage](#2141-usage)
+            - [2.1.4.2 Examples](#2142-examples)
     - [2.2 Perenio Execution Environments (templates)](#22-perenio-execution-environments-templates)
         - [2.2.1 BEE](#221-bee)
             - [2.2.1.1 The LXC overlay rootfs filesystem](#2211-the-lxc-overlay-rootfs-filesystem)
@@ -36,6 +39,10 @@ v5.1.0
         - [2.3.5 WEB_HTTP and WEB_HTTPS](#235-web_http-and-web_https)
             - [2.3.5.1 Composite port specification for proxy usage](#2351-composite-port-specification-for-proxy-usage)
         - [2.3.6 PROXY](#236-proxy)
+        - [2.3.7 BKUP_FILES](#237-bkup_files)
+        - [2.3.8 BKUP_EXCLUDE_FILES](#238-bkup_exclude_files)
+        - [2.3.9 IGNORE_BKUP_FILES](#239-ignore_bkup_files)
+        - [2.3.10 REPLICATED_SETTINGS](#2310-replicated_settings)
     - [2.4 LXC-package Web integration](#24-lxc-package-web-integration)
     - [2.5 LXC-package installation process](#25-lxc-package-installation-process)
         - [2.5.1 LXC creation](#251-lxc-creation)
@@ -52,7 +59,7 @@ v5.1.0
         - [4.1.2 Remove](#412-remove)
             - [4.1.2.1 ee-remove](#4121-ee-remove)
             - [4.1.2.2 lxc-destroy](#4122-lxc-destroy)
-            - [4.1.2.3 opkg remove (for perenio-ee v2.0+)](#4123-opkg-remove-for-perenio-ee-v20)
+            - [4.1.2.3 opkg remove (for Perenio-EE v2.0.0+)](#4123-opkg-remove-for-perenio-ee-v200)
         - [4.1.3 Start](#413-start)
             - [4.1.3.1 lxc-start](#4131-lxc-start)
         - [4.1.4 Stop](#414-stop)
@@ -159,11 +166,21 @@ If the specified LXC is already created then it will be updated (see ee-update).
 ### 2.1.2 ee-update
 
 **ee-update** is a tool to update an existing LXC to the new version of LXC-package.  
-Two conditions to perform an LXC update:
+Two conditions to perform an LXC update are following:
 * the new LXC-package should have the same PKG_NAME as the target LXC.
-* PKG_VERSION of the new LXC-package should be higher the PKG_VERSION of the target LXC.  
+* PKG_VERSION of the new LXC-package should be higher the PKG_VERSION of the target LXC (\*\*\*).  
 
-*** To force update to the lower version, the option '--force-downgrade' can be used.  
+\*\*\* To force update to a lower version, the option '--force-downgrade' can be used.  
+
+PKG_NAME and PKG_VERSION should be defined in LXC-package. If they are not defined or the old SDK version of the LXC-package is used then Perenio-EE tries to extract them from the LXC-package filename. The assumption is that the package filename is created according to the OpenWRT rule - \<name\>\_\<version\>\_\<target\>.ipk.
+
+Version values are compared by the following rules:
+* Version value is splitting to groups by the dot ('.') separator.
+* Group of one version value is compared to corresponding group of another version one by one starting from the left group.
+* If both groups are numbers then they are compared as numbers.
+* If at least one of the groups is not a number than they are compared as strings.
+* If a pair of corresponding groups are equal then the next groups from the right side are compared.
+* Comparison is stopped if the pair of not equal groups is found or no groups left.
 
 #### 2.1.2.1 Usage
 
@@ -180,7 +197,24 @@ Additional options:
     --force-downgrade                   - Do not check version
 ```
 
-#### 2.1.2.2 Data
+#### 2.1.2.2 The LXC update process description
+
+LXC update is processing in 4 steps:
+1. Backup the LXC data.
+2. Remove the LXC.
+3. Install the LXC-package.
+4. Restore the LXC data.
+
+The following data are saved:
+1. Directories `/etc`, `/data`, `/logs` as well as directories and files specified in the [BKUP_FILES](#237-bkup_files) option of the updating LXC.
+2. Except files `/etc/config/network`, `/etc/config/dropbear`, `/etc/config/uhttpd` as well as directories and files specified in the [BKUP_EXCLUDE_FILES](#238-bkup_exclude_files) option of the updating LXC.
+3. All lxcpkg UCI config variables.
+
+The following data are restored:
+1. All directories and files that were backed up except ones specified in the [IGNORE_BKUP_FILES](#239-ignore_bkup_files) option of the new LXC-package.
+2. lxcpkg UCI config variables specified in the [REPLICATED_SETTINGS](#2310-replicated_settings) option of the new LXC-package.
+
+Thus, BKUP_FILES, BKUP_EXCLUDE_FILES, IGNORE_BKUP_FILES and REPLICATED_SETTINGS options make it possible to control the update process data transfer by LXC-package developer.
 
 ### 2.1.3 ee-remove
 
@@ -216,32 +250,37 @@ Where:
 #### 2.1.4.2 Examples
 
 ```shell
-root@PEJIR01_ACKf:~# ee-info iot
+root@SH-04:~# ee-info example_perl
 LXC info:
-    Name:           iot
+    Name:           example_perl
     State:          RUNNING
-    PID:            20643
+    PID:            4906
     IP:             192.168.192.2
-    CPU use:        31.32 seconds
-    Memory use:     10.73 MiB
-    KMem use:       2.51 MiB
-    Link:           vethD7AUKP
-     TX bytes:      11.07 KiB
-     RX bytes:      10.46 KiB
-     Total bytes:   21.53 KiB
+    CPU use:        5.94 seconds
+    Memory use:     3.06 MiB
+    KMem use:       1.48 MiB
+    Link:           vethWQGC57
+     TX bytes:      4.79 KiB
+     RX bytes:      30.90 KiB
+     Total bytes:   35.69 KiB
 LXC-package config:
-    lxcpkg.iot=iot-ip-ee
-    lxcpkg.iot.lxcpkg='perenio-lxc-iot_2021-05-31_mipsel_24kc.ipk'
-    lxcpkg.iot.AUTOSTART='1'
-    lxcpkg.iot.ip='192.168.192.2'
-    lxcpkg.iot.hostpkg='perenio-lxc-iot.iot'
+    lxcpkg.example_perl=bip-brlxc-static-ee
+    lxcpkg.example_perl.lxcpkg_name='lxcpkg-example-perl'
+    lxcpkg.example_perl.lxcpkg_version='1.0.0'
+    lxcpkg.example_perl.lxcpkg_file='lxcpkg-example-perl_1.0.0_mipsel_24kc.ipk'
+    lxcpkg.example_perl.AUTOSTART='1'
+    lxcpkg.example_perl.overlayfs='/overlay/lxc/example_perl'
+    lxcpkg.example_perl.SSH='22'
+    lxcpkg.example_perl.ip='192.168.192.2'
+    lxcpkg.example_perl.hostpkg='lxcpkg-example-perl.example_perl'
 Host-package config:
-    Package: perenio-lxc-iot.iot
-    Version: 2021-05-31
+    Package: lxcpkg-example-perl.example_perl
+    Version: 1.0.0
     Status: install user installed
     Architecture: mipsel_24kc
-    Installed-Time: 1624433478
+    Installed-Time: 1640812502
 
+root@SH-04:~#
 ```        
 
 ## 2.2 Perenio Execution Environments (templates)
@@ -463,6 +502,62 @@ PROXY=<proxy_ports>
 
 For example: `--proxy=8080`, `--proxy='8080 9090'`, `PROXY=8080`, `PROXY=8080 9090`, `--proxy='8080:80 9090'`, `PROXY=8080:80 9090:443`
 
+
+### 2.3.7 BKUP_FILES
+
+Description: Specifies set of directories and files to be backed up during LXC update.  
+It's possible to specify several entities. One by one. Space char should be used as a delimiter.  
+It is specified in the Makefile of the LXC-package and applied when this LXC will be backed up.  
+Templates: All  
+Command-line usage: Not supported.  
+Makefile usage:
+```makefile
+BKUP_FILES=/opt/dir1 /opt/dir2 /opt/dir3/file
+```
+
+For example: `BKUP_FILES=/opt/myproject/data`, `BKUP_FILES=/usr/share/myservice/config.d /usr/share/myservice/main.conf`
+
+### 2.3.8 BKUP_EXCLUDE_FILES
+
+Description: Specifies set of directories and files to be excluded from the backup during LXC update.  
+It's possible to specify several entities. One by one. Space char should be used as a delimiter.  
+It is specified in the Makefile of the LXC-package and applied when this LXC will be backed up.  
+Templates: All  
+Command-line usage: Not supported.  
+Makefile usage:
+```makefile
+BKUP_EXCLUDE_FILES=/opt/dir1 /opt/dir2 /opt/dir3/file
+```
+
+For example: `BKUP_EXCLUDE_FILES=/etc/config/myservice`, `BKUP_EXCLUDE_FILES=/etc/avahi /data/tempfile1.txt /data/tempfile2.bin`
+
+### 2.3.9 IGNORE_BKUP_FILES
+
+Description: Specifies set of directories and files to be not restored from the backup during LXC update.  
+It's possible to specify several entities. One by one. Space char should be used as a delimiter.  
+It is specified in the Makefile of the LXC-package. It is applied during update when this LXC-package restores backed up data of the old version LXC. This is the difference of this option from the BKUP_EXCLUDE_FILES (that is applied when the backup is creating). It makes possible to ignore some waste files that were backed up by the old version LXC.    
+Templates: All  
+Command-line usage: Not supported.  
+Makefile usage:
+```makefile
+IGNORE_BKUP_FILES=/opt/dir1 /opt/dir2 /opt/dir3/file
+```
+For example: `IGNORE_BKUP_FILES=/etc/config/myservice`, `IGNORE_BKUP_FILES=/etc/avahi /data/tempfile1.txt /data/tempfile2.bin`
+
+### 2.3.10 REPLICATED_SETTINGS
+
+Description: Specifies set of lxcpkg UCI settings to be restored from the backup during LXC update.  
+It's possible to specify several entities. One by one. Space char should be used as a delimiter.  
+It is specified in the Makefile of the LXC-package. It is applied during update when this LXC-package restores backed up data of the old version LXC. It makes possible to restore exact values of some settings of the old version LXC.  
+It is recommended to avoid this option usage. This should be used as a "last chance".
+Templates: All  
+Command-line usage: Not supported.  
+Makefile usage:
+```makefile
+REPLICATED_SETTINGS=seeting1 setting2 settingN
+```
+For example: `REPLICATED_SETTINGS=SSH`, `REPLICATED_SETTINGS=SSH ip`
+
 ## 2.4 LXC-package Web integration
 
 Any LXC-package may have it's own web-interface. Steps to provide it:
@@ -476,7 +571,6 @@ LXC-packages Web-interface is available:
 
 
 ## 2.5 LXC-package installation process
-
 
 ### 2.5.1 LXC creation
 
@@ -562,9 +656,9 @@ ee-install is an LXC-package management tool from the Perenio-EE package. It cre
 
 #### 4.1.2.1 ee-remove
 
-ee-remove is a tool to remove an LXC-package from the system. [See details](#212-ee-remove).
+ee-remove is a tool to remove an LXC-package from the system. [See details](#213-ee-remove).
 
-[Usage](#2121-usage)
+[Usage](#2131-usage)
 
 #### 4.1.2.2 lxc-destroy
 
@@ -574,7 +668,7 @@ lxc-destroy is one of the LXC management tools. It removes a specified LXC from 
     Options:
         -n, --name=NAME - the name of the container to destroy
 
-#### 4.1.2.3 opkg remove (for perenio-ee v2.0+)
+#### 4.1.2.3 opkg remove (for Perenio-EE v2.0.0+)
 
 opkg is an OpenWRT package management tool. It removes a specified package from the host. According to the BEE template, all staff created (LXC, LXC user, etc.) is also removed from the host. 
 
@@ -605,9 +699,9 @@ lxc-stop is one of the LXC management tools. It stops a specified LXC.
 
 ### 4.1.5 Update
 
-lxc-attach is one of the LXC management tools. It runs a specified command in a specified LXC.
+ee-update (for Perenio-EE v5.0.0+) is an LXC-package management tool from the Perenio-EE package. It updates an existing LXC by the new LXC-package. User data of the LXC are saved and restored during update process. 
 
-    lxc-attach -n <name> -- opkg update <LXCpackage>
+[Usage](#2121-usage)
 
 ## 4.2 Web-interface management
 
@@ -617,7 +711,16 @@ All required actions (install, remove, start, stop) can be done by the web inter
 
 ## 4.3 TR-069 management
 
-All required actions (install, remove, start, stop) can be done remotely by the ACS using TR-069. The ChangeDUState path should be used. For example:
+All required actions (install, update, remove, start, stop) can be done remotely by the ACS using TR-069. The ChangeDUState path should be used.
+The following templates should be used:
+* Install: {"CommandKey":"","Operations":[{"URL":"http://your.url.com","Username":"","Password":"","UUID":"","ExecutionEnvRef":""}  
+* Update: {"URL":"http://your.url.com","Username":"","Password":"","Version":"","UUID":""}
+* Remove: {"Version":"","UUID":"","ExecutionEnvRef":""}]}
+
+UUID is a unique ID of LXC. It is defined on install. It is used to update and remove selected LXC.
+
+
+For example:
 
 ![](attachments/429293760/435487610.png)
 
